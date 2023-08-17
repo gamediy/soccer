@@ -1,0 +1,12 @@
+# CLI tool, only in development environment.
+# https://goframe.org/pages/viewpage.action?pageId=3673173
+gfcli:
+  gen:
+    dao:
+      - link: "mysql:root:LE2RrzrMxx6Z4sbc@tcp(104.233.171.253:3306)/star_net?loc=Local&parseTime=true"
+        tables: ""
+        removePrefix: "s_,o_,p_,u_,r_,c_,b_,x_"
+        descriptionTag: true
+        noModelComment: true
+        group: "default"
+        overwriteDao: true

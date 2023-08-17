@@ -1,0 +1,8 @@
+### Send Admins
+POST {{url}}/api/sys/pusher/sendAdmins
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "data": "hello"
+}

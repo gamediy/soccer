@@ -1,0 +1,22 @@
+### Get
+GET {{url}}/api/sys/api?id=181
+Authorization: {{token}}
+
+### List
+GET {{url}}/api/sys/api/list?size=3
+Authorization: {{token}}
+
+### ADD
+POST {{url}}/api/sys/api
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "group": "test",
+  "url": "test",
+  "method": "test",
+  "desc": "test"
+}
+### Del
+DELETE {{url}}/api/sys/api?id=181
+Authorization: {{token}}

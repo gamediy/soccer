@@ -1,0 +1,51 @@
+## Login
+POST {{url}}/api/user/login
+Content-Type: application/json
+
+{
+  "uname": "admin",
+  "pass": "1"
+}
+
+> {%
+    client.global.set("token", "Bearer " + response.body.data.token);
+%}
+
+### Add Dict
+POST {{url}}/api/sys/dict
+Content-Type: application/json
+
+{
+  "title": "test",
+  "k": "test",
+  "v": "test",
+  "group": "1",
+  "desc": "hello"
+}
+
+
+### List Dcit
+GET {{url}}/api/sys/dict/list?page=1&size=2
+Authorization: {{token}}
+
+### Get Dict
+GET {{url}}/api/sys/dict?id=42
+Authorization: {{token}}
+
+### Update Dict
+PUT {{url}}/api/sys/dict
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "42",
+  "title": "系统白名单2",
+  "v": "localhost",
+  "group": "1",
+  "desc": "系统白名单"
+}
+
+### Del Dict
+DELETE {{url}}/api/sys/dict?id=54
+Authorization: {{token}}
+

@@ -1,0 +1,52 @@
+
+### Login
+POST {{url}}/api/user/login
+Content-Type: application/json
+
+{
+  "uname": "admin",
+  "pass": "1"
+}
+
+> {%
+    client.global.set("token", "Bearer " + response.body.data.token);
+%}
+
+### Get Login Info
+GET {{url}}/api/sys/admin/user_info
+Authorization: {{token}}
+
+### Add Dict
+POST {{url}}/api/v1/admin
+#Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "uname": "test",
+  "pass": "123"
+}
+
+
+### List Dcit
+GET {{url}}/api/admin/list?page=1&size=2
+Authorization: {{token}}
+
+### Get Dict
+GET {{url}}/api/v1/admin/?id=53
+Authorization:{{token}}
+
+### Update Dict
+PUT {{url}}/api/v1/admin
+Authorization:{{token}}
+Content-Type: application/json
+
+{
+  "id": "53",
+  "uname": "test2",
+  "email": "test"
+}
+
+### Del Dict
+DELETE {{url}}/api/v1/dict?id=54
+Authorization:{{token}}
+
