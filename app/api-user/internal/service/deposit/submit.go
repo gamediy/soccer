@@ -72,8 +72,8 @@ func (s *deposit) Submit(ctx context.Context, input model.DepositSubmitInput) er
 			Body:  fmt.Sprintf("%s 充值:%.2f 用户：%s", payInfo.Title, input.Amount, userInfo.Account),
 		},
 		EN: push.MessageItem{
-			Title: "deposit",
-			Body:  fmt.Sprintf("%s deposit： %.2f account：%s", payInfo.Title, input.Amount, userInfo.Account),
+			Title: "order",
+			Body:  fmt.Sprintf("%s order： %.2f account：%s", payInfo.Title, input.Amount, userInfo.Account),
 		},
 	}
 	message.Trigger(push.ChannelAdmin, push.EventDeposit)

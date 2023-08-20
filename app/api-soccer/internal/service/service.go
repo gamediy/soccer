@@ -8,4 +8,5 @@ import (
 func GetUserInfo(ctx context.Context) *model.UserInfo {
 	info := ctx.Value("userInfo").(model.UserInfo)
 	return &info
+
 }

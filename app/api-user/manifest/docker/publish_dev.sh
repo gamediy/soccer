@@ -1,6 +1,6 @@
 #!/bin/bash
 read -p "请输入版本号: " ver
-name="admin-soccer"
+name="api-soccer-user"
 image_name="$name:$ver"
 config_file="config.yaml"
 # 强制拉群 最近 GIT 代码

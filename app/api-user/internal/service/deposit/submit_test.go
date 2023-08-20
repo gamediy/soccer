@@ -3,6 +3,8 @@ package deposit
 import (
 	"context"
 	"star_net/app/api-user/internal/model"
+	md "star_net/model"
+
 	"star_net/utility/utils/xtrans"
 	"star_net/utility/xpusher"
 	"testing"
@@ -10,7 +12,7 @@ import (
 
 func Test_deposit_Submit(t *testing.T) {
 	background := context.Background()
-	info := model.UserInfo{}
+	info := md.UserInfo{}
 	info.Uid = 1
 	info.Pid = 0
 	info.Account = "account"

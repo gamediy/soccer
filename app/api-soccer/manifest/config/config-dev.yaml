@@ -1,0 +1,33 @@
+app: "api-soccer"
+server:
+  address: ":9002"
+  openapiPath: "/api.json"
+  swaggerPath: "/swagger"
+  jwtExpireDuration: "7D" # 7 days
+  imgPrefix: "http://104.233.171.253:9000/upload/" # 图片前缀
+  rootFilePath: "/resource/public/upload/"  # 文件上传路径
+  clientMaxBodySize: "200MB"
+
+logger:
+  level: "debug"
+  stdout: true
+database:
+  logger:
+    level: "debug"
+    stdout: true
+  default:
+    link: "mysql:root:LE2RrzrMxx6Z4sbc@tcp(104.233.171.253:3306)/star_net?loc=Local&parseTime=true"
+    debug: true
+
+redis:
+  default:
+    address: "104.233.171.253:63790"
+    db: 1
+    pass: "123456ab..."
+pusher:
+  appId: "1644349"
+  key: "3400fc3f83796ca48785"
+  secret: "2e84608a0d38f20e852e"
+  cluster: "ap1"
+elastic:
+  url: "http://104.233.171.253:9200"

@@ -46,7 +46,7 @@ type DelWithdrawReq struct {
 type DelWithdrawRes model.CommonRes
 
 type CheckOrderByAdminReq struct {
-	g.Meta       `tags:"/wallet/deposit" method:"put" path:"/withdraw/checkOrder" dc:"审核提现订单"`
+	g.Meta       `tags:"/wallet/order" method:"put" path:"/withdraw/checkOrder" dc:"审核提现订单"`
 	OrderNo      int64 `v:"required"`
 	Status       int   `v:"required"`
 	StatusRemark string

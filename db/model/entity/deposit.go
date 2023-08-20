@@ -8,7 +8,7 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 )
 
-// Deposit is the golang structure for table deposit.
+// Deposit is the golang structure for table order.
 type Deposit struct {
 	OrderNo         int64       `json:"orderNo"         description:"订单号"`
 	Account         string      `json:"account"         description:"账号"`
