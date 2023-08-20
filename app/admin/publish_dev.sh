@@ -15,4 +15,4 @@ docker build -t "$image_name" .
 # 删除旧的 Docker 容器
 docker rm -f "$name" >/dev/null 2>&1
 # 运行 Docker 容器
-docker run -d --name "$name" -p 3000:3000 "$image_name" --gf.gcfg.file="config-dev.yaml"
+docker run -d --name "$name" -p 4100:4100 "$image_name" --gf.gcfg.file="config-dev.yaml"
