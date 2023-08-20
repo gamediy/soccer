@@ -1,6 +1,6 @@
 app: "api-user"
 server:
-  address: ":3001"
+  address: ":4101"
   openapiPath: "/api.json"
   swaggerPath: "/swagger"
   jwtExpireDuration: "7D" # 7 days
