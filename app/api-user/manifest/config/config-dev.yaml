@@ -1,6 +1,6 @@
 app: "api-user"
 server:
-  address: ":9001"
+  address: ":3001"
   openapiPath: "/api.json"
   swaggerPath: "/swagger"
   jwtExpireDuration: "7D" # 7 days
@@ -16,12 +16,12 @@ database:
     level: "debug"
     stdout: true
   default:
-    link: "mysql:root:LE2RrzrMxx6Z4sbc@tcp(104.233.171.253:3306)/star_net?loc=Local&parseTime=true"
+    link: "mysql:root:LE2RrzrMxx6Z4sbc@tcp(8.219.177.71:3306)/star_net?loc=Local&parseTime=true"
     debug: true
 
 redis:
   default:
-    address: "104.233.171.253:63790"
+    address: "8.219.177.71:63790"
     db: 1
     pass: "123456ab..."
 pusher:
@@ -30,4 +30,4 @@ pusher:
   secret: "2e84608a0d38f20e852e"
   cluster: "ap1"
 elastic:
-  url: "http://104.233.171.253:9200"
+  url: "http://8.219.177.71:9200"
