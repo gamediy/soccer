@@ -6,10 +6,12 @@ POST {{url}}/api/user/register
 Content-Type: application/json
 
 {
-  "account": "join6",
+  "account": "join7",
   "password": "a123456",
   "country": "tw",
-  "city": "gaoxiong"
+  "city": "gaoxiong",
+  "phone": "123123",
+  "email": "email"
 }
 
 ### Login

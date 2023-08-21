@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/database/gdb"
-	"github.com/gogf/gf/v2/encoding/gjson"
 	"github.com/gogf/gf/v2/frame/g"
 	"star_net/app/api-user/consts"
 	"star_net/db/dao"
@@ -17,6 +16,8 @@ type Register struct {
 	Account  string `dc:"账号" json:"account"`
 	Password string `dc:"密码" json:"password"`
 	Xid      string `dc:"邀请码" json:"xid" v:"required#please input Invitation code"`
+	Phone    string `json:"phone"`
+	Email    string `json:"email"`
 	Country  string
 	City     string
 	Ip       string `json:"-"`
@@ -33,6 +34,8 @@ func (s *Register) Exec() (string, error) {
 	d.City = s.City
 	d.Country = s.Country
 	d.Password = xpwd.GenPwd(s.Password)
+	d.Phone = s.Phone
+	d.Email = s.Email
 	parent, err := s.getParent()
 	if err != nil {
 		return "", err
@@ -57,9 +60,7 @@ func (s *Register) Exec() (string, error) {
 		return "", err
 	}
 
-	resp := GFToken.EncryptToken(s.Ctx, "userInfo", "")
-	json := gjson.New(resp)
-	return json.Get("data.token").String(), nil
+	return "", nil
 }
 
 func (s *Register) getParent() (*entity.User, error) {

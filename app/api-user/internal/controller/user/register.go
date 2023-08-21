@@ -7,6 +7,7 @@ import (
 	vpassport "star_net/app/api-user/api/user"
 	"star_net/app/api-user/consts"
 	"star_net/app/api-user/internal/service/usersvc"
+	"star_net/model"
 )
 
 var (
@@ -15,7 +16,7 @@ var (
 
 type cUser struct{}
 
-func (c *cUser) Register(ctx context.Context, req *vpassport.RegisterReq) (res *vpassport.RegisterRes, err error) {
+func (c *cUser) Register(ctx context.Context, req *vpassport.RegisterReq) (res *model.CommonRes, err error) {
 	if err = g.Validator().Rules("required").Data(req.Account).Run(ctx); err != nil {
 		return nil, consts.ErrAreaCode
 	}
@@ -32,11 +33,9 @@ func (c *cUser) Register(ctx context.Context, req *vpassport.RegisterReq) (res *
 		City:     req.City,
 		Ip:       ghttp.RequestFromCtx(ctx).GetClientIp(),
 	}
-	token, err := x.Exec()
+	_, err = x.Exec()
 	if err != nil {
 		return nil, err
 	}
-	return &vpassport.RegisterRes{
-		Token: token,
-	}, nil
+	return
 }

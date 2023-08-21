@@ -8,6 +8,7 @@ import (
 	"github.com/gogf/gf/v2/os/gcmd"
 	"star_net/app/api-user/internal/controller/user"
 	"star_net/app/api-user/internal/service/usersvc"
+	"star_net/core/auth"
 	"star_net/utility/utils/xpusher"
 
 	"star_net/common"
@@ -24,6 +25,9 @@ var (
 		Brief: "start http server",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			s := g.Server(serverName)
+			// init auth role
+			initAuthRule(ctx)
+			// init router
 			initRouter(s, ctx)
 			xpusher.InitFromCfg(ctx)
 			s.Run()
@@ -32,11 +36,19 @@ var (
 	}
 )
 
+func initAuthRule(ctx context.Context) {
+	gfToken := auth.NewGFTokenFromCtx(ctx)
+	gfToken.AuthPaths = g.SliceStr{"/api"}
+	gfToken.AuthExcludePaths = g.SliceStr{"/api/user/getCaptcha", "/api/user/register", "/api.json", "/api/dict/**"}
+	gfToken.LoginBeforeFunc = usersvc.Login
+	gfToken.AuthAfterFunc = usersvc.AuthAfterFunc
+	auth.GFToken = gfToken
+}
+
 /*
 统一路由注册
 */
 func initRouter(s *ghttp.Server, ctx context.Context) {
-	gfToken := usersvc.NewGFToken(ctx)
 	s.BindMiddlewareDefault(common.MiddlewareDefaultCORS, common.MiddlewareRequestLimit, common.MiddlewareHandlerResponse)
 	s.Group("/api", func(group *ghttp.RouterGroup) {
 		group.Group("/user", func(group *ghttp.RouterGroup) {
@@ -45,7 +57,7 @@ func initRouter(s *ghttp.Server, ctx context.Context) {
 	})
 
 	// 启动gtoken
-	if err := gfToken.Start(); err != nil {
+	if err := auth.GFToken.Start(); err != nil {
 		panic(err)
 	}
 }
