@@ -30,4 +30,5 @@ type User struct {
 	Lang         string      `json:"lang"         description:"用户语言"`
 	AreaCode     string      `json:"areaCode"     description:""`
 	City         string      `json:"city"         description:""`
+	RealName     string      `json:"realName"     description:"real name"`
 }

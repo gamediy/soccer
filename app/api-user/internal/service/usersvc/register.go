@@ -13,6 +13,7 @@ import (
 
 type Register struct {
 	Ctx      context.Context
+	RealName string
 	Account  string `dc:"账号" json:"account"`
 	Password string `dc:"密码" json:"password"`
 	Xid      string `dc:"邀请码" json:"xid" v:"required#please input Invitation code"`
@@ -36,6 +37,7 @@ func (s *Register) Exec() (string, error) {
 	d.Password = xpwd.GenPwd(s.Password)
 	d.Phone = s.Phone
 	d.Email = s.Email
+	d.RealName = s.RealName
 	parent, err := s.getParent()
 	if err != nil {
 		return "", err

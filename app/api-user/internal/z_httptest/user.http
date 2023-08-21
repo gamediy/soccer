@@ -6,16 +6,17 @@ POST {{url}}/api/user/register
 Content-Type: application/json
 
 {
-  "account": "join7",
+  "account": "tom2",
   "password": "a123456",
   "country": "tw",
   "city": "gaoxiong",
   "phone": "123123",
-  "email": "email"
+  "email": "email",
+  "realName": "tom2"
 }
 
 ### Login
-POST {{url}}/api/user/login
+POST {{url}}/api/user/
 Content-Type: application/json
 
 {

@@ -28,8 +28,13 @@ var (
 			// init auth role
 			initAuthRule(ctx)
 			// init router
-			initRouter(s, ctx)
+			initRouter(s)
 			xpusher.InitFromCfg(ctx)
+
+			// 启动gtoken
+			if err := auth.GFToken.Start(); err != nil {
+				panic(err)
+			}
 			s.Run()
 			return nil
 		},
@@ -50,7 +55,7 @@ func initAuthRule(ctx context.Context) {
 /*
 统一路由注册
 */
-func initRouter(s *ghttp.Server, ctx context.Context) {
+func initRouter(s *ghttp.Server) {
 	s.BindMiddlewareDefault(common.MiddlewareDefaultCORS, common.MiddlewareRequestLimit, common.MiddlewareHandlerResponse)
 	s.Group("/api", func(group *ghttp.RouterGroup) {
 		group.Group("/user", func(group *ghttp.RouterGroup) {
@@ -58,8 +63,4 @@ func initRouter(s *ghttp.Server, ctx context.Context) {
 		})
 	})
 
-	// 启动gtoken
-	if err := auth.GFToken.Start(); err != nil {
-		panic(err)
-	}
 }

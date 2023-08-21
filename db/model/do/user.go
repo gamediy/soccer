@@ -32,4 +32,5 @@ type User struct {
 	Lang         interface{} // 用户语言
 	AreaCode     interface{} //
 	City         interface{} //
+	RealName     interface{} // real name
 }
