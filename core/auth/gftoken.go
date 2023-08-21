@@ -23,7 +23,5 @@ func NewGFTokenFromCtx(ctx context.Context) *AGfToken {
 	x.AuthFailMsg = g.Cfg().MustGet(ctx, "gfToken.authFailMsg").String()
 	x.MultiLogin = g.Cfg().MustGet(ctx, "gfToken.multiLogin").Bool()
 	x.GlobalMiddleware = g.Cfg().MustGet(ctx, "gfToken.globalMiddleware").Bool()
-	x.LoginPath = "/api/user/login"
-	x.LogoutPath = "/api/user/logout"
 	return &x
 }
