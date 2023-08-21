@@ -33,7 +33,6 @@ type WalletColumns struct {
 	TotalGift     string // 总赠送
 	CreatedAt     string //
 	UpdatedAt     string //
-	TotalFreeze   string //
 }
 
 // walletColumns holds the columns for table u_wallet.
@@ -51,7 +50,6 @@ var walletColumns = WalletColumns{
 	TotalGift:     "total_gift",
 	CreatedAt:     "created_at",
 	UpdatedAt:     "updated_at",
-	TotalFreeze:   "total_freeze",
 }
 
 // NewWalletDao creates and returns a new DAO object for table data access.

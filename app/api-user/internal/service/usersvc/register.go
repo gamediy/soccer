@@ -56,6 +56,7 @@ func (s *Register) Exec() (string, error) {
 	}); err != nil {
 		return "", err
 	}
+
 	resp := GFToken.EncryptToken(s.Ctx, "userInfo", "")
 	json := gjson.New(resp)
 	return json.Get("data.token").String(), nil

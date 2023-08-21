@@ -25,5 +25,4 @@ type Wallet struct {
 	TotalGift     interface{} // 总赠送
 	CreatedAt     *gtime.Time //
 	UpdatedAt     *gtime.Time //
-	TotalFreeze   interface{} //
 }

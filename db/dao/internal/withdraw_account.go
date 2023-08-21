@@ -29,6 +29,7 @@ type WithdrawAccountColumns struct {
 	Currency string // currency
 	Status   string //
 	Default  string // 是否默认的
+	Title    string //
 }
 
 // withdrawAccountColumns holds the columns for table u_withdraw_account.
@@ -42,6 +43,7 @@ var withdrawAccountColumns = WithdrawAccountColumns{
 	Currency: "currency",
 	Status:   "status",
 	Default:  "default",
+	Title:    "title",
 }
 
 // NewWithdrawAccountDao creates and returns a new DAO object for table data access.

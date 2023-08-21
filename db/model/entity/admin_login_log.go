@@ -12,6 +12,7 @@ import (
 type AdminLoginLog struct {
 	Id        int         `json:"id"        description:""`
 	Uid       int         `json:"uid"       description:""`
+	Account   string      `json:"account"   description:""`
 	Ip        string      `json:"ip"        description:""`
 	CreatedAt *gtime.Time `json:"createdAt" description:""`
 	UpdatedAt *gtime.Time `json:"updatedAt" description:""`

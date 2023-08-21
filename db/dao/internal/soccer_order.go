@@ -29,7 +29,7 @@ type SoccerOrderColumns struct {
 	EventsTitle      string // 赛事名称
 	OddsId           string // 赔率编号
 	OddsTitle        string // 赔率标题
-	BetMoney         string // 投注金额
+	Amount           string // 投注金额
 	Profit           string // 赢利
 	CalcTime         string // 结算时间
 	Status           string // 状态 0 撤单，1:投注成功，2：中奖，3：未中奖
@@ -43,6 +43,7 @@ type SoccerOrderColumns struct {
 	Fee              string // 手续费
 	EventsOpenResult string // 赛事开奖结果
 	PlayId           string // PlayId
+	BoutStatus       string // 哪个回合
 }
 
 // soccerOrderColumns holds the columns for table o_soccer_order.
@@ -56,7 +57,7 @@ var soccerOrderColumns = SoccerOrderColumns{
 	EventsTitle:      "events_title",
 	OddsId:           "odds_id",
 	OddsTitle:        "odds_title",
-	BetMoney:         "bet_money",
+	Amount:           "amount",
 	Profit:           "profit",
 	CalcTime:         "calc_time",
 	Status:           "status",
@@ -70,6 +71,7 @@ var soccerOrderColumns = SoccerOrderColumns{
 	Fee:              "fee",
 	EventsOpenResult: "events_open_result",
 	PlayId:           "play_id",
+	BoutStatus:       "bout_status",
 }
 
 // NewSoccerOrderDao creates and returns a new DAO object for table data access.

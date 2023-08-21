@@ -14,6 +14,7 @@ type AdminLoginLog struct {
 	g.Meta    `orm:"table:s_admin_login_log, do:true"`
 	Id        interface{} //
 	Uid       interface{} //
+	Account   interface{} //
 	Ip        interface{} //
 	CreatedAt *gtime.Time //
 	UpdatedAt *gtime.Time //

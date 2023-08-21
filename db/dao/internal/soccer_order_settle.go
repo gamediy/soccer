@@ -22,54 +22,56 @@ type SoccerOrderSettleDao struct {
 type SoccerOrderSettleColumns struct {
 	Id               string //
 	OrderNo          string // 编号
-	UserId           string // 用户编号
-	UserAccount      string // 用户账号
-	AddTime          string // 时间
+	Uid              string // 用户编号
+	Account          string // 用户账号
+	CreatedAt        string // 时间
 	EventsId         string // 赛事编号
 	EventsTitle      string // 赛事名称
 	OddsId           string // 赔率编号
 	OddsTitle        string // 赔率标题
-	BetMoney         string // 投注金额
+	Amount           string // 投注金额
 	Profit           string // 赢利
-	CalcTime         string // 结算时间
+	CalcAt           string // 结算时间
 	Status           string // 状态 0 撤单，1:投注成功，2：中奖，3：未中奖
-	CompanyCode      string // 公司编号
 	OddsCalcRule     string // 结算规则
 	OddsProfitRate   string // 利率
 	LeagueId         string // 联盟编号
 	LeagueTitle      string // 联盟
-	OddsType         string // 1:半场，2：全场
 	EventsStartTime  string // 赛事开始时间
 	Fee              string // 手续费
 	EventsOpenResult string // 赛事开奖结果
-	PlayId           string // PlayId
+	PlayCode         string // PlayId
+	BoutStatus       string // 哪个场次
+	Pid              string //
+	ParentPath       string //
 }
 
 // soccerOrderSettleColumns holds the columns for table o_soccer_order_settle.
 var soccerOrderSettleColumns = SoccerOrderSettleColumns{
 	Id:               "id",
 	OrderNo:          "order_no",
-	UserId:           "user_id",
-	UserAccount:      "user_account",
-	AddTime:          "add_time",
+	Uid:              "uid",
+	Account:          "account",
+	CreatedAt:        "created_at",
 	EventsId:         "events_id",
 	EventsTitle:      "events_title",
 	OddsId:           "odds_id",
 	OddsTitle:        "odds_title",
-	BetMoney:         "bet_money",
+	Amount:           "amount",
 	Profit:           "profit",
-	CalcTime:         "calc_time",
+	CalcAt:           "calc_at",
 	Status:           "status",
-	CompanyCode:      "company_code",
 	OddsCalcRule:     "odds_calc_rule",
 	OddsProfitRate:   "odds_profit_rate",
 	LeagueId:         "league_id",
 	LeagueTitle:      "league_title",
-	OddsType:         "odds_type",
 	EventsStartTime:  "events_start_time",
 	Fee:              "fee",
 	EventsOpenResult: "events_open_result",
-	PlayId:           "play_id",
+	PlayCode:         "play_code",
+	BoutStatus:       "bout_status",
+	Pid:              "pid",
+	ParentPath:       "parent_path",
 }
 
 // NewSoccerOrderSettleDao creates and returns a new DAO object for table data access.

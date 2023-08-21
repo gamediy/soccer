@@ -22,6 +22,7 @@ type AdminLoginLogDao struct {
 type AdminLoginLogColumns struct {
 	Id        string //
 	Uid       string //
+	Account   string //
 	Ip        string //
 	CreatedAt string //
 	UpdatedAt string //
@@ -31,6 +32,7 @@ type AdminLoginLogColumns struct {
 var adminLoginLogColumns = AdminLoginLogColumns{
 	Id:        "id",
 	Uid:       "uid",
+	Account:   "account",
 	Ip:        "ip",
 	CreatedAt: "created_at",
 	UpdatedAt: "updated_at",

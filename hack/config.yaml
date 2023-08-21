@@ -3,7 +3,7 @@
 gfcli:
   gen:
     dao:
-      - link: "mysql:root:LE2RrzrMxx6Z4sbc@tcp(104.233.171.253:3306)/star_net?loc=Local&parseTime=true"
+      - link: "mysql:root:LE2RrzrMxx6Z4sbc@tcp(8.219.177.71:3306)/soccer?loc=Local&parseTime=true"
         tables: ""
         removePrefix: "s_,o_,p_,u_,r_,c_,b_,x_"
         descriptionTag: true

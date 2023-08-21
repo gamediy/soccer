@@ -19,7 +19,7 @@ type SoccerOrder struct {
 	EventsTitle      string      `json:"eventsTitle"      description:"赛事名称"`
 	OddsId           int64       `json:"oddsId"           description:"赔率编号"`
 	OddsTitle        string      `json:"oddsTitle"        description:"赔率标题"`
-	BetMoney         float64     `json:"betMoney"         description:"投注金额"`
+	Amount           float64     `json:"amount"           description:"投注金额"`
 	Profit           float64     `json:"profit"           description:"赢利"`
 	CalcTime         *gtime.Time `json:"calcTime"         description:"结算时间"`
 	Status           int         `json:"status"           description:"状态 0 撤单，1:投注成功，2：中奖，3：未中奖"`
@@ -33,4 +33,5 @@ type SoccerOrder struct {
 	Fee              float64     `json:"fee"              description:"手续费"`
 	EventsOpenResult string      `json:"eventsOpenResult" description:"赛事开奖结果"`
 	PlayId           int64       `json:"playId"           description:"PlayId"`
+	BoutStatus       int         `json:"boutStatus"       description:"哪个回合"`
 }

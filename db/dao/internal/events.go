@@ -20,58 +20,74 @@ type EventsDao struct {
 
 // EventsColumns defines and stores column names for table p_events.
 type EventsColumns struct {
-	Id             string // 编号
-	HomeTeam       string // 主队名称
-	AwayTeam       string // 客队名称
-	EnHomeTeam     string // 主队英文
-	EnAwayTeam     string // 客队英文
-	RestTime       string // 进行时间
-	StartTime      string // 开始时间
-	EndTime        string // 结束时间
-	LeagueId       string // 联盟编号
-	LeagueTitle    string // 联盟
-	EnLeagueTitle  string // 联盟英文
-	HalfStatus     string // 半场状态 0未开始，1已开始，2已结束
-	StartDate      string // 开始日期
-	HalfOpenResult string // 上半场开奖结果
-	HalfOpenTime   string // 上半场开奖时间
-	AllOpenResult  string // 全场开奖结果
-	AllOpenTime    string // 全场开奖时间
-	AllStatus      string // 全场状态
-	FiId           string // FI编号
-	AddTime        string // 添加时间
-	IsHot          string // 热门
-	Status         string // 状态
-	Remark         string // 注释
-	BetMoney       string // 交易量
+	Id               string // 编号
+	HomeTeam         string // 主队名称
+	AwayTeam         string // 客队名称
+	EnHomeTeam       string // 主队英文
+	EnAwayTeam       string // 客队英文
+	RestTime         string // 进行时间
+	StartTime        string // 开始时间
+	EndTime          string // 结束时间
+	LeagueId         string // 联盟编号
+	LeagueTitle      string // 联盟
+	EnLeagueTitle    string // 联盟英文
+	HalfStatus       string // 半场状态 0未开始，1已开始，2已结束
+	FirstStatus      string // 上半场状态 0未开始，1已开始，2已结束
+	StartDate        string // 开始日期
+	FirstOpenResult  string // 上半场开奖结果
+	FirstOpenTime    string // 上半场开奖时间
+	SecondOpenResult string // 下半场开奖结果
+	SecondOpenTime   string // 下半场开奖结果
+	SecondStatus     string // 全场状态
+	AddTime          string // 添加时间
+	IsHot            string // 热门
+	Status           string // 状态
+	Remark           string // 注释
+	BetMoney         string // 交易量
+	OpenRessult      string //
+	HalfOpenResult   string // 上半场开奖结果
+	HalfOpenTime     string // 上半场开奖时间
+	AllOpenResult    string // 全场开奖结果
+	AllOpenTime      string // 全场开奖时间
+	AllStatus        string // 全场状态
+	FiId             string // FI编号
+	Handicap         string // 让球
 }
 
 // eventsColumns holds the columns for table p_events.
 var eventsColumns = EventsColumns{
-	Id:             "id",
-	HomeTeam:       "home_team",
-	AwayTeam:       "away_team",
-	EnHomeTeam:     "en_home_team",
-	EnAwayTeam:     "en_away_team",
-	RestTime:       "rest_time",
-	StartTime:      "start_time",
-	EndTime:        "end_time",
-	LeagueId:       "league_id",
-	LeagueTitle:    "league_title",
-	EnLeagueTitle:  "en_league_title",
-	HalfStatus:     "half_status",
-	StartDate:      "start_date",
-	HalfOpenResult: "half_open_result",
-	HalfOpenTime:   "half_open_time",
-	AllOpenResult:  "all_open_result",
-	AllOpenTime:    "all_open_time",
-	AllStatus:      "all_status",
-	FiId:           "fi_id",
-	AddTime:        "add_time",
-	IsHot:          "is_hot",
-	Status:         "status",
-	Remark:         "remark",
-	BetMoney:       "bet_money",
+	Id:               "id",
+	HomeTeam:         "home_team",
+	AwayTeam:         "away_team",
+	EnHomeTeam:       "en_home_team",
+	EnAwayTeam:       "en_away_team",
+	RestTime:         "rest_time",
+	StartTime:        "start_time",
+	EndTime:          "end_time",
+	LeagueId:         "league_id",
+	LeagueTitle:      "league_title",
+	EnLeagueTitle:    "en_league_title",
+	HalfStatus:       "half_status",
+	FirstStatus:      "first_status",
+	StartDate:        "start_date",
+	FirstOpenResult:  "first_open_result",
+	FirstOpenTime:    "first_open_time",
+	SecondOpenResult: "second_open_result",
+	SecondOpenTime:   "second_open_time",
+	SecondStatus:     "second_status",
+	AddTime:          "add_time",
+	IsHot:            "is_hot",
+	Status:           "status",
+	Remark:           "remark",
+	BetMoney:         "bet_money",
+	OpenRessult:      "open_ressult",
+	HalfOpenResult:   "half_open_result",
+	HalfOpenTime:     "half_open_time",
+	AllOpenResult:    "all_open_result",
+	AllOpenTime:      "all_open_time",
+	AllStatus:        "all_status",
+	FiId:             "fi_id",
+	Handicap:         "handicap",
 }
 
 // NewEventsDao creates and returns a new DAO object for table data access.

@@ -21,7 +21,7 @@ type SoccerOrder struct {
 	EventsTitle      interface{} // 赛事名称
 	OddsId           interface{} // 赔率编号
 	OddsTitle        interface{} // 赔率标题
-	BetMoney         interface{} // 投注金额
+	Amount           interface{} // 投注金额
 	Profit           interface{} // 赢利
 	CalcTime         *gtime.Time // 结算时间
 	Status           interface{} // 状态 0 撤单，1:投注成功，2：中奖，3：未中奖
@@ -35,4 +35,5 @@ type SoccerOrder struct {
 	Fee              interface{} // 手续费
 	EventsOpenResult interface{} // 赛事开奖结果
 	PlayId           interface{} // PlayId
+	BoutStatus       interface{} // 哪个回合
 }

@@ -20,4 +20,5 @@ type WithdrawAccount struct {
 	Currency interface{} // currency
 	Status   interface{} //
 	Default  interface{} // 是否默认的
+	Title    interface{} //
 }

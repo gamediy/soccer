@@ -14,7 +14,7 @@ type AmountCategory struct {
 	Title     string      `json:"title"     description:"标题"`
 	Category  string      `json:"category"  description:"1:区块链，银行卡"`
 	Status    int         `json:"status"    description:""`
-	Type      string      `json:"type"      description:"order,withdraw"`
+	Type      string      `json:"type"      description:"deposit,withdraw"`
 	CreatedAt *gtime.Time `json:"createdAt" description:""`
 	UpdatedAt *gtime.Time `json:"updatedAt" description:""`
 }

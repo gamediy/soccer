@@ -15,4 +15,5 @@ type WithdrawAccount struct {
 	Currency string `json:"currency" description:"currency"`
 	Status   int    `json:"status"   description:""`
 	Default  int    `json:"default"  description:"是否默认的"`
+	Title    string `json:"title"    description:""`
 }
