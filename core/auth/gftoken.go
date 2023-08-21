@@ -15,13 +15,13 @@ type AGfToken struct {
 }
 
 func NewGFTokenFromCtx(ctx context.Context) *AGfToken {
-	x := AGfToken{}
-	x.ServerName = g.Cfg().MustGet(ctx, "gfToken.name").String()
-	x.CacheMode = g.Cfg().MustGet(ctx, "gfToken.cacheMode").Int8()
-	x.CacheKey = g.Cfg().MustGet(ctx, "gfToken.cacheMode").String()
-	x.EncryptKey = g.Cfg().MustGet(ctx, "gfToken.encryptKey").Bytes()
-	x.AuthFailMsg = g.Cfg().MustGet(ctx, "gfToken.authFailMsg").String()
-	x.MultiLogin = g.Cfg().MustGet(ctx, "gfToken.multiLogin").Bool()
-	x.GlobalMiddleware = g.Cfg().MustGet(ctx, "gfToken.globalMiddleware").Bool()
-	return &x
+	gfToken := AGfToken{}
+	gfToken.ServerName = g.Cfg().MustGet(ctx, "gfToken.name").String()
+	gfToken.CacheMode = g.Cfg().MustGet(ctx, "gfToken.cacheMode").Int8()
+	gfToken.CacheKey = g.Cfg().MustGet(ctx, "gfToken.cacheMode").String()
+	gfToken.EncryptKey = g.Cfg().MustGet(ctx, "gfToken.encryptKey").Bytes()
+	gfToken.AuthFailMsg = g.Cfg().MustGet(ctx, "gfToken.authFailMsg").String()
+	gfToken.MultiLogin = g.Cfg().MustGet(ctx, "gfToken.multiLogin").Bool()
+	gfToken.GlobalMiddleware = g.Cfg().MustGet(ctx, "gfToken.globalMiddleware").Bool()
+	return &gfToken
 }
