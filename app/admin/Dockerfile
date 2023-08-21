@@ -1,7 +1,7 @@
 FROM alpine:latest AS production
 MAINTAINER whisper
 WORKDIR /app
-EXPOSE 4100
+EXPOSE 9000
 COPY . /app
 RUN apk add -U tzdata
 RUN apk add openssh-client

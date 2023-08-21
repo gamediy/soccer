@@ -143,6 +143,15 @@ func (s *S3FileStorer) Upload(ctx context.Context, group int, file *ghttp.Upload
 	if file == nil {
 		return "", errors.New("file is nil")
 	}
+
+	file.Filename = fmt.Sprint(grand.S(6), filepath.Ext(file.Filename))
+	// 这里你需要添加上传文件到S3的代码
+	input := &s3.PutObjectInput{
+		Bucket:      aws.String(s.BucketName),
+		Key:         &file.Filename,
+		ContentType: aws.String(contentType),
+	}
+
 	reader, err := file.Open()
 	if err != nil {
 		return "", err
@@ -152,14 +161,6 @@ func (s *S3FileStorer) Upload(ctx context.Context, group int, file *ghttp.Upload
 	data, err = io.ReadAll(reader)
 	if err != nil {
 		return "", err
-	}
-
-	file.Filename = fmt.Sprint(grand.S(6), filepath.Ext(file.Filename))
-	// 这里你需要添加上传文件到S3的代码
-	input := &s3.PutObjectInput{
-		Bucket:      aws.String(s.BucketName),
-		Key:         &file.Filename,
-		ContentType: aws.String(contentType),
 	}
 	input.Body = bytes.NewReader(data)
 	outPut, err := s.Client.PutObject(ctx, input)

@@ -6,8 +6,24 @@ import (
 	"star_net/app/admin/api/sys"
 	"star_net/app/admin/internal/model"
 	"star_net/db/dao"
+	"star_net/db/model/entity"
 	"star_net/utility/utils/xstr"
 )
+
+type LoginLog struct {
+	Ctx     context.Context
+	Account string
+	Uid     uint64
+	Ip      string
+}
+
+func (s *LoginLog) Save() error {
+	_, err := dao.AdminLoginLog.Ctx(s.Ctx).Insert(entity.AdminLoginLog{
+		Uid: int(s.Uid),
+		Ip:  s.Ip,
+	})
+	return err
+}
 
 func ListAdminLoginLog(ctx context.Context, req *sys.ListAdminLoginLogReq) ([]*model.AdminLoginLog, int, error) {
 	var (

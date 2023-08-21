@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 	"star_net/app/admin/api/sys"
 	model2 "star_net/app/admin/internal/model"
@@ -87,12 +86,11 @@ func (c *cAdmin) UserEditPwd(ctx context.Context, req *sys.UserEditPwdReq) (res 
 
 // ValidateOtp 账号登录后二次校验
 func (c *cAdmin) ValidateOtp(ctx context.Context, req *sys.ValidateOtpReq) (*sys.ValidateOtpRes, error) {
+	uname := req.Uname
 	code := req.TotpCode
-	uid := gconv.Int(ctx.Value("uid"))
-	g.Dump(uid, 55555555555)
 	//g.RequestFromCtx(ctx).GetCtxVar("uid")
 	var userInfo entity.Admin
-	err := dao.Admin.Ctx(ctx).WherePri(uid).Scan(&userInfo)
+	err := dao.Admin.Ctx(ctx).Where("uname", uname).Scan(&userInfo)
 	if err != nil {
 		return &sys.ValidateOtpRes{
 			Ok: false,
@@ -120,9 +118,11 @@ func (c *cAdmin) SetOtp(ctx context.Context, req *sys.SetOtpReq) (*sys.SetOtpRes
 	code := req.TotpCode
 	secret := req.KeySecret
 	var flag = xotp.ValidateOtp(code, secret)
+	uid := gconv.Int(ctx.Value("uid"))
+
 	//校验通过写入表
 	if flag {
-		_, err := dao.Admin.Ctx(ctx).Data("key_secret", secret).Insert()
+		_, err := dao.Admin.Ctx(ctx).Data("key_secret", secret).WherePri(uid).Update()
 		if err != nil {
 			return &sys.SetOtpRes{
 				Ok: false,
@@ -140,9 +140,9 @@ func (c *cAdmin) SetOtp(ctx context.Context, req *sys.SetOtpReq) (*sys.SetOtpRes
 
 // CheckOtp 账号登录后判断是否需要otp，根据表中是否存在keySecret值来判断
 func (c *cAdmin) CheckOtp(ctx context.Context, req *sys.CheckOtpReq) (*sys.CheckOtpRes, error) {
-	uid := gconv.Int(ctx.Value("uid"))
+	uname := req.Uname
 	var userInfo entity.Admin
-	err := dao.Admin.Ctx(ctx).WherePri(uid).Scan(&userInfo)
+	err := dao.Admin.Ctx(ctx).Where("uname", uname).Scan(&userInfo)
 	if err != nil {
 		return &sys.CheckOtpRes{
 			Need2Step: false,

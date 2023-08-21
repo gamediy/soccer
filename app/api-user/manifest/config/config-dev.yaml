@@ -23,7 +23,7 @@ redis:
   default:
     address: "8.219.177.71:63790"
     db: 1
-    pass: "123456ab..."
+    pass: "PqcG15w6#AX$ey0a+BYcCFIpUxLYoukAqhfnfGbnkMtYE"
 pusher:
   appId: "1644349"
   key: "3400fc3f83796ca48785"

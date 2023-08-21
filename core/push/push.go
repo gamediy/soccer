@@ -1,7 +1,7 @@
 package push
 
 import (
-	"star_net/utility/xpusher"
+	"star_net/utility/utils/xpusher"
 )
 
 const (

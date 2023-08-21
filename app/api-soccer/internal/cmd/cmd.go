@@ -11,7 +11,7 @@ import (
 	"star_net/app/api-user/internal/controller/passport"
 	"star_net/app/api-user/internal/model"
 	"star_net/common"
-	"star_net/utility/xpusher"
+	"star_net/utility/utils/xpusher"
 	"time"
 )
 

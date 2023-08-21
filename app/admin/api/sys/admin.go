@@ -7,7 +7,6 @@ import (
 	"star_net/model"
 )
 
-// ListAdminReq 查询列表
 type ListAdminReq struct {
 	g.Meta `tags:"/sys/admin" method:"get" path:"/admin/list" dc:"管理员列表"`
 	model.CommonPageReq
@@ -17,28 +16,24 @@ type ListAdminRes struct {
 	List  []*entity.Admin `json:"list"`
 }
 
-// AddAdminReq 添加
 type AddAdminReq struct {
 	g.Meta `tags:"/sys/admin" method:"post" path:"/admin" dc:"管理员添加 (waiting)"`
 	*entity.Admin
 }
 type AddAdminRes model.CommonRes
 
-// GetAdminReq 查询单个
 type GetAdminReq struct {
 	g.Meta `tags:"/sys/admin" method:"get" path:"/admin" dc:"管理员查询单个"`
 	Id     uint64 `json:"id"`
 }
 type GetAdminRes entity.Admin
 
-// UpdateAdminReq 修改
 type UpdateAdminReq struct {
 	g.Meta `tags:"/sys/admin" method:"put" path:"/admin" dc:"管理员修改单个数据"`
 	*entity.Admin
 }
 type UpdateAdminRes model.CommonRes
 
-// DelAdminReq 删除
 type DelAdminReq struct {
 	g.Meta `tags:"/sys/admin" method:"delete" path:"/admin" dc:"管理员删除单个数据"`
 	Id     uint64 `json:"id"`
@@ -69,6 +64,7 @@ type UserEditPwdReq struct {
 type ValidateOtpReq struct {
 	g.Meta   `tags:"/sys/admin" method:"post" path:"/admin/otp/validate" dc:"校验谷歌验证码"`
 	TotpCode string `json:"totpCode"`
+	Uname    string `json:"uname"`
 }
 
 type ValidateOtpRes struct {
@@ -87,6 +83,7 @@ type SetOtpRes struct {
 
 type CheckOtpReq struct {
 	g.Meta `tags:"/sys/admin" method:"get" path:"/admin/otp/check" dc:"判断是否需要otp"`
+	Uname  string `json:"uname"`
 }
 
 type CheckOtpRes struct {

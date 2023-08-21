@@ -3,7 +3,7 @@ package sys
 import (
 	"context"
 	"star_net/app/admin/api/sys"
-	"star_net/utility/xpusher"
+	"star_net/utility/utils/xpusher"
 )
 
 var (
