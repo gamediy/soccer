@@ -1,9 +1,11 @@
+app: "admin"
 server:
   address: ":4100"
   openapiPath: "/api.json"
   swaggerPath: "/swagger"
+  serverRoot: "/resource/public"
   jwtExpireDuration: "7D" # 7 days
-  imgPrefix: "http://104.233.171.253:9000/upload/" # 图片前缀
+  rootFilePath: "/resource/public/upload/"  # 文件上传路径
   clientMaxBodySize: "200MB"
 
 logger:
@@ -14,7 +16,7 @@ database:
     level: "debug"
     stdout: true
   default:
-    link: "mysql:root:LE2RrzrMxx6Z4sbc@tcp(8.219.177.71:3306)/star_net?loc=Local&parseTime=true"
+    link: "mysql:root:LE2RrzrMxx6Z4sbc@tcp(8.219.177.71:3306)/soccer?loc=Local&parseTime=true"
     debug: true
 
 redis:
@@ -28,4 +30,4 @@ pusher:
   secret: "2e84608a0d38f20e852e"
   cluster: "ap1"
 elastic:
-  url: "http://8.219.177.71:9200"
+  url: "http://104.233.171.253:9200"
