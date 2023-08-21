@@ -8,7 +8,6 @@ import (
 	"github.com/gogf/gf/v2/i18n/gi18n"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
-	"star_net/app/api-user/internal/controller/passport"
 	"star_net/app/api-user/internal/model"
 	"star_net/common"
 	"star_net/utility/utils/xpusher"

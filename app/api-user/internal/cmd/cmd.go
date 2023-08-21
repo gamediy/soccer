@@ -8,7 +8,7 @@ import (
 	"github.com/gogf/gf/v2/i18n/gi18n"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
-	"star_net/app/api-user/internal/controller/passport"
+	"star_net/app/api-user/internal/controller/user"
 	"star_net/model"
 	"star_net/utility/utils/xpusher"
 
@@ -26,7 +26,6 @@ var (
 		Usage: "main",
 		Brief: "start http server",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
-
 			s := g.Server(serverName)
 			initRouter(s)
 			xpusher.InitFromCfg(ctx)
@@ -62,7 +61,6 @@ func initRouter(s *ghttp.Server) {
 				}
 			} else {
 				s2 := respData.Data.(map[string]interface{})
-
 				userInfo := s2["data"].(map[string]interface{})
 				u := model.UserInfo{
 					Uid:      userInfo["uid"].(float64),
@@ -82,24 +80,14 @@ func initRouter(s *ghttp.Server) {
 		LoginBeforeFunc: func(r *ghttp.Request) (string, interface{}) {
 			return "", nil
 		},
-		LogoutPath: "/api/user/logout",
+		LogoutPath:       "/api/user/logout",
+		AuthExcludePaths: g.SliceStr{"/api/user/getCaptcha", "/api.json", "/api/dict/**"},
 	}
+	s.BindMiddlewareDefault(common.MiddlewareDefaultCORS, common.MiddlewareRequestLimit, common.MiddlewareHandlerResponse)
 	s.Group("/api", func(group *ghttp.RouterGroup) {
-		group.Middleware(common.MiddlewareDefaultCORS, common.MiddlewareHandlerResponse, common.MiddlewareRequestLimit)
 		group.Group("/user", func(group *ghttp.RouterGroup) {
-			//gfToken.Middleware(context.Background(), group)
-			group.Bind(passport.Ctrl)
+			group.Bind(user.User)
 		})
-
-		group.Group("/order", func(group *ghttp.RouterGroup) {
-			//gfToken.Middleware(context.Background(), group)
-
-		})
-		group.Group("withdraw", func(group *ghttp.RouterGroup) {
-			//gfToken.Middleware(context.Background(), group)
-
-		})
-
 	})
 
 	// 启动gtoken

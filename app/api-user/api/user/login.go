@@ -1,4 +1,4 @@
-package vpassport
+package user
 
 import (
 	"github.com/gogf/gf/v2/frame/g"

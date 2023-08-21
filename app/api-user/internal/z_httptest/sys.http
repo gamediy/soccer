@@ -1,0 +1,30 @@
+
+### GetCaptcha
+GET {{url}}/v1/backend/admin/getCaptcha?id=123
+
+
+
+### Send MSG
+POST {{url}}/v1/backend/sys/ws/send
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "toUname": "admin",
+  "position": "top-center",
+  "type": "info",
+  "msg": "hello"
+}
+
+### Send all
+
+POST {{url}}/v1/backend/sys/ws/noticeAdmins
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "toUname": "admin",
+  "position": "top-center",
+  "type": "info",
+  "msg": "hello"
+}

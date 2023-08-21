@@ -1,4 +1,4 @@
-package withdraw
+package withdrawsvc
 
 import (
 	"context"

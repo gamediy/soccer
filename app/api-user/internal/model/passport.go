@@ -9,3 +9,6 @@ type RegisterInput struct {
 	Password        string `json:"password"`
 	PasswordConfirm string `json:"passwordConfirm"`
 }
+type GetCaptchaOut struct {
+	Img string `json:"img"`
+}
