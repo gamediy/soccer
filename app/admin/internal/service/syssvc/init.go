@@ -27,6 +27,7 @@ func (s *InitD) Exec(ctx context.Context) {
 
 	xpusher.InitFromCfg(ctx) // init pusher
 	xcasbin.InitFromCfg(ctx) // init casbin
+
 	//xelastic.InitCfg(ctx)    // init es
 	//xelastic.SaveEsLog("admin_log_")
 }

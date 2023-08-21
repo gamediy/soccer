@@ -1,3 +1,16 @@
+### get captcha
+GET {{url}}/api/user/getCaptcha?captchaId=1
+
+### register
+POST {{url}}/api/user/register
+Content-Type: application/json
+
+{
+  "account": "join6",
+  "password": "a123456",
+  "country": "tw",
+  "city": "gaoxiong"
+}
 
 ### Login
 POST {{url}}/api/user/login

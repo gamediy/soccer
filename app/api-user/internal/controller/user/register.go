@@ -19,12 +19,7 @@ func (c *cUser) Register(ctx context.Context, req *vpassport.RegisterReq) (res *
 	if err = g.Validator().Rules("required").Data(req.Account).Run(ctx); err != nil {
 		return nil, consts.ErrAreaCode
 	}
-	if err = g.Validator().Rules("required").Data(req.Phone).Run(ctx); err != nil {
-		return nil, consts.ErrPhoneEmpty
-	}
-	if err = g.Validator().Rules("min-length:5").Data(req.Phone).Run(ctx); err != nil {
-		return nil, consts.ErrPhoneLength5
-	}
+
 	if err = g.Validator().Rules("required|password").Data(req.Password).Run(ctx); err != nil {
 		return nil, consts.ErrPassFormat
 	}
@@ -37,8 +32,11 @@ func (c *cUser) Register(ctx context.Context, req *vpassport.RegisterReq) (res *
 		City:     req.City,
 		Ip:       ghttp.RequestFromCtx(ctx).GetClientIp(),
 	}
-	if err = x.Exec(); err != nil {
+	token, err := x.Exec()
+	if err != nil {
 		return nil, err
 	}
-	return
+	return &vpassport.RegisterRes{
+		Token: token,
+	}, nil
 }

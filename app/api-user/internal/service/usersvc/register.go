@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/database/gdb"
+	"github.com/gogf/gf/v2/encoding/gjson"
 	"github.com/gogf/gf/v2/frame/g"
 	"star_net/app/api-user/consts"
 	"star_net/db/dao"
@@ -21,9 +22,9 @@ type Register struct {
 	Ip       string `json:"-"`
 }
 
-func (s *Register) Exec() error {
+func (s *Register) Exec() (string, error) {
 	if err := s.checkAccountExist(s.Ctx, s.Account); err != nil {
-		return err
+		return "", err
 	}
 	var d entity.User
 	d.Account = s.Account
@@ -34,13 +35,13 @@ func (s *Register) Exec() error {
 	d.Password = xpwd.GenPwd(s.Password)
 	parent, err := s.getParent()
 	if err != nil {
-		return err
+		return "", err
 	}
 	if parent != nil {
 		d.ParentPath = fmt.Sprintf("%s%d/", parent.ParentPath, parent.Id)
 	}
 	if err = g.DB().Transaction(s.Ctx, func(ctx context.Context, tx gdb.TX) error {
-		uid, err := tx.Model(dao.User.Table()).InsertAndGetId(ctx, d)
+		uid, err := tx.Model(dao.User.Table()).InsertAndGetId(&d)
 		if err != nil {
 			return err
 		}
@@ -53,14 +54,25 @@ func (s *Register) Exec() error {
 		}
 		return nil
 	}); err != nil {
-		return err
+		return "", err
 	}
-	return nil
+	resp := GFToken.EncryptToken(s.Ctx, "userInfo", "")
+	json := gjson.New(resp)
+	return json.Get("data.token").String(), nil
 }
 
 func (s *Register) getParent() (*entity.User, error) {
 	var d entity.User
-	err := dao.User.Ctx(s.Ctx).Scan(&d, "xid", s.Xid)
+	if s.Xid == "" {
+		return nil, nil
+	}
+	one, err := dao.User.Ctx(s.Ctx).One(&d, "xid", s.Xid)
+	if one.IsEmpty() {
+		return nil, nil
+	}
+	if err = one.Struct(&d); err != nil {
+		return nil, err
+	}
 	return &d, err
 }
 

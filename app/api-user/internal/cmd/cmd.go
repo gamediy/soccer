@@ -2,18 +2,15 @@ package cmd
 
 import (
 	"context"
-	"github.com/goflyfox/gtoken/gtoken"
 	_ "github.com/gogf/gf/contrib/nosql/redis/v2"
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/i18n/gi18n"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
 	"star_net/app/api-user/internal/controller/user"
-	"star_net/model"
+	"star_net/app/api-user/internal/service/usersvc"
 	"star_net/utility/utils/xpusher"
 
 	"star_net/common"
-	"time"
 )
 
 var (
@@ -27,62 +24,19 @@ var (
 		Brief: "start http server",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			s := g.Server(serverName)
-			initRouter(s)
+			initRouter(s, ctx)
 			xpusher.InitFromCfg(ctx)
 			s.Run()
 			return nil
 		},
 	}
 )
-var gfToken *gtoken.GfToken
 
 /*
 统一路由注册
 */
-func initRouter(s *ghttp.Server) {
-	gfToken = &gtoken.GfToken{
-		ServerName: serverName,
-		//Timeout:         10 * 1000,
-		CacheMode: 2, //1gcache 2redis 3file
-		CacheKey:  "start_net_user_token:",
-		AuthBeforeFunc: func(r *ghttp.Request) bool {
-			r.SetCtxVar("time", time.Now())
-			return true
-		},
-
-		TokenDelimiter: "_",
-		EncryptKey:     []byte("koi29a83idakguqjq29asd9asd8a7jhq"),
-		AuthFailMsg:    "登录超时，请重新登录",
-		AuthAfterFunc: func(r *ghttp.Request, respData gtoken.Resp) {
-			if respData.Code != 0 {
-				switch r.Method {
-				case "PUT", "DELETE", "GET", "POST":
-					r.Response.WriteJsonExit(respData)
-				}
-			} else {
-				s2 := respData.Data.(map[string]interface{})
-				userInfo := s2["data"].(map[string]interface{})
-				u := model.UserInfo{
-					Uid:      userInfo["uid"].(float64),
-					Account:  userInfo["account"].(string),
-					Lang:     r.Request.Header.Get("lang"),
-					ClientIP: r.GetClientIp(),
-				}
-				u.UidInt64 = int64(u.Uid)
-				i18n := gi18n.New()
-				i18n.SetLanguage(u.Lang)
-				u.I18n = i18n
-				r.SetCtxVar("userInfo", u)
-			}
-		},
-		MultiLogin: true,
-		LoginPath:  "/api/user/login",
-		LoginBeforeFunc: func(r *ghttp.Request) (string, interface{}) {
-			return "", nil
-		},
-		LogoutPath:       "/api/user/logout",
-		AuthExcludePaths: g.SliceStr{"/api/user/getCaptcha", "/api.json", "/api/dict/**"},
-	}
+func initRouter(s *ghttp.Server, ctx context.Context) {
+	gfToken := usersvc.NewGFToken(ctx)
 	s.BindMiddlewareDefault(common.MiddlewareDefaultCORS, common.MiddlewareRequestLimit, common.MiddlewareHandlerResponse)
 	s.Group("/api", func(group *ghttp.RouterGroup) {
 		group.Group("/user", func(group *ghttp.RouterGroup) {
@@ -91,5 +45,7 @@ func initRouter(s *ghttp.Server) {
 	})
 
 	// 启动gtoken
-
+	if err := gfToken.Start(); err != nil {
+		panic(err)
+	}
 }

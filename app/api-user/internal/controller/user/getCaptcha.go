@@ -6,7 +6,7 @@ import (
 	"star_net/utility/utils/xcaptcha"
 )
 
-func GetCaptcha(ctx context.Context, req *user.CaptchaReq) (res *user.CaptchaRes, err error) {
+func (c *cUser) GetCaptcha(ctx context.Context, req *user.CaptchaReq) (res *user.CaptchaRes, err error) {
 	img, _, err := xcaptcha.Get(ctx, req.CaptchaId)
 	if err != nil {
 		return nil, err
