@@ -15,7 +15,7 @@ var (
 
 type GetWithdrawItemOutput struct {
 	Tips string
-	Item g.Map
+	Item []g.Map
 }
 
 type withdrawItem struct {
@@ -38,16 +38,16 @@ func (s *withdrawItem) Exec(ctx context.Context) (*GetWithdrawItemOutput, error)
 				bind["protocol"] = account.Protocol
 			}
 		}
-		res.Item = g.Map{
-			"payId":    item.Id,
-			"title":    item.Title,
-			"protocol": item.Protocol,
-			"logo":     item.Logo,
-			"currency": item.Currency,
-			"address":  item.Address,
-			"detail":   fmt.Sprintf("%s %d-%d", item.Detail, item.Min, item.Max),
-			"bind":     bind,
-		}
+		res.Item = append(res.Item, g.Map{
+			"withdrawId": item.Id,
+			"title":      item.Title,
+			"protocol":   item.Protocol,
+			"logo":       item.Logo,
+			"currency":   item.Currency,
+			"address":    item.Address,
+			"detail":     fmt.Sprintf("%s %d-%d", item.Detail, item.Min, item.Max),
+			"bind":       bind, //如果为空就要去绑定
+		})
 	}
 	return &res, nil
 }
