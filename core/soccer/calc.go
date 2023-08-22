@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/database/gdb"
+	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gtime"
 	"star_net/core/wallet"
 	"star_net/db/dao"
@@ -49,7 +50,15 @@ func Calc(ctx context.Context, eventId int64, result OpenResult) error {
 		lostOrder[index].Profit = -lostOrder[index].Amount
 
 	}
-	dao.SoccerOrderSettle.Ctx(ctx).Data(lostOrder).Batch(20).Update()
+	g.DB().Transaction(ctx, func(ctx context.Context, tx gdb.TX) error {
+		_, err := tx.Model(dao.SoccerOrder.Table()).Ctx(ctx).Data(lostOrder).Batch(20).Insert()
+		if err != nil {
+			return err
+		}
+		_, err = tx.Model(dao.SoccerOrderSettle).Ctx(ctx).Data(lostOrder).Batch(40).Delete()
+		return err
+	})
+
 	for i, item := range wonOrder {
 		go func(item entity.SoccerOrderSettle) {
 			wonOrder[i].Profit = item.OddsProfitRate*item.Amount - item.Amount

@@ -6,6 +6,7 @@ import (
 	"github.com/gogf/gf/v2/database/gdb"
 	"star_net/app/api-soccer/internal/model"
 	"star_net/app/api-soccer/internal/service"
+	"star_net/core/soccer"
 	"star_net/core/wallet"
 	"star_net/db/dao"
 	"star_net/db/model/entity"
@@ -46,6 +47,7 @@ func (order) Bet(ctx context.Context, input model.BetInput) error {
 		order.OddsTitle = odds.Title
 		order.BoutStatus = odds.BoutStatus
 		order.EventsId = event.Id
+		order.Status = soccer.OrderStatusBetSuccess
 		order.EventsStartTime = event.StartTime
 		order.EventsTitle = fmt.Sprintf("%s vs %s", event.EnHomeTeam, event.EnAwayTeam)
 		order.LeagueTitle = event.EnLeagueTitle

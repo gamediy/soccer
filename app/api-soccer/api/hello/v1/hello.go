@@ -5,7 +5,8 @@ import (
 )
 
 type Req struct {
-	g.Meta `path:"/hello" tags:"Hello" method:"get" summary:"You first hello api"`
+	g.Meta   `path:"/hello" tags:"Hello" method:"get" summary:"You first hello api"`
+	UserName string `v:"required#用户名必填"`
 }
 
 type Res struct {

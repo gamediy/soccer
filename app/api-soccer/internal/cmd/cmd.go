@@ -8,7 +8,9 @@ import (
 	"github.com/gogf/gf/v2/i18n/gi18n"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
-	"star_net/app/api-user/internal/model"
+	"star_net/app/api-soccer/internal/controller/hello"
+	"star_net/model"
+
 	"star_net/common"
 	"star_net/utility/utils/xpusher"
 	"time"
@@ -84,9 +86,9 @@ func initRouter(s *ghttp.Server) {
 	}
 	s.Group("/api", func(group *ghttp.RouterGroup) {
 		group.Middleware(common.MiddlewareDefaultCORS, common.MiddlewareHandlerResponse, common.MiddlewareRequestLimit)
-		group.Group("/user", func(group *ghttp.RouterGroup) {
+		group.Group("/hello", func(group *ghttp.RouterGroup) {
 			//gfToken.Middleware(context.Background(), group)
-			group.Bind(passport.Ctrl)
+			group.Bind(hello.Ctrl)
 		})
 
 		group.Group("/order", func(group *ghttp.RouterGroup) {
