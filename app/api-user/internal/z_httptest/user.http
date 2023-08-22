@@ -1,6 +1,3 @@
-### get captcha
-GET {{url}}/api/user/getCaptcha?captchaId=1
-
 ### register
 POST {{url}}/api/user/register
 Content-Type: application/json
@@ -17,12 +14,13 @@ lang: en
 }
 
 ### Login
-POST {{url}}/api/user/
+POST {{url}}/api/user/login
 Content-Type: application/json
+lang: zh
 
 {
-  "uname": "admin",
-  "pass": "1"
+  "uname": "join",
+  "pass": "a1231231"
 }
 
 > {%
@@ -30,6 +28,6 @@ Content-Type: application/json
 %}
 
 ### Get Login Info
-GET {{url}}/api/sys/admin/user_info
+GET {{url}}/api/user/info
 Authorization: {{token}}
 
