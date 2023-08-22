@@ -31,7 +31,6 @@ lang: zh
 GET {{url}}/api/user/info
 Authorization: {{token}}
 
-
 ### Update Login pass
 PUT {{url}}/api/user/pass
 Authorization: {{token}}

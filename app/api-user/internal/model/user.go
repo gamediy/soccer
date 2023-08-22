@@ -18,10 +18,10 @@ type User struct {
 	Country       string      `json:"country"      description:"国家地区"`
 	Lang          string      `json:"lang"         description:"用户语言"`
 	City          string      `json:"city"         description:"城市"`
-	RealName      string      `json:"realName"     description:"真是姓名"`
-	CreatedAt     *gtime.Time `json:"createdAt"    description:"创建时间"`
+	RealName      string      `json:"realName"     description:"真实姓名"`
+	CreatedAt     *gtime.Time `json:"createdAt"    description:"注册时间"`
 	PayPassStatus int         `json:"payPassStatus" dc:"交易密码设置状态 0 未设置 1已设置"`
-	PayPass       string
+	PayPass       string      `json:"-"`
 }
 
 type Wallet struct {
