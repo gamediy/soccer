@@ -25,6 +25,8 @@ type BankColumns struct {
 	Currency string //
 	Net      string //
 	Protocol string //
+	Summary  string // 简介
+	Url      string // 官网
 	Status   string //
 	Class    string //
 }
@@ -36,6 +38,8 @@ var bankColumns = BankColumns{
 	Currency: "currency",
 	Net:      "net",
 	Protocol: "protocol",
+	Summary:  "summary",
+	Url:      "url",
 	Status:   "status",
 	Class:    "class",
 }

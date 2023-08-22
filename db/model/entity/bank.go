@@ -11,6 +11,8 @@ type Bank struct {
 	Currency string `json:"currency" description:""`
 	Net      string `json:"net"      description:""`
 	Protocol string `json:"protocol" description:""`
+	Summary  string `json:"summary"  description:"简介"`
+	Url      string `json:"url"      description:"官网"`
 	Status   int    `json:"status"   description:""`
 	Class    string `json:"class"    description:""`
 }

@@ -8,7 +8,6 @@ server:
   imgPrefix: "http://8.219.177.71:9000/upload/" # 图片前缀
   rootFilePath: "/resource/public/upload/"  # 文件上传路径
   clientMaxBodySize: "200MB"
-
 logger:
   level: "debug"
   stdout: true
@@ -32,3 +31,12 @@ pusher:
   cluster: "ap1"
 elastic:
   url: "http://104.233.171.253:9200"
+
+gfToken:
+  name: "star_net"
+  cacheMode: 2 # 1 gcache  2 redis 3 file
+  cacheKey: "star_net_token:"
+  encryptKey: "koi29a83idakguqjq29asd9asd8a7jhq"
+  authFailMsg: "Login timed out, please log in again"
+  multiLogin: true
+  globalMiddleware: true

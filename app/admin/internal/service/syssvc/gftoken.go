@@ -17,7 +17,8 @@ import (
 	"time"
 )
 
-type GFToken struct{}
+type GFToken struct {
+}
 
 func (s *GFToken) New(ctx context.Context) *gtoken.GfToken {
 	gfToken := &gtoken.GfToken{

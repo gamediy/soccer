@@ -16,6 +16,8 @@ type Bank struct {
 	Currency interface{} //
 	Net      interface{} //
 	Protocol interface{} //
+	Summary  interface{} // 简介
+	Url      interface{} // 官网
 	Status   interface{} //
 	Class    interface{} //
 }

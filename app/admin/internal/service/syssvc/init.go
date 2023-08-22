@@ -7,6 +7,7 @@ import (
 	"star_net/consts"
 	"star_net/db/dao"
 	"star_net/utility/utils/xcasbin"
+	"star_net/utility/utils/xelastic"
 	"star_net/utility/utils/xpusher"
 )
 
@@ -27,9 +28,8 @@ func (s *InitD) Exec(ctx context.Context) {
 
 	xpusher.InitFromCfg(ctx) // init pusher
 	xcasbin.InitFromCfg(ctx) // init casbin
-
-	//xelastic.InitCfg(ctx)    // init es
-	//xelastic.SaveEsLog("admin_log_")
+	xelastic.InitCfg(ctx)    // init es
+	xelastic.SaveEsLog("admin_log_")
 }
 
 func (s *InitD) SetImgPrefix(ctx context.Context) error {
