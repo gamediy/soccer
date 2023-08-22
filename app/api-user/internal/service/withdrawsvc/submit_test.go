@@ -39,8 +39,8 @@ func Test_withdraw_Submit(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := &withdraw{}
-			if err := s.Submit(tt.args.ctx, tt.args.input); (err != nil) != tt.wantErr {
+
+			if err := Submit.Exec(tt.args.ctx); (err != nil) != tt.wantErr {
 				t.Errorf("Submit() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})

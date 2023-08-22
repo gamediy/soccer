@@ -29,7 +29,7 @@ type submit struct {
 	WithdrawSubmitInput
 }
 
-func (input *submit) Submit(ctx context.Context) error {
+func (input *submit) Exec(ctx context.Context) error {
 	userInfo := service.GetUserInfo(ctx)
 	withdrawInfo := entity.AmountItem{}
 	dao.AmountItem.Ctx(ctx).Scan(&withdrawInfo, input.WithdrawAccountId)
