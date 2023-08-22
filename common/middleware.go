@@ -1,7 +1,6 @@
 package common
 
 import (
-	"fmt"
 	"github.com/goflyfox/gtoken/gtoken"
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
@@ -58,7 +57,7 @@ func MiddlewareHandlerResponse(r *ghttp.Request) {
 	if lang == "" {
 		lang = "en"
 	}
-	m := xtrans.T(lang, fmt.Sprint(code.Code()))
+	m := xtrans.T(lang, msg)
 	r.Response.WriteJson(g.Map{
 		"code": code.Code(),
 		"msg":  m,

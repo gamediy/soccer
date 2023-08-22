@@ -6,7 +6,6 @@ import (
 	vpassport "star_net/app/api-user/api/user"
 	"star_net/app/api-user/internal/service/usersvc"
 	"star_net/model"
-	"star_net/utility/utils/xformat"
 )
 
 var (
@@ -16,9 +15,6 @@ var (
 type cUser struct{}
 
 func (c *cUser) Register(ctx context.Context, req *vpassport.RegisterReq) (res *model.CommonRes, err error) {
-	if err = xformat.Account(ctx, req.Account); err != nil {
-		return nil, err
-	}
 	x := usersvc.Register{
 		Ctx:      ctx,
 		Account:  req.Account,

@@ -7,8 +7,8 @@ Content-Type: application/json
 Lang: en
 
 {
-  "account": "to",
-  "password": "a123456",
+  "account": "tta123123",
+  "password": "a",
   "country": "tw",
   "city": "gaoxiong",
   "phone": "123123",
