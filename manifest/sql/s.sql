@@ -112,14 +112,14 @@ INSERT IGNORE INTO `s_api` (`id`, `group`, `url`, `method`, `desc`, `created_at`
 	(266, '/user', '/api/user/', 'PUT', ' 用户修改', '2023-08-11 12:36:41', '2023-08-11 12:36:41'),
 	(267, '/user', '/api/user/', 'DELETE', ' 用户删除', '2023-08-11 12:36:41', '2023-08-11 12:36:41'),
 	(268, '/user', '/api/user/pass', 'PUT', ' 用户修改用户登录密码', '2023-08-11 12:36:41', '2023-08-11 12:36:41'),
-	(269, '/order', '/api/wallet/', 'GET', ' 查询钱包信息', '2023-08-11 12:36:42', '2023-08-11 12:36:42'),
-	(270, '/order', '/api/wallet/update', 'PUT', ' 修改用户钱包', '2023-08-11 12:36:42', '2023-08-11 12:36:42'),
-	(271, '/order', '/api/wallet/freeze', 'PUT', ' 冻结用户余额', '2023-08-11 12:36:42', '2023-08-11 12:36:42'),
-	(272, '/order/walletLog', '/api/wallet/walletLog', 'GET', ' 查询账变日志', '2023-08-11 12:36:43', '2023-08-11 12:36:43'),
-	(273, '/order/walletLog', '/api/wallet/walletLog/list', 'GET', ' 查询账变日志列表', '2023-08-11 12:36:43', '2023-08-11 12:36:43'),
-	(274, '/order/walletLog', '/api/wallet/walletLog', 'POST', ' 添加账变日志', '2023-08-11 12:36:44', '2023-08-11 12:36:44'),
-	(275, '/order/walletLog', '/api/wallet/walletLog', 'PUT', ' 修改账变日志', '2023-08-11 12:36:44', '2023-08-11 12:36:44'),
-	(276, '/order/walletLog', '/api/wallet/walletLog', 'DELETE', ' 删除账变日志', '2023-08-11 12:36:45', '2023-08-11 12:36:45');
+	(269, '/ordersvc', '/api/wallet/', 'GET', ' 查询钱包信息', '2023-08-11 12:36:42', '2023-08-11 12:36:42'),
+	(270, '/ordersvc', '/api/wallet/update', 'PUT', ' 修改用户钱包', '2023-08-11 12:36:42', '2023-08-11 12:36:42'),
+	(271, '/ordersvc', '/api/wallet/freeze', 'PUT', ' 冻结用户余额', '2023-08-11 12:36:42', '2023-08-11 12:36:42'),
+	(272, '/ordersvc/walletLog', '/api/wallet/walletLog', 'GET', ' 查询账变日志', '2023-08-11 12:36:43', '2023-08-11 12:36:43'),
+	(273, '/ordersvc/walletLog', '/api/wallet/walletLog/list', 'GET', ' 查询账变日志列表', '2023-08-11 12:36:43', '2023-08-11 12:36:43'),
+	(274, '/ordersvc/walletLog', '/api/wallet/walletLog', 'POST', ' 添加账变日志', '2023-08-11 12:36:44', '2023-08-11 12:36:44'),
+	(275, '/ordersvc/walletLog', '/api/wallet/walletLog', 'PUT', ' 修改账变日志', '2023-08-11 12:36:44', '2023-08-11 12:36:44'),
+	(276, '/ordersvc/walletLog', '/api/wallet/walletLog', 'DELETE', ' 删除账变日志', '2023-08-11 12:36:45', '2023-08-11 12:36:45');
 
 -- 正在导出表  star_net.s_casbin 的数据：~104 rows (大约)
 INSERT IGNORE INTO `s_casbin` (`ptype`, `v0`, `v1`, `v2`, `v3`, `v4`, `v5`) VALUES

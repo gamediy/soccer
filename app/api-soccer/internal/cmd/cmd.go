@@ -91,7 +91,7 @@ func initRouter(s *ghttp.Server) {
 			group.Bind(hello.Ctrl)
 		})
 
-		group.Group("/order", func(group *ghttp.RouterGroup) {
+		group.Group("/ordersvc", func(group *ghttp.RouterGroup) {
 			//gfToken.Middleware(context.Background(), group)
 
 		})

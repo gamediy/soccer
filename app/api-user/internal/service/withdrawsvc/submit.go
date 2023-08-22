@@ -88,7 +88,7 @@ func (input *submit) Exec(ctx context.Context) error {
 			},
 			EN: push.MessageItem{
 				Title: "withdraw",
-				Body:  fmt.Sprintf("%s order： %.2f account：%s", withdrawInfo.Title, input.Amount, userInfo.Account),
+				Body:  fmt.Sprintf("%s ordersvc： %.2f account：%s", withdrawInfo.Title, input.Amount, userInfo.Account),
 			},
 		}
 		message.Trigger(push.ChannelAdmin, push.EventDeposit)

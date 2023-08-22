@@ -83,7 +83,7 @@ func (s *walletLog) Report(ctx context.Context) (res *walletLogRes, err error) {
 	sum.WriteString(where.String())
 	builder.WriteString(" group by  uid,account,date")
 	sum.WriteString(" group by balance_code")
-	builder.WriteString(fmt.Sprintf(" order by id desc limit %d offset %d ", s.Size, s.Page*s.Size))
+	builder.WriteString(fmt.Sprintf(" ordersvc by id desc limit %d offset %d ", s.Size, s.Page*s.Size))
 	one, err := g.DB().Ctx(ctx).GetOne(ctx, total.String())
 	res = &walletLogRes{}
 	if one == nil {

@@ -8,7 +8,7 @@ const (
 	ChannelAdmin = "admins"
 )
 const (
-	EventDeposit  = "order"
+	EventDeposit  = "ordersvc"
 	EventWithdraw = "withdraw"
 )
 

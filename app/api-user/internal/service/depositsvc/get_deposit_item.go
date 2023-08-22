@@ -18,7 +18,7 @@ type getDepositItem struct {
 }
 type GetDepositItemOutput struct {
 	Tips string
-	Item g.Map
+	Item []g.Map
 }
 
 func (s *getDepositItem) Exec(ctx context.Context) (*GetDepositItemOutput, error) {
@@ -42,7 +42,7 @@ func (s *getDepositItem) Exec(ctx context.Context) (*GetDepositItemOutput, error
 			}
 			item.Address = account.Address
 		}
-		res.Item = g.Map{
+		res.Item = append(res.Item, g.Map{
 			"payId":    item.Id,
 			"title":    item.Title,
 			"protocol": item.Protocol,
@@ -50,7 +50,7 @@ func (s *getDepositItem) Exec(ctx context.Context) (*GetDepositItemOutput, error
 			"currency": item.Currency,
 			"address":  item.Address,
 			"detail":   fmt.Sprintf("%s %d-%d", item.Detail, item.Min, item.Max),
-		}
+		})
 	}
 	return &res, nil
 }

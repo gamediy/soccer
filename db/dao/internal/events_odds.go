@@ -20,36 +20,38 @@ type EventsOddsDao struct {
 
 // EventsOddsColumns defines and stores column names for table p_events_odds.
 type EventsOddsColumns struct {
-	Id         string //
-	EventsId   string // 赛事编号
-	Title      string // 标题
-	CalcRule   string // 结算规则
-	BoutStatus string // 类型 1:上半场 2：全场
-	Amount     string // 投注金额
-	ProfitRate string // 赢利
-	Header     string // 主球队 1：主队，2：客队，draw 平局
-	Odds       string // 赔率
-	CreatedAt  string //
-	UpdatedAt  string //
-	PlayCode   string //
-	Status     string //
+	Id           string //
+	EventsId     string // 赛事编号
+	Title        string // 标题
+	CalcRule     string // 结算规则
+	BoutStatus   string // 类型 1:上半场 2：全场
+	Amount       string // 投注金额
+	ProfitRate   string // 赢利
+	Header       string // 主球队 1：主队，2：客队，draw 平局
+	Odds         string // 赔率
+	CreatedAt    string //
+	UpdatedAt    string //
+	PlayCode     string //
+	Status       string //
+	PlayTypeCode string //
 }
 
 // eventsOddsColumns holds the columns for table p_events_odds.
 var eventsOddsColumns = EventsOddsColumns{
-	Id:         "id",
-	EventsId:   "events_id",
-	Title:      "title",
-	CalcRule:   "calc_rule",
-	BoutStatus: "bout_status",
-	Amount:     "amount",
-	ProfitRate: "profit_rate",
-	Header:     "header",
-	Odds:       "odds",
-	CreatedAt:  "created_at",
-	UpdatedAt:  "updated_at",
-	PlayCode:   "play_code",
-	Status:     "status",
+	Id:           "id",
+	EventsId:     "events_id",
+	Title:        "title",
+	CalcRule:     "calc_rule",
+	BoutStatus:   "bout_status",
+	Amount:       "amount",
+	ProfitRate:   "profit_rate",
+	Header:       "header",
+	Odds:         "odds",
+	CreatedAt:    "created_at",
+	UpdatedAt:    "updated_at",
+	PlayCode:     "play_code",
+	Status:       "status",
+	PlayTypeCode: "play_type_code",
 }
 
 // NewEventsOddsDao creates and returns a new DAO object for table data access.

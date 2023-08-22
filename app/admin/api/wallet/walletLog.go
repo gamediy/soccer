@@ -7,12 +7,12 @@ import (
 )
 
 type ReadWalletLogReq struct {
-	g.Meta `tags:"/order/walletLog" method:"get" path:"/walletLog" dc:"查询账变日志"`
+	g.Meta `tags:"/ordersvc/walletLog" method:"get" path:"/walletLog" dc:"查询账变日志"`
 	Id     uint64 `json:"id"`
 }
 type ReadWalletLogRes entity.WalletLog
 type ReadListWalletLogReq struct {
-	g.Meta `tags:"/order/walletLog" method:"get" path:"/walletLog/list" dc:"查询账变日志列表"`
+	g.Meta `tags:"/ordersvc/walletLog" method:"get" path:"/walletLog/list" dc:"查询账变日志列表"`
 	model.CommonPageReq
 	Account     string
 	OrderNo     string
@@ -24,17 +24,17 @@ type ReadListWalletLogRes struct {
 	List  []*entity.WalletLog `json:"list"`
 }
 type CreateWalletLogReq struct {
-	g.Meta `tags:"/order/walletLog" method:"post" path:"/walletLog" dc:"添加账变日志"`
+	g.Meta `tags:"/ordersvc/walletLog" method:"post" path:"/walletLog" dc:"添加账变日志"`
 	*entity.WalletLog
 }
 type CreateWalletLogRes model.CommonRes
 type UpdateWalletLogReq struct {
-	g.Meta `tags:"/order/walletLog" method:"put" path:"/walletLog" dc:"修改账变日志"`
+	g.Meta `tags:"/ordersvc/walletLog" method:"put" path:"/walletLog" dc:"修改账变日志"`
 	*entity.WalletLog
 }
 type UpdateWalletLogRes model.CommonRes
 type DelWalletLogReq struct {
-	g.Meta `tags:"/order/walletLog" method:"delete" path:"/walletLog" dc:"删除账变日志"`
+	g.Meta `tags:"/ordersvc/walletLog" method:"delete" path:"/walletLog" dc:"删除账变日志"`
 	Id     uint64 `json:"id"`
 }
 type DelWalletLogRes model.CommonRes
