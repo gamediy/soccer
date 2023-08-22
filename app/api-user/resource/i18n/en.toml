@@ -1,2 +1,2 @@
 -200 = "The account starts with a letter and can only contain letters, numbers and underscores, and the length is between 6 and 18"
--201="Any visible character, the length is between 6 and 18"
+"-201" = "Any visible character, the length is between 6 and 18"

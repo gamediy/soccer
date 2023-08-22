@@ -7,6 +7,22 @@ import (
 )
 
 func Login(r *ghttp.Request) (string, interface{}) {
+	var (
+		//ctx = r.Context()
+		req struct {
+			Uname string `json:"uname" v:"required"`
+			Pass  string `json:"pass" v:"required"`
+		}
+	)
+	if err := r.Parse(&req); err != nil {
+		r.ExitAll()
+	}
+	//
+	//if uname == "" || pass == "" {
+	//	r.Response.WriteJson(gtoken.Fail("ACCOUNT OR PASSWORD CANNOT BE EMPTY."))
+	//	r.ExitAll()
+	//}
+
 	return "", nil
 }
 func AuthAfterFunc(r *ghttp.Request, respData gtoken.Resp) {

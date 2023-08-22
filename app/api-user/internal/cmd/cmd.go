@@ -29,8 +29,6 @@ var (
 			// init router
 			initRouter(s)
 			xpusher.InitFromCfg(ctx)
-			//xtrans.Init("../../")
-
 			// 启动gtoken
 			if err := auth.GFToken.Start(); err != nil {
 				panic(err)
