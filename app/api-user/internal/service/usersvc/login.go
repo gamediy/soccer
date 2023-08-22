@@ -21,7 +21,7 @@ func (s *Login) Exec() (*model.UserInfo, error) {
 	var user entity.User
 	_ = dao.User.Ctx(s.Ctx).Scan(&user, "account", s.Account)
 	if user.Id == 0 {
-		return nil, fmt.Errorf("用户名不存在")
+		return nil, fmt.Errorf("用户不存在")
 	}
 	if !xpwd.ComparePassword(user.Password, s.Password) {
 		return nil, fmt.Errorf("密码错误")
