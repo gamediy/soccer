@@ -6,7 +6,7 @@ import (
 
 type RegisterReq struct {
 	g.Meta   `tags:"用户" method:"post" path:"/register" dc:"注册"`
-	Account  string `dc:"账号" json:"account" v:"required|password#-200|-200"`
+	Account  string `dc:"账号" json:"account" v:"required|password#账户必填|账户格式不争气"`
 	Password string `dc:"密码" json:"password" v:"required|password#-201|-201"`
 	Xid      string `dc:"邀请码" json:"xid"`
 	Country  string `json:"country" dc:"国家" v:"required"`
