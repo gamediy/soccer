@@ -33,4 +33,5 @@ type User struct {
 	AreaCode     interface{} //
 	City         interface{} //
 	RealName     interface{} // real name
+	PayPass      interface{} // 交易密码
 }

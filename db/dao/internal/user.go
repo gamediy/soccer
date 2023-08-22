@@ -41,6 +41,7 @@ type UserColumns struct {
 	AreaCode     string //
 	City         string //
 	RealName     string // real name
+	PayPass      string // 交易密码
 }
 
 // userColumns holds the columns for table u_user.
@@ -66,6 +67,7 @@ var userColumns = UserColumns{
 	AreaCode:     "area_code",
 	City:         "city",
 	RealName:     "real_name",
+	PayPass:      "pay_pass",
 }
 
 // NewUserDao creates and returns a new DAO object for table data access.

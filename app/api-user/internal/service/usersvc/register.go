@@ -12,16 +12,17 @@ import (
 )
 
 type Register struct {
-	Ctx      context.Context
-	Account  string `dc:"账号" json:"account"`
-	Password string `dc:"密码" json:"password"`
-	Xid      string `dc:"邀请码" json:"xid" `
-	Phone    string `json:"phone"`
-	Email    string `json:"email"`
-	Country  string
-	City     string
-	Ip       string `json:"-"`
-	RealName string
+	Ctx         context.Context
+	Account     string `dc:"账号" json:"account"`
+	Password    string `dc:"密码" json:"password"`
+	Xid         string `dc:"邀请码" json:"xid" `
+	Phone       string `json:"phone"`
+	Email       string `json:"email"`
+	Country     string
+	City        string
+	Ip          string `json:"-"`
+	RealName    string
+	ClientAgent string
 }
 
 func (s *Register) Exec() (string, error) {
@@ -39,6 +40,7 @@ func (s *Register) Exec() (string, error) {
 	d.Phone = s.Phone
 	d.Email = s.Email
 	d.RealName = s.RealName
+	d.ClientAgent = s.ClientAgent
 	parent, err := s.getParent()
 	if err != nil {
 		return "", err

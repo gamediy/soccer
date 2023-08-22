@@ -5,7 +5,7 @@ lang: en
 
 {
   "account": "tta123123",
-  "password": "a",
+  "password": "a1231231",
   "country": "tw",
   "city": "gaoxiong",
   "phone": "123123",
@@ -19,8 +19,8 @@ Content-Type: application/json
 lang: zh
 
 {
-  "uname": "join",
-  "pass": "a1231231"
+  "account": "join",
+  "password": "a1231231"
 }
 
 > {%
@@ -31,3 +31,22 @@ lang: zh
 GET {{url}}/api/user/info
 Authorization: {{token}}
 
+
+### Update Login pass
+PUT {{url}}/api/user/pass
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "oldPass": "a1231232",
+  "newPass": "a1231231"
+}
+
+### set pay pass
+PUT {{url}}/api/user/setPayPass
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "pass": "123456"
+}

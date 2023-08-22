@@ -31,4 +31,5 @@ type User struct {
 	AreaCode     string      `json:"areaCode"     description:""`
 	City         string      `json:"city"         description:""`
 	RealName     string      `json:"realName"     description:"real name"`
+	PayPass      string      `json:"payPass"      description:"交易密码"`
 }
