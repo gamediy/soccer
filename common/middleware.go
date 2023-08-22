@@ -59,6 +59,7 @@ func MiddlewareHandlerResponse(r *ghttp.Request) {
 		lang = "en"
 	}
 	fmt.Println(msg)
+
 	m := xtrans.T(lang, msg)
 	r.Response.WriteJson(g.Map{
 		"code": code.Code(),

@@ -2,10 +2,12 @@ package withdrawsvc
 
 import (
 	"context"
-	"star_net/app/api-user/internal/model"
 )
 
-func (s *withdraw) Record(ctx context.Context, input model.WithdrawRecordInput) (*model.WithdrawRecordOutput, error) {
+type record struct {
+}
 
-	return nil, nil
+func (s *record) Exec(ctx context.Context) error {
+
+	return nil
 }

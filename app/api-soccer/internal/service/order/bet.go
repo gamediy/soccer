@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/database/gdb"
-	"star_net/app/api-soccer/internal/model"
 	"star_net/app/api-soccer/internal/service"
 	"star_net/core/soccer"
 	"star_net/core/wallet"
@@ -13,7 +12,21 @@ import (
 	"star_net/utility/utils/xuuid"
 )
 
-func (order) Bet(ctx context.Context, input model.BetInput) error {
+var (
+	Bet = &bet{}
+)
+
+type BetInput struct {
+	OddsId int     `json:"oddsId"`
+	Amount float64 `json:"amount"`
+}
+type BetOutput struct {
+}
+type bet struct {
+	BetInput
+}
+
+func (input *bet) Exec(ctx context.Context) error {
 	if input.Amount <= 0 {
 		return fmt.Errorf("金额错误")
 	}

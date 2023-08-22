@@ -4,17 +4,27 @@ import (
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/frame/g"
-	"star_net/app/api-user/internal/model"
 	"star_net/app/api-user/internal/service"
 	"star_net/db/dao"
 	"star_net/db/model/entity"
 	"star_net/utility/blockchain/tron/client"
 )
 
-func (s *deposit) GetDepositItem(ctx context.Context) (*model.GetDepositItemOutput, error) {
+var (
+	GetDepositItem = &getDepositItem{}
+)
+
+type getDepositItem struct {
+}
+type GetDepositItemOutput struct {
+	Tips string
+	Item g.Map
+}
+
+func (s *getDepositItem) Exec(ctx context.Context) (*GetDepositItemOutput, error) {
 	userInfo := service.GetUserInfo(ctx)
 	list := []entity.AmountItem{}
-	res := model.GetDepositItemOutput{}
+	res := GetDepositItemOutput{}
 	dao.AmountItem.Ctx(ctx).Scan(&list, "status=? and type=?", 1, "Deposit")
 	res.Tips = "支付提示，取配置文件"
 	for _, item := range list {

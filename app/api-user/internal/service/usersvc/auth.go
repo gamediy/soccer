@@ -4,6 +4,7 @@ import (
 	"github.com/goflyfox/gtoken/gtoken"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"star_net/model"
+	"star_net/utility/utils/xtrans"
 )
 
 func Login(r *ghttp.Request) (string, interface{}) {
@@ -37,10 +38,14 @@ func AuthAfterFunc(r *ghttp.Request, respData gtoken.Resp) {
 		s2       = respData.Data.(map[string]interface{})
 		userInfo = s2["data"].(map[string]interface{})
 		u        = model.UserInfo{
-			Uid:     userInfo["uid"].(float64),
-			Account: userInfo["account"].(string),
+			Uid:      userInfo["uid"].(float64),
+			Account:  userInfo["account"].(string),
+			Lang:     r.Request.Header.Get("lang"),
+			ClientIP: r.GetClientIp(),
 		}
 	)
+
+	u.I18n = xtrans.New(u.Lang)
 	r.SetCtxVar("userName", s2["userKey"])
 	r.SetCtxVar("roleName", userInfo["ruleName"])
 	r.SetCtxVar("uid", userInfo["uid"])

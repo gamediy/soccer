@@ -2,7 +2,8 @@ package withdrawsvc
 
 import (
 	"context"
-	"star_net/app/api-user/internal/model"
+	"star_net/model"
+
 	"star_net/utility/utils/xtrans"
 	"testing"
 )
@@ -18,7 +19,7 @@ func Test_withdraw_Submit(t *testing.T) {
 	value := context.WithValue(background, "userInfo", info)
 	type args struct {
 		ctx   context.Context
-		input model.WithdrawSubmitInput
+		input WithdrawSubmitInput
 	}
 	tests := []struct {
 		name    string
@@ -28,7 +29,7 @@ func Test_withdraw_Submit(t *testing.T) {
 		{
 			args: args{
 				ctx: value,
-				input: model.WithdrawSubmitInput{
+				input: WithdrawSubmitInput{
 					WithdrawId:        5,
 					WithdrawAccountId: 1,
 					Amount:            13,

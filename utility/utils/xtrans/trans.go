@@ -38,6 +38,7 @@ func T(language interface{}, word string) string {
 		}
 	}
 	i18n.SetLanguage(fmt.Sprint(language))
+
 	return i18n.Translate(ctx, word)
 }
 

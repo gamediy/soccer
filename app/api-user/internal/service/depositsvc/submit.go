@@ -5,7 +5,6 @@ import (
 	"fmt"
 	_ "github.com/gogf/gf/contrib/drivers/mysql/v2"
 	consts2 "star_net/app/api-user/consts"
-	"star_net/app/api-user/internal/model"
 	"star_net/app/api-user/internal/service"
 	"star_net/consts"
 	"star_net/core/push"
@@ -15,7 +14,22 @@ import (
 	"star_net/utility/utils/xuuid"
 )
 
-func (s *deposit) Submit(ctx context.Context, input model.DepositSubmitInput) error {
+var (
+	Submit = &submit{}
+)
+
+type DepositSubmitInput struct {
+	PayId           int     `json:"payId"`           //充值Id
+	Amount          float64 `json:"amount"`          //充值金额
+	TransferOrderNo string  `json:"transferOrderNo"` //成功订单号
+	TranserImg      string  `json:"transerImg"`      //成功图片
+
+}
+type submit struct {
+	DepositSubmitInput
+}
+
+func (input *submit) Exec(ctx context.Context) error {
 
 	userInfo := service.GetUserInfo(ctx)
 	payInfo := entity.AmountItem{}

@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/gogf/gf/v2/database/gdb"
 	consts2 "star_net/app/api-user/consts"
-	"star_net/app/api-user/internal/model"
 	"star_net/app/api-user/internal/service"
 	"star_net/consts"
 	"star_net/core/push"
@@ -16,7 +15,21 @@ import (
 	"star_net/utility/utils/xuuid"
 )
 
-func (s *withdraw) Submit(ctx context.Context, input model.WithdrawSubmitInput) error {
+var (
+	Submit = &submit{}
+)
+
+type WithdrawSubmitInput struct {
+	WithdrawId        int     `json:"withdrawId"`
+	Amount            float64 `json:"amount"`
+	WithdrawAccountId int     `json:"WithdrawAccount"`
+}
+
+type submit struct {
+	WithdrawSubmitInput
+}
+
+func (input *submit) Submit(ctx context.Context) error {
 	userInfo := service.GetUserInfo(ctx)
 	withdrawInfo := entity.AmountItem{}
 	dao.AmountItem.Ctx(ctx).Scan(&withdrawInfo, input.WithdrawAccountId)

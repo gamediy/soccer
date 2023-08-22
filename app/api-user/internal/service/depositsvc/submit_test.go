@@ -2,7 +2,6 @@ package depositsvc
 
 import (
 	"context"
-	"star_net/app/api-user/internal/model"
 	md "star_net/model"
 	"star_net/utility/utils/xpusher"
 
@@ -21,7 +20,7 @@ func Test_deposit_Submit(t *testing.T) {
 	xpusher.InitFromCfg(value)
 	type args struct {
 		ctx   context.Context
-		input model.DepositSubmitInput
+		input DepositSubmitInput
 	}
 	tests := []struct {
 		name    string
@@ -31,7 +30,7 @@ func Test_deposit_Submit(t *testing.T) {
 		{
 			args: args{
 				ctx: value,
-				input: model.DepositSubmitInput{
+				input: DepositSubmitInput{
 					PayId:           1,
 					Amount:          3,
 					TransferOrderNo: "1234567892",
@@ -42,8 +41,8 @@ func Test_deposit_Submit(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := &deposit{}
-			if err := s.Submit(tt.args.ctx, tt.args.input); (err != nil) != tt.wantErr {
+
+			if err := Submit.Exec(tt.args.ctx); (err != nil) != tt.wantErr {
 				t.Errorf("Submit() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
