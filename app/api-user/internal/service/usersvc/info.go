@@ -22,5 +22,8 @@ func (m *GetInfo) Exec() (*model.User, *model.Wallet, error) {
 	if u.Id == 0 || w.Uid == 0 {
 		return nil, nil, fmt.Errorf("用户数据不存在")
 	}
+	if u.PayPass != "" {
+		u.PayPassStatus = 1
+	}
 	return &u, &w, nil
 }

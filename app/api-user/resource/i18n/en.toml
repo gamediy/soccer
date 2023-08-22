@@ -6,3 +6,6 @@
 "密码错误" = "wrong password"
 "邮箱格式不正确" = "Email format is incorrect"
 "旧密码不匹配" = "Old password not match"
+"纯数字" = "pure numbers"
+"6位" = "6 length"
+"交易密码已被设置" = "transaction password has been set"

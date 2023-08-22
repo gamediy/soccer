@@ -3,23 +3,25 @@ package model
 import "github.com/gogf/gf/v2/os/gtime"
 
 type User struct {
-	Id           int64       `json:"id"           description:""`
-	Account      string      `json:"account"      description:"账号"`
-	Email        string      `json:"email"        description:"邮箱"`
-	Status       int         `json:"status"       description:"1:正常，2：冻结"`
-	Xid          string      `json:"xid"          description:"short code 邀请 短码"`
-	Ip           string      `json:"ip"           description:"IP"`
-	Phone        string      `json:"phone"        description:"电话"`
-	LevelBet     int         `json:"levelBet"     description:"下注的等级"`
-	LevelDeposit int         `json:"levelDeposit" description:"充值的等级"`
-	LevelAgent   int         `json:"levelAgent"   description:"代理的等级"`
-	Pid          int64       `json:"pid"          description:"上级ID"`
-	ParentPath   string      `json:"parentPath"   description:"上级全路经 /1/2/3/"`
-	Country      string      `json:"country"      description:"国家地区"`
-	Lang         string      `json:"lang"         description:"用户语言"`
-	City         string      `json:"city"         description:"城市"`
-	RealName     string      `json:"realName"     description:"真是姓名"`
-	CreatedAt    *gtime.Time `json:"createdAt"    description:"创建时间"`
+	Id            int64       `json:"id"           description:""`
+	Account       string      `json:"account"      description:"账号"`
+	Email         string      `json:"email"        description:"邮箱"`
+	Status        int         `json:"status"       description:"1:正常，2：冻结"`
+	Xid           string      `json:"xid"          description:"short code 邀请 短码"`
+	Ip            string      `json:"ip"           description:"IP"`
+	Phone         string      `json:"phone"        description:"电话"`
+	LevelBet      int         `json:"levelBet"     description:"下注的等级"`
+	LevelDeposit  int         `json:"levelDeposit" description:"充值的等级"`
+	LevelAgent    int         `json:"levelAgent"   description:"代理的等级"`
+	Pid           int64       `json:"pid"          description:"上级ID"`
+	ParentPath    string      `json:"parentPath"   description:"上级全路经 /1/2/3/"`
+	Country       string      `json:"country"      description:"国家地区"`
+	Lang          string      `json:"lang"         description:"用户语言"`
+	City          string      `json:"city"         description:"城市"`
+	RealName      string      `json:"realName"     description:"真是姓名"`
+	CreatedAt     *gtime.Time `json:"createdAt"    description:"创建时间"`
+	PayPassStatus int         `json:"payPassStatus" dc:"交易密码设置状态 0 未设置 1已设置"`
+	PayPass       string
 }
 
 type Wallet struct {

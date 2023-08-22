@@ -42,3 +42,11 @@ Content-Type: application/json
   "newPass": "a1231231"
 }
 
+### set pay pass
+PUT {{url}}/api/user/setPayPass
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "pass": "123456"
+}

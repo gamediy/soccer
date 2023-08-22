@@ -20,3 +20,13 @@ func (c cUser) PutLoginPass(ctx context.Context, req *user.PutLoginPassReq) (_ *
 	}
 	return
 }
+func (c cUser) SetPayPass(ctx context.Context, req *user.SetPayPassReq) (_ *model.CommonRes, _ error) {
+	x := usersvc.SetPayPass{
+		Uid:  service.GetUserInfo(ctx).UidInt64,
+		Pass: req.Pass,
+	}
+	if err := x.Exec(ctx); err != nil {
+		return nil, err
+	}
+	return
+}

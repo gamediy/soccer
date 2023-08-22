@@ -15,15 +15,17 @@ var (
 type cUser struct{}
 
 func (c *cUser) Register(ctx context.Context, req *vpassport.RegisterReq) (res *model.CommonRes, err error) {
+	r := ghttp.RequestFromCtx(ctx)
 	x := usersvc.Register{
-		Ctx:      ctx,
-		Account:  req.Account,
-		Password: req.Password,
-		Xid:      req.Xid,
-		Country:  req.Account,
-		City:     req.City,
-		Ip:       ghttp.RequestFromCtx(ctx).GetClientIp(),
-		RealName: req.RealName,
+		Ctx:         ctx,
+		Account:     req.Account,
+		Password:    req.Password,
+		Xid:         req.Xid,
+		Country:     req.Account,
+		City:        req.City,
+		Ip:          r.GetClientIp(),
+		RealName:    req.RealName,
+		ClientAgent: r.UserAgent(),
 	}
 	_, err = x.Exec()
 	if err != nil {
