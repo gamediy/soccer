@@ -13,7 +13,6 @@ import (
 
 type Register struct {
 	Ctx      context.Context
-	RealName string
 	Account  string `dc:"账号" json:"account"`
 	Password string `dc:"密码" json:"password"`
 	Xid      string `dc:"邀请码" json:"xid" v:"required#please input Invitation code"`
@@ -22,9 +21,11 @@ type Register struct {
 	Country  string
 	City     string
 	Ip       string `json:"-"`
+	RealName string
 }
 
 func (s *Register) Exec() (string, error) {
+
 	if err := s.checkAccountExist(s.Ctx, s.Account); err != nil {
 		return "", err
 	}

@@ -12,6 +12,14 @@ const (
 	EN = "en"
 )
 
+var (
+	Path string
+)
+
+func Init(path string) {
+	Path = path
+}
+
 func T(language interface{}, word string) string {
 	if language == nil {
 		language = "en"
@@ -20,8 +28,14 @@ func T(language interface{}, word string) string {
 		ctx  = context.TODO()
 		i18n = g.I18n()
 	)
-	if err := i18n.SetPath(fmt.Sprint("/resource/i18n")); err != nil {
-		panic(err)
+	if Path != "" {
+		if err := i18n.SetPath(Path); err != nil {
+			panic(err)
+		}
+	} else {
+		if err := i18n.SetPath(fmt.Sprint("/resource/i18n")); err != nil {
+			panic(err)
+		}
 	}
 	i18n.SetLanguage(fmt.Sprint(language))
 	return i18n.Translate(ctx, word)

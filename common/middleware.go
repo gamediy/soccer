@@ -7,7 +7,6 @@ import (
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
-	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/yudeguang/ratelimit"
 	"net/http"
 	"star_net/utility/utils/xlimit"
@@ -57,14 +56,9 @@ func MiddlewareHandlerResponse(r *ghttp.Request) {
 	}
 	lang := r.GetHeader("lang")
 	if lang == "" {
-		lang = "zh"
+		lang = "en"
 	}
-	m := xtrans.T(lang, fmt.Sprint("t", code.Code()))
-
-	if gstr.HasPrefix(m, "tx") {
-	} else if gstr.HasPrefix(m, "t") {
-		m = msg
-	}
+	m := xtrans.T(lang, fmt.Sprint(code.Code()))
 	r.Response.WriteJson(g.Map{
 		"code": code.Code(),
 		"msg":  m,

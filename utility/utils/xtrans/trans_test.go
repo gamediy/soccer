@@ -6,5 +6,6 @@ import (
 )
 
 func TestT(t *testing.T) {
-	g.Dump(T("en", "code-desc"))
+	Init("../../../app/api-user/resource/i18n")
+	g.Dump(T("en", "-200"))
 }

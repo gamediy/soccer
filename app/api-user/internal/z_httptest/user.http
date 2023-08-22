@@ -4,9 +4,10 @@ GET {{url}}/api/user/getCaptcha?captchaId=1
 ### register
 POST {{url}}/api/user/register
 Content-Type: application/json
+Lang: en
 
 {
-  "account": "tom2",
+  "account": "to",
   "password": "a123456",
   "country": "tw",
   "city": "gaoxiong",

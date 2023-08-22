@@ -8,10 +8,9 @@ import (
 	"github.com/gogf/gf/v2/os/gcmd"
 	"star_net/app/api-user/internal/controller/user"
 	"star_net/app/api-user/internal/service/usersvc"
+	"star_net/common"
 	"star_net/core/auth"
 	"star_net/utility/utils/xpusher"
-
-	"star_net/common"
 )
 
 var (
@@ -30,6 +29,7 @@ var (
 			// init router
 			initRouter(s)
 			xpusher.InitFromCfg(ctx)
+			//xtrans.Init("../../")
 
 			// 启动gtoken
 			if err := auth.GFToken.Start(); err != nil {
