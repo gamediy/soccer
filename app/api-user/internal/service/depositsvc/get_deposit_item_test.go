@@ -3,6 +3,7 @@ package depositsvc
 import (
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
+	"star_net/model"
 	"testing"
 )
 
@@ -16,7 +17,13 @@ func Test_getDepositItem_Exec(t *testing.T) {
 		want    *GetDepositItemOutput
 		wantErr bool
 	}{
-		{},
+		{
+			args: args{
+				ctx: context.WithValue(context.Background(), "userInfo", model.UserInfo{
+					UidInt64: 121,
+				}),
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
