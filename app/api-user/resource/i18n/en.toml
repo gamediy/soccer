@@ -1,2 +1,5 @@
--200 = "The account starts with a letter and can only contain letters, numbers and underscores, and the length is between 6 and 18"
-"-201" = "Any visible character, the length is between 6 and 18"
+"账户必填" = "account is required"
+"密码必填" = "password required"
+"账户格式不正确" = "The account starts with a letter and can only contain letters, numbers and underscores, and the length is between 6 and 18"
+"密码格式不正确" = "Any visible character, the length is between 6 and 18"
+"用户名不存在" = "username does not exist"

@@ -2,29 +2,38 @@ package usersvc
 
 import (
 	"github.com/goflyfox/gtoken/gtoken"
+	"github.com/gogf/gf/v2/encoding/gjson"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"star_net/model"
 	"star_net/utility/utils/xtrans"
 )
 
-func Login(r *ghttp.Request) (string, interface{}) {
+func UserLogin(r *ghttp.Request) (string, interface{}) {
 	var (
-		//ctx = r.Context()
+		ctx = r.Context()
 		req struct {
-			Uname string `json:"uname" v:"required"`
-			Pass  string `json:"pass" v:"required"`
+			Account  string `json:"account" v:"required#账户必填"`
+			Password string `json:"password" v:"required#密码必填"`
 		}
+		lang = r.GetHeader("lang")
 	)
-	if err := r.Parse(&req); err != nil {
-		r.ExitAll()
+	if lang == "" {
+		lang = "en"
 	}
-	//
-	//if uname == "" || pass == "" {
-	//	r.Response.WriteJson(gtoken.Fail("ACCOUNT OR PASSWORD CANNOT BE EMPTY."))
-	//	r.ExitAll()
-	//}
-
-	return "", nil
+	if err := r.Parse(&req); err != nil {
+		r.Response.WriteJsonExit(gtoken.Fail(xtrans.T(lang, err.Error())))
+	}
+	login := Login{
+		Ctx:      ctx,
+		Account:  req.Account,
+		Password: req.Password,
+		Ip:       r.GetClientIp(),
+	}
+	userInfo, err := login.Exec()
+	if err != nil {
+		r.Response.WriteJsonExit(gtoken.Fail(xtrans.T(lang, err.Error())))
+	}
+	return userInfo.Account, userInfo
 }
 func AuthAfterFunc(r *ghttp.Request, respData gtoken.Resp) {
 	if respData.Code != 0 {
@@ -34,21 +43,12 @@ func AuthAfterFunc(r *ghttp.Request, respData gtoken.Resp) {
 		}
 		return
 	}
-	var (
-		s2       = respData.Data.(map[string]interface{})
-		userInfo = s2["data"].(map[string]interface{})
-		u        = model.UserInfo{
-			Uid:      userInfo["uid"].(float64),
-			Account:  userInfo["account"].(string),
-			Lang:     r.Request.Header.Get("lang"),
-			ClientIP: r.GetClientIp(),
-		}
-	)
-
-	u.I18n = xtrans.New(u.Lang)
-	r.SetCtxVar("userName", s2["userKey"])
-	r.SetCtxVar("roleName", userInfo["ruleName"])
-	r.SetCtxVar("uid", userInfo["uid"])
-	r.SetCtxVar("account", userInfo["account"])
+	var u model.UserInfo
+	if err := gjson.New(respData.Data).Get("data").Struct(&u); err != nil {
+		r.Response.WriteJsonExit(err)
+	}
+	r.SetCtxVar("account", u.Account)
+	r.SetCtxVar("uid", u.UidInt64)
 	r.SetCtxVar("userInfo", u)
+	r.Middleware.Next()
 }
