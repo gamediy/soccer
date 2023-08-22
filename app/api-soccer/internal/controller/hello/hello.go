@@ -2,8 +2,8 @@ package hello
 
 import (
 	"context"
+	"fmt"
 	v1 "star_net/app/api-soccer/api/hello/v1"
-	"star_net/app/api-user/consts"
 )
 
 var (
@@ -15,5 +15,5 @@ type cHello struct {
 
 func (cHello) Hello(ctx context.Context, req *v1.Req) (res *v1.Res, err error) {
 
-	return nil, consts.ErrUnameExist
+	return nil, fmt.Errorf("用户名已存在")
 }
