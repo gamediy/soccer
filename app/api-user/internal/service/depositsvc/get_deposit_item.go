@@ -3,7 +3,7 @@ package depositsvc
 import (
 	"context"
 	"fmt"
-	"github.com/gogf/gf/v2/frame/g"
+	"star_net/app/api-user/internal/model"
 	"star_net/app/api-user/internal/service"
 	"star_net/consts"
 	"star_net/db/dao"
@@ -19,7 +19,7 @@ type getDepositItem struct {
 }
 type GetDepositItemOutput struct {
 	Tips string
-	Item []g.Map
+	Item []model.AmountItem
 }
 
 func (s *getDepositItem) Exec(ctx context.Context) (*GetDepositItemOutput, error) {
@@ -43,14 +43,14 @@ func (s *getDepositItem) Exec(ctx context.Context) (*GetDepositItemOutput, error
 			}
 			item.Address = account.Address
 		}
-		res.Item = append(res.Item, g.Map{
-			"payId":    item.Id,
-			"title":    item.Title,
-			"protocol": item.Protocol,
-			"logo":     consts.ImgPrefix + item.Logo,
-			"currency": item.Currency,
-			"address":  item.Address,
-			"detail":   fmt.Sprintf("%s %d-%d", item.Detail, item.Min, item.Max),
+		res.Item = append(res.Item, model.AmountItem{
+			PayId:    item.Id,
+			Title:    item.Title,
+			Protocol: item.Protocol,
+			Logo:     consts.ImgPrefix + item.Logo,
+			Currency: item.Currency,
+			Address:  item.Address,
+			Detail:   fmt.Sprintf("%s %d-%d", item.Detail, item.Min, item.Max),
 		})
 	}
 	return &res, nil

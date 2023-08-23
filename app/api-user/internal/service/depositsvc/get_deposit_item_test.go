@@ -3,6 +3,7 @@ package depositsvc
 import (
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
+	"star_net/consts"
 	"star_net/model"
 	"testing"
 )

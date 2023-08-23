@@ -10,3 +10,20 @@ Authorization: {{token}}
 GET {{url}}/api/wallet/balanceCodes
 Authorization: {{token}}
 lang: en
+
+### get platform deposit
+GET {{url}}/api/wallet/deposit/platform
+Authorization: {{token}}
+
+### create deposit
+POST {{url}}/api/wallet/deposit/create
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "payId": 85,
+  "amount": 100,
+  "transferOrderNo": "dfasfewfawf",
+  "transerImg": "adfafae"
+}
+

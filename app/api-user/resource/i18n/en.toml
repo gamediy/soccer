@@ -12,6 +12,8 @@
 "交易密码已被设置" = "Transaction password has been set"
 "k不能为空" = "Key can't be empty"
 "数据不存在" = "Data not found"
+
+# 账变类型
 "账变类型-充值" = "RECHARGE"
 "账变类型-提现" = "WITHDRAW"
 "账变类型-赠送" = "PRESENTATION"
@@ -23,3 +25,6 @@
 "账变类型-冻结" = "FREEZE"
 "账变类型-提现失败" = "WITHDRAWAL FAILED"
 "账变类型-利润" = "PROFIT"
+
+# 钱包
+"处理中" = "PROCESSING"
