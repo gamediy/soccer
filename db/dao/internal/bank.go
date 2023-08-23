@@ -21,13 +21,13 @@ type BankDao struct {
 // BankColumns defines and stores column names for table b_bank.
 type BankColumns struct {
 	Id       string //
-	Icon     string //
+	Icon     string // 图标
 	Currency string //
-	Net      string //
-	Protocol string //
+	Net      string // 类型
+	Protocol string // 名称
 	Summary  string // 简介
 	Url      string // 官网
-	Status   string //
+	Status   string // 状态 1开启 2关闭
 	Class    string //
 }
 

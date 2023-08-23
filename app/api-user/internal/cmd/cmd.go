@@ -6,7 +6,10 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
+	"star_net/app/api-user/internal/controller/sys"
 	"star_net/app/api-user/internal/controller/user"
+	"star_net/app/api-user/internal/controller/wallet"
+	"star_net/app/api-user/internal/service/syssvc"
 	"star_net/app/api-user/internal/service/usersvc"
 	"star_net/common"
 	"star_net/core/auth"
@@ -24,6 +27,8 @@ var (
 		Brief: "start http server",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			s := g.Server(serverName)
+			init := syssvc.InitD{}
+			init.Exec(ctx)
 			// init auth role
 			initAuthRule(ctx)
 			// init router
@@ -49,7 +54,7 @@ func initAuthRule(ctx context.Context) {
 		"/api/user/register",
 		"/api/user/login",
 		"/api.json",
-		"/api/dict/**",
+		"/api/sys/dict/*",
 	}
 	gfToken.LoginBeforeFunc = usersvc.UserLogin
 	gfToken.AuthAfterFunc = usersvc.AuthAfterFunc
@@ -62,8 +67,14 @@ func initAuthRule(ctx context.Context) {
 func initRouter(s *ghttp.Server) {
 	s.BindMiddlewareDefault(common.MiddlewareDefaultCORS, common.MiddlewareRequestLimit, common.MiddlewareHandlerResponse)
 	s.Group("/api", func(group *ghttp.RouterGroup) {
+		group.Group("/sys", func(group *ghttp.RouterGroup) {
+			group.Bind(sys.Sys)
+		})
 		group.Group("/user", func(group *ghttp.RouterGroup) {
 			group.Bind(user.User)
+		})
+		group.Group("/wallet", func(group *ghttp.RouterGroup) {
+			group.Bind(wallet.Wallet)
 		})
 	})
 

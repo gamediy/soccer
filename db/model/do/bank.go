@@ -12,12 +12,12 @@ import (
 type Bank struct {
 	g.Meta   `orm:"table:b_bank, do:true"`
 	Id       interface{} //
-	Icon     interface{} //
+	Icon     interface{} // 图标
 	Currency interface{} //
-	Net      interface{} //
-	Protocol interface{} //
+	Net      interface{} // 类型
+	Protocol interface{} // 名称
 	Summary  interface{} // 简介
 	Url      interface{} // 官网
-	Status   interface{} //
+	Status   interface{} // 状态 1开启 2关闭
 	Class    interface{} //
 }

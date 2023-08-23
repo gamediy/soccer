@@ -1,11 +1,9 @@
 package main
 
 import (
-	_ "temple_of_red_earth_golang/app/job-soccer/internal/packed"
-
 	"github.com/gogf/gf/v2/os/gctx"
-
-	"temple_of_red_earth_golang/app/job-template/internal/cmd"
+	"star_net/app/job-soccer/internal/cmd"
+	_ "star_net/app/job-soccer/internal/packed"
 )
 
 func main() {

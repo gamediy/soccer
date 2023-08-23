@@ -1,0 +1,3 @@
+### banks
+GET {{url}}/api/wallet/banks
+Authorization: {{token}}

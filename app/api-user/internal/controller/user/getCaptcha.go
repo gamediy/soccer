@@ -1,7 +1,7 @@
 package user
 
 //func (c *cUser) GetCaptcha(ctx context.Context, req *user.CaptchaReq) (res *user.CaptchaRes, err error) {
-//	img, _, err := xcaptcha.Get(ctx, req.CaptchaId)
+//	img, _, err := xcaptcha.GetBanks(ctx, req.CaptchaId)
 //	if err != nil {
 //		return nil, err
 //	}

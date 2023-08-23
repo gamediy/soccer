@@ -57,7 +57,7 @@ func TestRegister_Exec(t *testing.T) {
 			}
 			got, err := s.Exec()
 			if (err != nil) != tt.wantErr {
-				t.Errorf("Exec() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("GetString() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			g.Dump(got)

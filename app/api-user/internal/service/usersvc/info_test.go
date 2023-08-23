@@ -31,7 +31,7 @@ func TestGetInfo_Exec(t *testing.T) {
 			}
 			got, got1, err := m.Exec()
 			if (err != nil) != tt.wantErr {
-				t.Errorf("Exec() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("GetString() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			g.Dump(got, got1)

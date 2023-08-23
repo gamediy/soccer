@@ -8,12 +8,6 @@ import (
 	"star_net/model"
 )
 
-var (
-	User = cUser{}
-)
-
-type cUser struct{}
-
 func (c *cUser) Register(ctx context.Context, req *vpassport.RegisterReq) (res *model.CommonRes, err error) {
 	r := ghttp.RequestFromCtx(ctx)
 	x := usersvc.Register{

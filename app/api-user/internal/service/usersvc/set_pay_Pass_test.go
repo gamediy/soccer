@@ -31,7 +31,7 @@ func TestSetPayPass_Exec(t *testing.T) {
 				Uid:  tt.fields.Uid,
 			}
 			if err := s.Exec(tt.args.ctx); (err != nil) != tt.wantErr {
-				t.Errorf("Exec() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("GetString() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
 	}
