@@ -6,6 +6,7 @@ import (
 	"star_net/app/admin/api/wallet"
 	adminModel "star_net/app/admin/internal/model"
 	"star_net/app/admin/internal/service/walletsvc"
+	"star_net/consts"
 	"star_net/model"
 	"star_net/utility/utils/xcrud"
 	"star_net/utility/utils/xstr"
@@ -76,6 +77,11 @@ func (c cDeposit) ReadList(ctx context.Context, req *wallet.ReadListDepositReq) 
 	}}
 	if err := x.Exec(&d, &total); err != nil {
 		return nil, err
+	}
+	for _, i := range d {
+		if i.TransferImg != "" {
+			i.TransferImg = consts.ImgPrefix + i.TransferImg
+		}
 	}
 	return &wallet.ReadListDepositRes{List: d, Total: total}, nil
 }

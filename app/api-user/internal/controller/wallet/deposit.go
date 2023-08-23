@@ -7,7 +7,16 @@ import (
 	"star_net/model"
 )
 
-func (c cWallet) CreateDeposit(ctx context.Context, req *wallet.CreateDepositReq) (_ model.CommonRes, _ error) {
+func (c cWallet) CreateDeposit(ctx context.Context, req *wallet.CreateDepositReq) (_ *model.CommonRes, _ error) {
+	x := depositsvc.Submit{
+		PayId:           req.PayId,
+		Amount:          req.Amount,
+		TranserImg:      req.TranserImg,
+		TransferOrderNo: req.TransferOrderNo,
+	}
+	if err := x.Exec(ctx); err != nil {
+		return nil, err
+	}
 	return
 }
 func (c cWallet) ListPlatformDeposit(ctx context.Context, _ *wallet.ListPlatformDepositReq) (_ wallet.ListPlatformDepositRes, err error) {

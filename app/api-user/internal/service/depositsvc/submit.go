@@ -11,29 +11,22 @@ import (
 	"star_net/db/dao"
 	"star_net/db/model/entity"
 	"star_net/utility/utils/xtime"
+	"star_net/utility/utils/xtrans"
 	"star_net/utility/utils/xuuid"
 )
 
-var (
-	Submit = &submit{}
-)
-
-type DepositSubmitInput struct {
+type Submit struct {
 	PayId           int     `json:"payId"`           //充值Id
 	Amount          float64 `json:"amount"`          //充值金额
 	TransferOrderNo string  `json:"transferOrderNo"` //成功订单号
 	TranserImg      string  `json:"transerImg"`      //成功图片
-
-}
-type submit struct {
-	DepositSubmitInput
+	Lang            string
 }
 
-func (input *submit) Exec(ctx context.Context) error {
-
+func (input *Submit) Exec(ctx context.Context) error {
 	userInfo := service.GetUserInfo(ctx)
 	payInfo := entity.AmountItem{}
-	dao.AmountItem.Ctx(ctx).Scan(&payInfo, input.PayId)
+	dao.AmountItem.Ctx(ctx).Scan(&payInfo, "id", input.PayId)
 	if payInfo.Id == 0 || payInfo.Status == 0 {
 		return consts2.ErrDepositClosed
 	}
@@ -44,14 +37,14 @@ func (input *submit) Exec(ctx context.Context) error {
 
 	order := entity.Deposit{}
 	order.OrderNo = xuuid.GetsnowflakeUUID().Int64()
-	order.Uid = int64(userInfo.Uid)
+	order.Uid = userInfo.UidInt64
 	order.Account = userInfo.Account
 	order.Status = consts.DepositStatusPending
 	order.Net = payInfo.Net
 	order.Protocol = payInfo.Protocol
 	order.Currency = payInfo.Currency
 	order.Address = payInfo.Address
-	order.StatusRemark = userInfo.I18n.T(ctx, "处理中")
+	order.StatusRemark = xtrans.T(input.Lang, "处理中")
 	order.Amount = input.Amount
 	order.Pid = int64(userInfo.Pid)
 	order.ParentPath = userInfo.ParentPath
