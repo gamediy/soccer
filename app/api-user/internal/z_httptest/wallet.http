@@ -1,3 +1,12 @@
 ### banks
 GET {{url}}/api/wallet/banks
 Authorization: {{token}}
+
+### logs
+GET {{url}}/api/wallet/logs?page=1&size=10&balanceCode=400
+Authorization: {{token}}
+
+### balanceCodes
+GET {{url}}/api/wallet/balanceCodes
+Authorization: {{token}}
+lang: en

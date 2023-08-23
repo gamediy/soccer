@@ -4,6 +4,7 @@ import (
 	"context"
 	"star_net/app/admin/internal/logic/sysLogic"
 	"star_net/app/admin/internal/model"
+	"star_net/consts"
 	"star_net/db/dao"
 	"star_net/db/model/entity"
 	"star_net/utility/utils/xpwd"
@@ -21,7 +22,7 @@ func (sAdmin) ListAdmin(ctx context.Context, page, size int) (int, []*entity.Adm
 }
 
 func (sAdmin) UserInfo(ctx context.Context) (menu []*model.Menu, button []*model.Menu, userInfo model.UserInfo, err error) {
-	userInfo = ctx.Value("userInfo").(model.UserInfo)
+	userInfo = ctx.Value(consts.UserInfo).(model.UserInfo)
 	menu = []*model.Menu{}
 	button = []*model.Menu{}
 	if userInfo.RuleName != "admin" {

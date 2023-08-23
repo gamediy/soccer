@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/gogf/gf/v2/frame/g"
 	"star_net/app/api-user/internal/service"
+	"star_net/consts"
 	"star_net/db/dao"
 	"star_net/db/model/entity"
 	"star_net/utility/blockchain/tron/client"
@@ -46,7 +47,7 @@ func (s *getDepositItem) Exec(ctx context.Context) (*GetDepositItemOutput, error
 			"payId":    item.Id,
 			"title":    item.Title,
 			"protocol": item.Protocol,
-			"logo":     item.Logo,
+			"logo":     consts.ImgPrefix + item.Logo,
 			"currency": item.Currency,
 			"address":  item.Address,
 			"detail":   fmt.Sprintf("%s %d-%d", item.Detail, item.Min, item.Max),

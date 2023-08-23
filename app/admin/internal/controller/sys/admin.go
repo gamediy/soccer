@@ -8,6 +8,7 @@ import (
 	"star_net/app/admin/api/sys"
 	model2 "star_net/app/admin/internal/model"
 	"star_net/app/admin/internal/service/syssvc"
+	"star_net/consts"
 	"star_net/db/dao"
 	"star_net/db/model/entity"
 	"star_net/model"
@@ -71,7 +72,7 @@ func (c *cAdmin) UserInfo(ctx context.Context, req *sys.UserInfoReq) (res *sys.U
 }
 
 func (c *cAdmin) EditPwd(ctx context.Context, req *sys.EditPwdReq) (res *model.CommonRes, err error) {
-	info, ok := ctx.Value("userInfo").(model2.UserInfo)
+	info, ok := ctx.Value(consts.UserInfo).(model2.UserInfo)
 	if !ok {
 		return nil, fmt.Errorf("user info error")
 	}

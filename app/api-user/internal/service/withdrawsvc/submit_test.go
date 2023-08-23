@@ -16,7 +16,7 @@ func Test_withdraw_Submit(t *testing.T) {
 	info.Pid = 0
 	info.I18n = xtrans.New(xtrans.EN)
 	info.Account = "account"
-	value := context.WithValue(background, "userInfo", info)
+	value := context.WithValue(background, consts.UserInfo, info)
 	type args struct {
 		ctx   context.Context
 		input WithdrawSubmitInput

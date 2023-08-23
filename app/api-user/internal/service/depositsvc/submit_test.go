@@ -16,7 +16,7 @@ func Test_deposit_Submit(t *testing.T) {
 	info.Pid = 0
 	info.Account = "account"
 	info.I18n = xtrans.New(xtrans.EN)
-	value := context.WithValue(background, "userInfo", info)
+	value := context.WithValue(background, consts.UserInfo, info)
 	xpusher.InitFromCfg(value)
 	type args struct {
 		ctx   context.Context

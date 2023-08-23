@@ -3,6 +3,7 @@ package walletsvc
 import (
 	"context"
 	"star_net/app/admin/internal/model"
+	"star_net/consts"
 	"testing"
 )
 
@@ -12,7 +13,7 @@ func Test_sDeposit_Update(t *testing.T) {
 	info.Uid = 1
 	info.Account = "account"
 	info.ClientIp = "127.0.0.1"
-	value := context.WithValue(background, "userInfo", info)
+	value := context.WithValue(background, consts.UserInfo, info)
 	type args struct {
 		ctx          context.Context
 		orderNo      int64

@@ -74,7 +74,7 @@ func initRouter(s *ghttp.Server) {
 				i18n := gi18n.New()
 				i18n.SetLanguage(u.Lang)
 				u.I18n = i18n
-				r.SetCtxVar("userInfo", u)
+				r.SetCtxVar(consts.UserInfo, u)
 			}
 		},
 		MultiLogin: true,

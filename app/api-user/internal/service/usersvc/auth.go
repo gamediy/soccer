@@ -4,6 +4,7 @@ import (
 	"github.com/goflyfox/gtoken/gtoken"
 	"github.com/gogf/gf/v2/encoding/gjson"
 	"github.com/gogf/gf/v2/net/ghttp"
+	"star_net/consts"
 	"star_net/model"
 	"star_net/utility/utils/xtrans"
 )
@@ -49,6 +50,6 @@ func AuthAfterFunc(r *ghttp.Request, respData gtoken.Resp) {
 	}
 	r.SetCtxVar("account", u.Account)
 	r.SetCtxVar("uid", u.UidInt64)
-	r.SetCtxVar("userInfo", u)
+	r.SetCtxVar(consts.UserInfo, u)
 	r.Middleware.Next()
 }

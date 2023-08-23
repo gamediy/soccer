@@ -22,7 +22,7 @@ type Deposit struct {
 }
 
 func (s *Deposit) Update(ctx context.Context) error {
-	userInfo := ctx.Value("userInfo").(model.UserInfo)
+	userInfo := ctx.Value(consts.UserInfo).(model.UserInfo)
 	order := entity.Deposit{}
 	dao.Deposit.Ctx(ctx).Scan(&order, dao.Deposit.Columns().OrderNo, s.OrderNo)
 	if order.OrderNo == 0 {

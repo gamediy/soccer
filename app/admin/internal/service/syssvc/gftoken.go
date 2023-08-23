@@ -8,6 +8,7 @@ import (
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/util/gconv"
 	"star_net/app/admin/internal/model"
+	"star_net/consts"
 	"star_net/db/model/entity"
 	"star_net/utility/utils/xcasbin"
 	"star_net/utility/utils/xcrud"
@@ -122,7 +123,7 @@ func (s *GFToken) AuthAfterFunc(r *ghttp.Request, respData gtoken.Resp) {
 	r.SetCtxVar("uid", userInfo["uid"])
 	r.SetCtxVar("account", userInfo["account"])
 	u.AdminId = int64(u.Uid)
-	r.SetCtxVar("userInfo", u)
+	r.SetCtxVar(consts.UserInfo, u)
 
 	if !strings.Contains(r.URL.Path, "/api/sys/admin/user_info") && !strings.Contains(r.URL.Path, "/api/sys/menu/getMenuByPath") {
 		enforce, _ := xcasbin.Cb.Enforce(u.Account, r.URL.Path, r.Method)

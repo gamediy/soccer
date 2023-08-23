@@ -21,7 +21,7 @@ type Withdraw struct {
 }
 
 func (w *Withdraw) Update(ctx context.Context) error {
-	userInfo := ctx.Value("userInfo").(model.UserInfo)
+	userInfo := ctx.Value(consts.UserInfo).(model.UserInfo)
 	order := entity.Withdraw{}
 	dao.Withdraw.Ctx(ctx).Scan(&order, dao.Withdraw.Columns().OrderNo, w.OrderNo)
 	if order.OrderNo == 0 {
@@ -45,7 +45,7 @@ func (w *Withdraw) Update(ctx context.Context) error {
 	if w.Status == consts.WithdrawStatusSuccess {
 		user := entity.User{}
 		dao.User.Ctx(ctx).Scan(&user, order.Uid)
-		order .Status = consts.WithdrawStatusSuccess
+		order.Status = consts.WithdrawStatusSuccess
 		order.StatusRemark = xtrans.New(user.Lang).T(ctx, "提现成功")
 		_, err := dao.Withdraw.Ctx(ctx).Update(&order, dao.Withdraw.Columns().OrderNo, w.OrderNo)
 		return err

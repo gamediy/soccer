@@ -13,7 +13,7 @@ func Test_sWithdraw_Update(t *testing.T) {
 	info.Uid = 1
 	info.Account = "account"
 	info.ClientIp = "127.0.0.1"
-	value := context.WithValue(background, "userInfo", info)
+	value := context.WithValue(background, consts.UserInfo, info)
 	type args struct {
 		ctx          context.Context
 		orderNo      int64
