@@ -41,3 +41,8 @@ Content-Type: application/json
 ### list withdraw account item
 GET {{url}}/api/wallet/withdraw/account/list?page=1&size=10
 Authorization: {{token}}
+
+
+### set default withdraw account
+PUT {{url}}/api/wallet/withdraw/account/setDefault?id=1694635985192620032
+Authorization: {{token}}

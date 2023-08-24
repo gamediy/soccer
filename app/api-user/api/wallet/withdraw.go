@@ -26,3 +26,8 @@ type WithdrawAccountListRes struct {
 	Total int                       `json:"total"`
 	List  []*entity.WithdrawAccount `json:"list"`
 }
+
+type SetDefaultWithdrawAccountReq struct {
+	g.Meta `tags:"钱包"  sm:"设置默认提款银行卡" method:"put" path:"/withdraw/account/setDefault"`
+	Id     int64 `json:"id" v:"required"`
+}

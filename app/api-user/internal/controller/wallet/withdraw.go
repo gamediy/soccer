@@ -30,3 +30,8 @@ func (c cWallet) ListWithdrawAccount(ctx context.Context, req *wallet.WithdrawAc
 		List:  accounts,
 	}, nil
 }
+func (c cWallet) SetDefaultWithdrawAccount(ctx context.Context, req *wallet.SetDefaultWithdrawAccountReq) (res *model.CommonRes, err error) {
+	x := withdrawsvc.SetDefaultWithdrawAccount{Id: req.Id}
+	err = x.Exec(ctx)
+	return
+}

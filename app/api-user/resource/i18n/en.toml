@@ -16,6 +16,7 @@
 "文件大小超过限制" = "File size exceeds limit"
 "银行不存在" = "Bank not found"
 "持卡人不能为空" = "Cardholder cannot be empty"
+"银行卡不存在" = "Bank card not found"
 
 # 账变类型
 "账变类型-充值" = "RECHARGE"
