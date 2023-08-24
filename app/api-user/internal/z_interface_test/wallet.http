@@ -46,3 +46,13 @@ Authorization: {{token}}
 ### set default withdraw account
 PUT {{url}}/api/wallet/withdraw/account/setDefault?id=1694635985192620032
 Authorization: {{token}}
+
+### del withdraw account
+DELETE {{url}}/api/wallet/withdraw/account/del
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "payPass": "123456",
+  "id": 1694644781126258688
+}

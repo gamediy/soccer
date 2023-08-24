@@ -35,3 +35,10 @@ func (c cWallet) SetDefaultWithdrawAccount(ctx context.Context, req *wallet.SetD
 	err = x.Exec(ctx)
 	return
 }
+func (c cWallet) DelWithdrawAccount(ctx context.Context, req *wallet.DelWithdrawAccountReq) (res *model.CommonRes, err error) {
+	x := withdrawsvc.DelWithdrawAccount{Id: req.Id, PayPass: req.PayPass}
+	if err = x.Exec(ctx); err != nil {
+		return nil, err
+	}
+	return
+}

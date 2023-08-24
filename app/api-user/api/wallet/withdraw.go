@@ -31,3 +31,8 @@ type SetDefaultWithdrawAccountReq struct {
 	g.Meta `tags:"钱包"  sm:"设置默认提款银行卡" method:"put" path:"/withdraw/account/setDefault"`
 	Id     int64 `json:"id" v:"required"`
 }
+type DelWithdrawAccountReq struct {
+	g.Meta  `tags:"钱包" sm:"删除提现银行" method:"delete" path:"/withdraw/account/del"`
+	Id      int64  `json:"id" v:"required"`
+	PayPass string `json:"payPass" dc:"交易密码" v:"required"`
+}
