@@ -12,6 +12,8 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 	"github.com/gogf/gf/v2/util/grand"
 	"path/filepath"
+	"star_net/db/dao"
+	"star_net/db/model/entity"
 )
 
 type CloudFlare struct {
@@ -34,7 +36,7 @@ func NewCloudFlareFromCtx(ctx context.Context) CloudFlare {
 }
 
 // Upload group 1 系统 2 文件 3 凭证
-func (in CloudFlare) Upload(ctx context.Context, group int) (string, error) {
+func (x CloudFlare) Upload(ctx context.Context, group int) (string, error) {
 	if group == 0 {
 		return "", fmt.Errorf("请输入分组")
 	}
@@ -44,7 +46,7 @@ func (in CloudFlare) Upload(ctx context.Context, group int) (string, error) {
 	file := r.GetUploadFile("file")
 
 	fileSize := float64(file.Size)
-	maxFileSize := in.MaxSize * 1024 * 1024 // 0.5MB in bytes
+	maxFileSize := x.MaxSize * 1024 * 1024 // 0.5MB x bytes
 	// Check the file size
 	if fileSize > maxFileSize {
 		return "", fmt.Errorf("文件大小超过限制")
@@ -59,14 +61,14 @@ func (in CloudFlare) Upload(ctx context.Context, group int) (string, error) {
 
 	r2Resolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...interface{}) (aws.Endpoint, error) {
 		return aws.Endpoint{
-			//URL: fmt.Sprintf("https://%s.r2.cloudflarestorage.com", in.AccountId),
-			URL: fmt.Sprintf("https://r2.cloudflarestorage.com/%s", in.AccountId), // 从前端代码获取
+			//URL: fmt.Sprintf("https://%s.r2.cloudflarestorage.com", x.AccountId),
+			URL: fmt.Sprintf("https://r2.cloudflarestorage.com/%s", x.AccountId), // 从前端代码获取
 		}, nil
 	})
 
 	cfg, err := config.LoadDefaultConfig(ctx,
 		config.WithEndpointResolverWithOptions(r2Resolver),
-		config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(in.AccessKeyId, in.AccessKeySecret, "")),
+		config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(x.AccessKeyId, x.AccessKeySecret, "")),
 	)
 	if err != nil {
 		return "", err
@@ -98,7 +100,7 @@ func (in CloudFlare) Upload(ctx context.Context, group int) (string, error) {
 	// Build the object key with year and month
 	fileName := fmt.Sprintf("%d/%d/%d/%s%s", group, currentYear, currentMonth, grand.S(6), filepath.Ext(file.Filename))
 	_, err = client.PutObject(ctx, &s3.PutObjectInput{
-		Bucket:      &in.BucketName,
+		Bucket:      &x.BucketName,
 		Key:         &fileName,
 		Body:        f,
 		ContentType: &contentType,
@@ -107,6 +109,49 @@ func (in CloudFlare) Upload(ctx context.Context, group int) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	if err = x.SaveToDB(ctx, group, fileName); err != nil {
+		return "", err
+	}
 
 	return fileName, nil
+}
+
+func (x CloudFlare) SaveToDB(ctx context.Context, group int, name string) error {
+	d := entity.File{
+		Group:  group,
+		Url:    name,
+		Status: 1,
+	}
+	if _, err := dao.File.Ctx(ctx).Insert(&d); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (x CloudFlare) Del(ctx context.Context, file string) error {
+	r2Resolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...interface{}) (aws.Endpoint, error) {
+		return aws.Endpoint{
+			//URL: fmt.Sprintf("https://%s.r2.cloudflarestorage.com", x.AccountId),
+			URL: fmt.Sprintf("https://r2.cloudflarestorage.com/%s", x.AccountId), // 从前端代码获取
+		}, nil
+	})
+
+	cfg, err := config.LoadDefaultConfig(ctx,
+		config.WithEndpointResolverWithOptions(r2Resolver),
+		config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(x.AccessKeyId, x.AccessKeySecret, "")),
+	)
+	if err != nil {
+		return err
+	}
+
+	client := s3.NewFromConfig(cfg)
+	res, err := client.DeleteObject(ctx, &s3.DeleteObjectInput{
+		Bucket: &x.BucketName,
+		Key:    &file,
+	})
+	if err != nil {
+		return err
+	}
+	g.Log().Info(ctx, res)
+	return nil
 }

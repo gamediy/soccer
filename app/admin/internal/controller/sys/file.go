@@ -5,9 +5,9 @@ import (
 	"star_net/app/admin/api/sys"
 	"star_net/app/admin/internal/service/syssvc"
 	"star_net/db/model/entity"
+	"star_net/utility/utils/xfile"
 
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/net/ghttp"
 )
 
 type cFile struct {
@@ -19,20 +19,13 @@ var (
 
 // UploadFile 上传文件
 func (c *cFile) UploadFile(ctx context.Context, req *sys.UploadFileReq) (res *sys.UploadFilesRes, err error) {
-	storerType := "cloud" // 或者 "cloud"
-	rootFilePath, err := g.Cfg().Get(ctx, "server.rootFilePath")
-	if err != nil {
-		return nil, err
-	}
-	file := ghttp.RequestFromCtx(ctx).GetUploadFile("file")
-	storer := syssvc.NewFileStorer(storerType, rootFilePath.String())
-	var fileName string
-	fileName, err = storer.Upload(ctx, req.Group, file)
+	x := xfile.NewCloudFlareFromCtx(ctx)
+	file, err := x.Upload(ctx, req.Group)
 	if err != nil {
 		return nil, err
 	}
 	return &sys.UploadFilesRes{
-		NewFileName: fileName,
+		NewFileName: file,
 	}, nil
 }
 
@@ -58,14 +51,10 @@ func (c *cFile) ListFile(ctx context.Context, req *sys.ListFileReq) (res *sys.Li
 
 // DeleteFile 删除文件
 func (c *cFile) DeleteFile(ctx context.Context, req *sys.DelFileReq) (res *sys.DelFileRes, err error) {
-	storerType := "cloud" // 或者 "cloud"
-	rootFilePath, err := g.Cfg().Get(ctx, "server.rootFilePath")
-	if err != nil {
-		return nil, err
+	x := syssvc.DelFile{
+		Id: uint64(req.Id),
 	}
-	storer := syssvc.NewFileStorer(storerType, rootFilePath.String())
-	err = storer.Delete(ctx, req.Id)
-	if err != nil {
+	if err = x.Exec(ctx); err != nil {
 		return nil, err
 	}
 	return &sys.DelFileRes{}, nil

@@ -8,7 +8,7 @@ import (
 
 func (c sSys) UploadFile(ctx context.Context, req *sys.UploadFileReq) (res *sys.UploadFileRes, err error) {
 	handler := xfile.NewCloudFlareFromCtx(ctx)
-	name, err := handler.Upload(ctx, 3)
+	name, err := handler.Upload(ctx, req.Group)
 	if err != nil {
 		return nil, err
 	}

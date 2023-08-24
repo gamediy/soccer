@@ -40,3 +40,11 @@ gfToken:
   authFailMsg: "Login timed out, please log in again"
   multiLogin: true
   globalMiddleware: true
+
+cloudflare:
+  upload:
+    BucketName: "8429dbc0235a26dda82c90041aa831dd"
+    AccountId: "fire"
+    AccessKeySecret: "d0de875d34365f6c1dc86ab44abb3b9a00131096fe0502a75e61fadc86d5c7e5"
+    AccessKeyId: "093843554af5bbea77f54ed3ad157599"
+    MaxSize: 0.5 # unit M
