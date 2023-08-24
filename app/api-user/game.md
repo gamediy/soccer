@@ -46,7 +46,7 @@
 
 - 技术：游戏大厅的前端可以使用 Cocos Creator 进行设计和开发，后端可以使用 Golang 和 Kratos 进行游戏大厅的管理和逻辑处理。
 - 周期：游戏大厅的开发周期取决于其复杂度和功能要求。预计开发周期可能在2周到3周之间。
-- 技术人员: abri,apple,joker,jerry,martin
+- 技术人员: abri,apple,joker,jerry,ale,martin
 
 **模块**
 
