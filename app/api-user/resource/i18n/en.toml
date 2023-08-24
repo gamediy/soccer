@@ -12,6 +12,8 @@
 "交易密码已被设置" = "Transaction password has been set"
 "k不能为空" = "Key can't be empty"
 "数据不存在" = "Data not found"
+"文件分组不能为空" = "File group can't be empty"
+"文件大小超过限制" = "File size exceeds limit"
 
 # 账变类型
 "账变类型-充值" = "RECHARGE"

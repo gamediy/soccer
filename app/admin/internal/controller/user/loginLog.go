@@ -28,10 +28,8 @@ func (c cUserLoginLog) ReadList(ctx context.Context, req *user.ReadListUserLogin
 		total int
 	)
 	x := xcrud.ReadList{Ctx: ctx,
-		Table:  "u_user_login_log t1 left join u_user t2 on t1.uid = t2.id",
-		Fields: "t1.*,t2.uname",
-		Order:  "t1.id desc",
-		Page:   req.Page, Size: req.Size}
+		Table: "u_user_login_log ",
+		Page:  req.Page, Size: req.Size}
 	if err := x.Exec(&d, &total); err != nil {
 		return nil, err
 	}

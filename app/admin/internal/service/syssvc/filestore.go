@@ -55,7 +55,6 @@ type S3FileStorer struct {
 }
 
 // 创建新的S3FileStorer
-// 创建新的S3FileStorer
 func NewS3FileStorer(bucketName, accountId, accessKeyId, accessKeySecret string) *S3FileStorer {
 	r2Resolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...interface{}) (aws.Endpoint, error) {
 		return aws.Endpoint{

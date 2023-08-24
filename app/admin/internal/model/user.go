@@ -21,7 +21,7 @@ type UserInfo struct {
 type UserLoginLog struct {
 	Id        uint64      `json:"id"        description:""`
 	Uid       uint64      `json:"uid"       description:""`
-	Uname     string      `json:"uname"`
+	Account   string      `json:"account"`
 	Ip        string      `json:"ip"        description:""`
 	CreatedAt *gtime.Time `json:"createdAt" description:""`
 }

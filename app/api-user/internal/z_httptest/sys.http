@@ -1,5 +1,0 @@
-### get dict
-GET {{url}}/api/sys/dict?k=great
-
-### get all
-GET {{url}}/api/sys/dict/all
