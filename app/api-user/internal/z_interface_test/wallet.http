@@ -56,3 +56,14 @@ Content-Type: application/json
   "payPass": "123456",
   "id": 1694644781126258688
 }
+
+### create withdrw
+POST {{url}}/api/wallet/withdraw/create
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "amountItemId": 85,
+  "amount": 100,
+  "withdrawAccountId": 1694635985192620032
+}

@@ -12,38 +12,32 @@ import (
 	"star_net/db/dao"
 	"star_net/db/model/entity"
 	"star_net/utility/utils/xtime"
+	"star_net/utility/utils/xtrans"
 	"star_net/utility/utils/xuuid"
 )
 
-var (
-	Submit = &submit{}
-)
-
-type WithdrawSubmitInput struct {
-	WithdrawId        int     `json:"withdrawId"`
-	Amount            float64 `json:"amount"`
-	WithdrawAccountId int     `json:"WithdrawAccount"`
+type CreateWithdraw struct {
+	AmountItemId      int     `json:"amountItemId" v:"required:"`
+	Amount            float64 `json:"amount" v:"required"`
+	WithdrawAccountId int     `json:"withdrawAccountId" v:"required"`
+	Lang              string
 }
 
-type submit struct {
-	WithdrawSubmitInput
-}
-
-func (input *submit) Exec(ctx context.Context) error {
+func (input *CreateWithdraw) Exec(ctx context.Context) error {
 	userInfo := service.GetUserInfo(ctx)
 	withdrawInfo := entity.AmountItem{}
-	dao.AmountItem.Ctx(ctx).Scan(&withdrawInfo, input.WithdrawAccountId)
-	if withdrawInfo.Id == 0 || withdrawInfo.Status == 0 {
-		return consts2.ErrWithdrawClose
+	_ = dao.AmountItem.Ctx(ctx).Scan(&withdrawInfo, "id", input.AmountItemId)
+	if withdrawInfo.Id == 0 || withdrawInfo.Status == -1 {
+		return fmt.Errorf("提现通道已关闭")
 	}
 
 	if int64(input.Amount) < withdrawInfo.Min || int64(input.Amount) > withdrawInfo.Max {
-		return consts2.ErrWithdrawIncorrect
+		return fmt.Errorf("提现金额不正确")
 	}
 	withdrawAccount := entity.WithdrawAccount{}
-	dao.WithdrawAccount.Ctx(ctx).Scan(&withdrawAccount, input.WithdrawAccountId)
+	_ = dao.WithdrawAccount.Ctx(ctx).Scan(&withdrawAccount, "id", input.WithdrawAccountId)
 	if withdrawAccount.Id == 0 {
-		return consts2.ErrWithdrawBindAccount
+		return fmt.Errorf("请先绑定提现账号")
 	}
 	order := entity.Withdraw{}
 	count, err := dao.Withdraw.Ctx(ctx).Count("uid=? and status=0", userInfo.UidInt64)
@@ -61,7 +55,7 @@ func (input *submit) Exec(ctx context.Context) error {
 	order.Protocol = withdrawAccount.Protocol
 	order.Currency = withdrawAccount.Currency
 	order.Address = withdrawAccount.Address
-	order.StatusRemark = userInfo.I18n.T(ctx, "处理中")
+	order.StatusRemark = xtrans.T(input.Lang, "处理中")
 	order.Amount = input.Amount
 	order.Pid = int64(userInfo.Pid)
 	order.ParentPath = userInfo.ParentPath

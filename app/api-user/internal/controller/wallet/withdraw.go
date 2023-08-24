@@ -2,6 +2,7 @@ package wallet
 
 import (
 	"context"
+	"github.com/gogf/gf/v2/net/ghttp"
 	"star_net/app/api-user/api/wallet"
 	"star_net/app/api-user/internal/service/withdrawsvc"
 	"star_net/model"
@@ -40,5 +41,16 @@ func (c cWallet) DelWithdrawAccount(ctx context.Context, req *wallet.DelWithdraw
 	if err = x.Exec(ctx); err != nil {
 		return nil, err
 	}
+	return
+}
+
+func (c cWallet) CreateWithdraw(ctx context.Context, req *wallet.CreateWithdrawReq) (res *model.CommonRes, err error) {
+	x := withdrawsvc.CreateWithdraw{
+		Amount:            req.Amount,
+		AmountItemId:      req.AmountItemId,
+		WithdrawAccountId: req.WithdrawAccountId,
+		Lang:              ghttp.RequestFromCtx(ctx).GetHeader("lang"),
+	}
+	err = x.Exec(ctx)
 	return
 }

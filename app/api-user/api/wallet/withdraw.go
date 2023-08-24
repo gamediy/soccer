@@ -6,11 +6,11 @@ import (
 	"star_net/model"
 )
 
-type CreateReq struct {
+type CreateWithdrawReq struct {
 	g.Meta            `tags:"钱包" sm:"创建提现订单" method:"post" path:"/withdraw/create"`
-	WithdrawId        int     `json:"withdrawId" v:"required:"`
-	Amount            float64 `json:"amount"`
-	WithdrawAccountId int     `json:"WithdrawAccount"`
+	AmountItemId      int     `json:"amountItemId" v:"required:"`
+	Amount            float64 `json:"amount" v:"required"`
+	WithdrawAccountId int     `json:"withdrawAccountId" v:"required"`
 }
 type BindWithdrawAccountReq struct {
 	g.Meta  `tags:"钱包" sm:"绑定提现账户信息" method:"post" path:"/withdraw/account/bind"`
