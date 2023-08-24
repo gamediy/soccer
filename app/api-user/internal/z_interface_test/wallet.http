@@ -27,3 +27,17 @@ Content-Type: application/json
   "transerImg": "Uvteyd.png"
 }
 
+### bind withdraw account item
+POST {{url}}/api/wallet/withdraw/account/bind
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "bankId": 48,
+  "address": "3333331233333",
+  "title": "John"
+}
+
+### list withdraw account item
+GET {{url}}/api/wallet/withdraw/account/list?page=1&size=10
+Authorization: {{token}}

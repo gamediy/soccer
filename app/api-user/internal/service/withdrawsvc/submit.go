@@ -77,21 +77,22 @@ func (input *submit) Exec(ctx context.Context) error {
 	update.Note = fmt.Sprintf("%s_%s", order.Protocol, order.Address)
 	update.BalanceCode = wallet.Withdraw
 	return update.Update(ctx, func(ctx context.Context, tx gdb.TX) error {
-		_, err := tx.Model(dao.Withdraw.Table()).Ctx(ctx).Insert(&order)
-		return err
-	})
-	go func() {
+		if _, err = tx.Model(dao.Withdraw.Table()).Ctx(ctx).Insert(&order); err != nil {
+			return err
+		}
 		message := push.Message{
 			CH: push.MessageItem{
 				Title: "用户提现",
-				Body:  fmt.Sprintf("%s 充值:%.2f 用户：%s", withdrawInfo.Title, input.Amount, userInfo.Account),
+				Body:  fmt.Sprintf("%s 提现:%.2f 用户：%s", withdrawInfo.Title, input.Amount, userInfo.Account),
 			},
 			EN: push.MessageItem{
 				Title: "withdraw",
 				Body:  fmt.Sprintf("%s ordersvc： %.2f account：%s", withdrawInfo.Title, input.Amount, userInfo.Account),
 			},
 		}
-		message.Trigger(push.ChannelAdmin, push.EventDeposit)
-	}()
-	return nil
+		if err = message.Trigger(push.ChannelAdmin, push.EventDeposit); err != nil {
+			return err
+		}
+		return err
+	})
 }

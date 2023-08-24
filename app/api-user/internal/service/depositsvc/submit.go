@@ -26,7 +26,7 @@ type Submit struct {
 func (input *Submit) Exec(ctx context.Context) error {
 	userInfo := service.GetUserInfo(ctx)
 	payInfo := entity.AmountItem{}
-	dao.AmountItem.Ctx(ctx).Scan(&payInfo, "id", input.PayId)
+	_ = dao.AmountItem.Ctx(ctx).Scan(&payInfo, "id", input.PayId)
 	if payInfo.Id == 0 || payInfo.Status == 0 {
 		return consts2.ErrDepositClosed
 	}
@@ -56,7 +56,7 @@ func (input *Submit) Exec(ctx context.Context) error {
 	if order.Address == "" {
 		if order.Protocol == "trc20" { //在获取充值列表的时候要给用户生成一个充值地址 银行卡 address如果为空可能需要调用支付三方API
 			daccount := entity.DigitalAccount{}
-			dao.DigitalAccount.Ctx(ctx).Where("uid", userInfo.Uid).Scan(&daccount)
+			_ = dao.DigitalAccount.Ctx(ctx).Where("uid", userInfo.Uid).Scan(&daccount)
 			order.Address = daccount.Address
 		}
 	}
@@ -79,11 +79,13 @@ func (input *Submit) Exec(ctx context.Context) error {
 			Body:  fmt.Sprintf("%s 充值:%.2f 用户：%s", payInfo.Title, input.Amount, userInfo.Account),
 		},
 		EN: push.MessageItem{
-			Title: "ordersvc",
+			Title: "deposit",
 			Body:  fmt.Sprintf("%s ordersvc： %.2f account：%s", payInfo.Title, input.Amount, userInfo.Account),
 		},
 	}
-	message.Trigger(push.ChannelAdmin, push.EventDeposit)
+	if err = message.Trigger(push.ChannelAdmin, push.EventDeposit); err != nil {
+		return err
+	}
 
 	return nil
 }
