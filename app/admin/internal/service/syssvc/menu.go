@@ -97,7 +97,7 @@ func (s *sMenu) ListMenuByRoleId(ctx context.Context, roleId int) ([]*model.Menu
 		menuId = append(menuId, record.Map()["menu_id"].(int32))
 	}
 	var list []*model.Menu
-	err = dao.Menu.Ctx(ctx).Where("status=? and id in(?) and type<?", 1, menuId, 3).Scan(&list)
+	err = dao.Menu.Ctx(ctx).Order("sort").Where("status=? and id in(?) and type<?", 1, menuId, 3).Scan(&list)
 	all, _ := g.Model(" s_menu_api_rule m").LeftJoin("s_api a", "a.id=m.api_id").Fields("a.id,a.url,a.desc,a.method,m.menu_id").All()
 	if err != nil {
 		return list, err
