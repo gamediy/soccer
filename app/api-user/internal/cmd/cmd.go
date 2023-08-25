@@ -66,7 +66,7 @@ func initAuthRule(ctx context.Context) {
 */
 func initRouter(s *ghttp.Server) {
 	s.BindMiddlewareDefault(common.MiddlewareDefaultCORS, common.MiddlewareRequestLimit, common.MiddlewareHandlerResponse)
-	s.Group("/api/u", func(group *ghttp.RouterGroup) {
+	s.Group("/api/user", func(group *ghttp.RouterGroup) {
 		group.Group("/sys", func(group *ghttp.RouterGroup) {
 			group.Bind(sys.Sys)
 		})

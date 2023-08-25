@@ -9,6 +9,7 @@ import (
 	"star_net/app/admin/internal/controller/report"
 	"star_net/app/admin/internal/controller/setting"
 	"star_net/app/admin/internal/controller/share"
+	"star_net/app/admin/internal/controller/soccer"
 	"star_net/app/admin/internal/controller/sys"
 	"star_net/app/admin/internal/controller/user"
 	"star_net/app/admin/internal/controller/wallet"
@@ -45,6 +46,9 @@ func initRouter(s *ghttp.Server, ctx context.Context) {
 	s.Group("/", func(g *ghttp.RouterGroup) {
 		g.Middleware(common.MiddlewareHandlerResponse)
 		g.Group("/api", func(g *ghttp.RouterGroup) {
+			g.Group("soccer", func(g *ghttp.RouterGroup) {
+				g.Bind(soccer.Events)
+			})
 			g.Group("/user", func(g *ghttp.RouterGroup) {
 				g.Bind(user.User)
 				g.Bind(user.UserLoginLog)
