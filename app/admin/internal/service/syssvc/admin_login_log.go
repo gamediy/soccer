@@ -37,6 +37,6 @@ func ListAdminLoginLog(ctx context.Context, req *sys.ListAdminLoginLogReq) ([]*m
 	if req.Uname != "" {
 		db = db.WhereLike("t2.uname", xstr.Like(req.Uname))
 	}
-	err := db.Page(req.Page, req.Size).OrderDesc("id").Fields("t1.*,t2.uname").ScanAndCount(&d, &total, false)
+	err := db.Page(req.Page, req.Size).OrderDesc("t1.id").Fields("t1.*,t2.uname").ScanAndCount(&d, &total, false)
 	return d, total, err
 }
