@@ -55,11 +55,41 @@ func initAuthRule(ctx context.Context) {
 		"/api/user/user/login",
 		"/api.json",
 		"/api/user/sys/dict/*",
+		"/api/user/doc",
+		"/api/user/doc/*",
+		"/api/user/api.json",
 	}
 	gfToken.LoginBeforeFunc = usersvc.UserLogin
 	gfToken.AuthAfterFunc = usersvc.AuthAfterFunc
 	auth.GFToken = gfToken
 }
+
+const (
+	swaggerUIPageContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SwaggerUI"/>
+  <title>SwaggerUI</title>
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@latest/swagger-ui.css" />
+</head>
+<body>
+<div id="swagger-ui"></div>
+<script src="https://unpkg.com/swagger-ui-dist@latest/swagger-ui-bundle.js" crossorigin></script>
+<script>
+	window.onload = () => {
+		window.ui = SwaggerUIBundle({
+			url:    '/api/user/doc/api.json',
+			dom_id: '#swagger-ui',
+		});
+	};
+</script>
+</body>
+</html>
+`
+)
 
 /*
 统一路由注册
@@ -67,6 +97,10 @@ func initAuthRule(ctx context.Context) {
 func initRouter(s *ghttp.Server) {
 	s.BindMiddlewareDefault(common.MiddlewareDefaultCORS, common.MiddlewareRequestLimit, common.MiddlewareHandlerResponse)
 	s.Group("/api/user", func(group *ghttp.RouterGroup) {
+
+		group.GET("/doc", func(r *ghttp.Request) {
+			r.Response.Write(swaggerUIPageContent)
+		})
 		group.Group("/sys", func(group *ghttp.RouterGroup) {
 			group.Bind(sys.Sys)
 		})
@@ -77,5 +111,6 @@ func initRouter(s *ghttp.Server) {
 			group.Bind(wallet.Wallet)
 		})
 	})
+	s.SetOpenApiPath("/api/user/doc/api.json")
 
 }
