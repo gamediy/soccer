@@ -5,6 +5,7 @@ server:
   swaggerPath: "/swagger"
   serverRoot: "/resource/public"
   jwtExpireDuration: "7D" # 7 days
+  imgPrefix: "http://8.219.177.71:9000/upload/" # 图片前缀
   rootFilePath: "/resource/public/upload/"  # 文件上传路径
   clientMaxBodySize: "200MB"
 logger:
@@ -24,10 +25,10 @@ redis:
     db: 1
     pass: "PqcG15w6#AX$ey0a+BYcCFIpUxLYoukAqhfnfGbnkMtYE"
 pusher:
-  appId: "1644349"
-  key: "3400fc3f83796ca48785"
-  secret: "2e84608a0d38f20e852e"
-  cluster: "ap1"
+  appId: "1658642"
+  key: "a73381ab871462fd48a9"
+  secret: "ec283f1e96b31760002f"
+  cluster: "mt1"
 elastic:
   url: "http://104.233.171.253:9200"
 

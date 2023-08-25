@@ -1,13 +1,12 @@
-app: "admin"
+app: "api-user"
 server:
-  address: ":4100"
+  address: ":4101"
   openapiPath: "/api.json"
   swaggerPath: "/swagger"
-  serverRoot: "/resource/public"
   jwtExpireDuration: "7D" # 7 days
-  imgPrefix: "http://8.219.177.71:9000/upload/" # 图片前缀
   rootFilePath: "/resource/public/upload/"  # 文件上传路径
   clientMaxBodySize: "200MB"
+
 logger:
   level: "debug"
   stdout: true
@@ -25,18 +24,26 @@ redis:
     db: 1
     pass: "PqcG15w6#AX$ey0a+BYcCFIpUxLYoukAqhfnfGbnkMtYE"
 pusher:
-  appId: "1644349"
-  key: "3400fc3f83796ca48785"
-  secret: "2e84608a0d38f20e852e"
-  cluster: "ap1"
+  appId: "1658642"
+  key: "a73381ab871462fd48a9"
+  secret: "ec283f1e96b31760002f"
+  cluster: "mt1"
 elastic:
-  url: "http://104.233.171.253:9200"
+  url: "http://8.219.177.71:9200"
 
 gfToken:
-  name: "star_net"
+  name: "star_net_user"
   cacheMode: 2 # 1 gcache  2 redis 3 file
-  cacheKey: "star_net_token:"
+  cacheKey: "start_net_user_token:"
   encryptKey: "koi29a83idakguqjq29asd9asd8a7jhq"
   authFailMsg: "Login timed out, please log in again"
   multiLogin: true
   globalMiddleware: true
+
+cloudflare:
+  upload:
+    BucketName: "8429dbc0235a26dda82c90041aa831dd"
+    AccountId: "fire"
+    AccessKeySecret: "d0de875d34365f6c1dc86ab44abb3b9a00131096fe0502a75e61fadc86d5c7e5"
+    AccessKeyId: "093843554af5bbea77f54ed3ad157599"
+    MaxSize: 0.5 # unit M
