@@ -17,8 +17,9 @@ type LoginLog struct {
 
 func (s *LoginLog) Save() error {
 	_, err := dao.AdminLoginLog.Ctx(s.Ctx).Insert(entity.AdminLoginLog{
-		Uid: int(s.Uid),
-		Ip:  s.Ip,
+		Uid:     int(s.Uid),
+		Ip:      s.Ip,
+		Account: s.Account,
 	})
 	return err
 }
