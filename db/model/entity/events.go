@@ -34,12 +34,12 @@ type Events struct {
 	Status           int         `json:"status"           description:"状态"`
 	Remark           string      `json:"remark"           description:"注释"`
 	BetMoney         float64     `json:"betMoney"         description:"交易量"`
-	OpenRessult      string      `json:"openRessult"      description:""`
+	OpenResult       string      `json:"openResult"       description:""`
 	HalfOpenResult   string      `json:"halfOpenResult"   description:"上半场开奖结果"`
 	HalfOpenTime     *gtime.Time `json:"halfOpenTime"     description:"上半场开奖时间"`
 	AllOpenResult    string      `json:"allOpenResult"    description:"全场开奖结果"`
 	AllOpenTime      *gtime.Time `json:"allOpenTime"      description:"全场开奖时间"`
 	AllStatus        int         `json:"allStatus"        description:"全场状态"`
 	FiId             int64       `json:"fiId"             description:"FI编号"`
-	Handicap         float64     `json:"handicap"         description:"让球"`
+	Handicap         string      `json:"handicap"         description:"让球"`
 }

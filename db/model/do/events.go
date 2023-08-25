@@ -36,7 +36,7 @@ type Events struct {
 	Status           interface{} // 状态
 	Remark           interface{} // 注释
 	BetMoney         interface{} // 交易量
-	OpenRessult      interface{} //
+	OpenResult       interface{} //
 	HalfOpenResult   interface{} // 上半场开奖结果
 	HalfOpenTime     *gtime.Time // 上半场开奖时间
 	AllOpenResult    interface{} // 全场开奖结果

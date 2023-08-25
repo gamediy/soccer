@@ -42,48 +42,45 @@ var (
 统一路由注册
 */
 func initRouter(s *ghttp.Server, ctx context.Context) {
-	s.BindMiddlewareDefault(common.MiddlewareDefaultCORS)
-	s.Group("/", func(g *ghttp.RouterGroup) {
-		g.Middleware(common.MiddlewareHandlerResponse)
-		g.Group("/api", func(g *ghttp.RouterGroup) {
-			g.Group("soccer", func(g *ghttp.RouterGroup) {
-				g.Bind(soccer.Events)
-			})
-			g.Group("/user", func(g *ghttp.RouterGroup) {
-				g.Bind(user.User)
-				g.Bind(user.UserLoginLog)
-			})
-			g.Group("/wallet", func(g *ghttp.RouterGroup) {
-				g.Bind(wallet.Wallet)
-				g.Bind(wallet.Log)
-				g.Bind(wallet.Deposit)
-				g.Bind(wallet.Bank)
-				g.Bind(wallet.Withdraw)
-			})
-			g.Group("/setting", func(g *ghttp.RouterGroup) {
-				g.Bind(setting.BalanceCode)
-				g.Bind(setting.AmountCategory)
-				g.Bind(setting.AmountItem)
-			})
-			g.Group("/sys", func(g *ghttp.RouterGroup) {
-				g.Bind(sys.Role)
-				g.Bind(sys.Admin)
-				g.Bind(sys.Dict)
-				g.Bind(sys.Menu)
-				g.Bind(sys.Ws)
-				g.Bind(sys.Api)
-				g.Bind(sys.AdminLoginLog)
-				g.Bind(sys.Pusher)
-				g.Bind(sys.File)
-			})
-			g.Group("/share", func(g *ghttp.RouterGroup) {
-				g.Bind(share.Banner)
-				g.Bind(share.Language)
-			})
-			g.Group("/report", func(g *ghttp.RouterGroup) {
-				g.Bind(report.Report)
-				g.Bind(share.Language)
-			})
+	s.BindMiddlewareDefault(common.MiddlewareDefaultCORS, common.MiddlewareHandlerResponse)
+	s.Group("/api/", func(g *ghttp.RouterGroup) {
+		g.Group("soccer", func(g *ghttp.RouterGroup) {
+			g.Bind(soccer.Events)
+		})
+		g.Group("/user", func(g *ghttp.RouterGroup) {
+			g.Bind(user.User)
+			g.Bind(user.UserLoginLog)
+		})
+		g.Group("/wallet", func(g *ghttp.RouterGroup) {
+			g.Bind(wallet.Wallet)
+			g.Bind(wallet.Log)
+			g.Bind(wallet.Deposit)
+			g.Bind(wallet.Bank)
+			g.Bind(wallet.Withdraw)
+		})
+		g.Group("/setting", func(g *ghttp.RouterGroup) {
+			g.Bind(setting.BalanceCode)
+			g.Bind(setting.AmountCategory)
+			g.Bind(setting.AmountItem)
+		})
+		g.Group("/sys", func(g *ghttp.RouterGroup) {
+			g.Bind(sys.Role)
+			g.Bind(sys.Admin)
+			g.Bind(sys.Dict)
+			g.Bind(sys.Menu)
+			g.Bind(sys.Ws)
+			g.Bind(sys.Api)
+			g.Bind(sys.AdminLoginLog)
+			g.Bind(sys.Pusher)
+			g.Bind(sys.File)
+		})
+		g.Group("/share", func(g *ghttp.RouterGroup) {
+			g.Bind(share.Banner)
+			g.Bind(share.Language)
+		})
+		g.Group("/report", func(g *ghttp.RouterGroup) {
+			g.Bind(report.Report)
+			g.Bind(share.Language)
 		})
 	})
 }

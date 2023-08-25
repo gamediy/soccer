@@ -44,7 +44,7 @@ type EventsColumns struct {
 	Status           string // 状态
 	Remark           string // 注释
 	BetMoney         string // 交易量
-	OpenRessult      string //
+	OpenResult       string //
 	HalfOpenResult   string // 上半场开奖结果
 	HalfOpenTime     string // 上半场开奖时间
 	AllOpenResult    string // 全场开奖结果
@@ -80,7 +80,7 @@ var eventsColumns = EventsColumns{
 	Status:           "status",
 	Remark:           "remark",
 	BetMoney:         "bet_money",
-	OpenRessult:      "open_ressult",
+	OpenResult:       "open_result",
 	HalfOpenResult:   "half_open_result",
 	HalfOpenTime:     "half_open_time",
 	AllOpenResult:    "all_open_result",
