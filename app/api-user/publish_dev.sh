@@ -3,6 +3,7 @@ read -p "请输入版本号: " ver
 name="soccer-api-user"
 image_name="$name:$ver"
 config_file="config.yaml"
+port=4010
 # 强制拉群 最近 GIT 代码
 git fetch --all
 git reset --hard origin/master
@@ -15,4 +16,4 @@ docker build -t "$image_name" .
 # 删除旧的 Docker 容器
 docker rm -f "$name" >/dev/null 2>&1
 # 运行 Docker 容器
-docker run -d --name "$name" -p 4101:4101 "$image_name" --gf.gcfg.file="config-dev.yaml"
+docker run -d --name "$name" -p "$port":"$port" "$image_name" --gf.gcfg.file="config-dev.yaml"
