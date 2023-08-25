@@ -1,5 +1,5 @@
 ### register
-POST {{url}}/api/user/register
+POST {{url}}/api/user/user/register
 Content-Type: application/json
 lang: en
 
@@ -14,7 +14,7 @@ lang: en
 }
 
 ### Login
-POST {{url}}/api/user/login
+POST {{url}}/api/user/user/login
 Content-Type: application/json
 lang: zh
 
@@ -28,11 +28,11 @@ lang: zh
 %}
 
 ### Get Login Info
-GET {{url}}/api/user/info
+GET {{url}}/api/user/user/info
 Authorization: {{token}}
 
 ### Update Login pass
-PUT {{url}}/api/user/pass
+PUT {{url}}/api/user/user/pass
 Authorization: {{token}}
 Content-Type: application/json
 
@@ -42,7 +42,7 @@ Content-Type: application/json
 }
 
 ### set pay pass
-PUT {{url}}/api/user/setPayPass
+PUT {{url}}/api/user/user/setPayPass
 Authorization: {{token}}
 Content-Type: application/json
 

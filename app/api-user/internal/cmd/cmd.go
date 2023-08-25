@@ -50,11 +50,11 @@ func initAuthRule(ctx context.Context) {
 	gfToken.LogoutPath = "/api/user/logout"
 	gfToken.AuthPaths = g.SliceStr{"/api"}
 	gfToken.AuthExcludePaths = g.SliceStr{
-		"/api/user/getCaptcha",
-		"/api/user/register",
-		"/api/user/login",
+		"/api/user/user/getCaptcha",
+		"/api/user/user/register",
+		"/api/user/user/login",
 		"/api.json",
-		"/api/sys/dict/*",
+		"/api/user/sys/dict/*",
 	}
 	gfToken.LoginBeforeFunc = usersvc.UserLogin
 	gfToken.AuthAfterFunc = usersvc.AuthAfterFunc

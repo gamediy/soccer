@@ -1,22 +1,22 @@
 ### banks
-GET {{url}}/api/wallet/banks
+GET {{url}}/api/user/wallet/banks
 Authorization: {{token}}
 
 ### logs
-GET {{url}}/api/wallet/logs?page=1&size=10&balanceCode=400
+GET {{url}}/api/user/wallet/logs?page=1&size=10&balanceCode=400
 Authorization: {{token}}
 
 ### balanceCodes
-GET {{url}}/api/wallet/balanceCodes
+GET {{url}}/api/user/wallet/balanceCodes
 Authorization: {{token}}
 lang: en
 
 ### get platform deposit
-GET {{url}}/api/wallet/deposit/platform
+GET {{url}}/api/user/wallet/deposit/platform
 Authorization: {{token}}
 
 ### create deposit
-POST {{url}}/api/wallet/deposit/create
+POST {{url}}/api/user/wallet/deposit/create
 Authorization: {{token}}
 Content-Type: application/json
 
@@ -28,7 +28,7 @@ Content-Type: application/json
 }
 
 ### bind withdraw account item
-POST {{url}}/api/wallet/withdraw/account/bind
+POST {{url}}/api/user/wallet/withdraw/account/bind
 Authorization: {{token}}
 Content-Type: application/json
 
@@ -39,16 +39,16 @@ Content-Type: application/json
 }
 
 ### list withdraw account item
-GET {{url}}/api/wallet/withdraw/account/list?page=1&size=10
+GET {{url}}/api/user/wallet/withdraw/account/list?page=1&size=10
 Authorization: {{token}}
 
 
 ### set default withdraw account
-PUT {{url}}/api/wallet/withdraw/account/setDefault?id=1694635985192620032
+PUT {{url}}/api/user/wallet/withdraw/account/setDefault?id=1694635985192620032
 Authorization: {{token}}
 
 ### del withdraw account
-DELETE {{url}}/api/wallet/withdraw/account/del
+DELETE {{url}}/api/user/wallet/withdraw/account/del
 Authorization: {{token}}
 Content-Type: application/json
 
@@ -58,7 +58,7 @@ Content-Type: application/json
 }
 
 ### create withdrw
-POST {{url}}/api/wallet/withdraw/create
+POST {{url}}/api/user/wallet/withdraw/create
 Authorization: {{token}}
 Content-Type: application/json
 

@@ -1,11 +1,11 @@
 ### get dict
-GET {{url}}/api/sys/dict?k=great
+GET {{url}}/api/user/sys/dict?k=great
 
 ### get all
-GET {{url}}/api/sys/dict/all
+GET {{url}}/api/user/sys/dict/all
 
 ### upload file
-POST {{url}}/api/sys/file/upload
+POST {{url}}/api/user/sys/file/upload
 Authorization: {{token}}
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
