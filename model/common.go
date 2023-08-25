@@ -1,8 +1,8 @@
 package model
 
 type CommonPageReq struct {
-	Page int `json:"page"`
-	Size int `json:"size"`
+	Page int `json:"page" v:"required"`
+	Size int `json:"size" v:"required"`
 }
 
 type CommonPageRes struct {
