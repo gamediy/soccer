@@ -15,7 +15,7 @@ type CreateWithdrawReq struct {
 type BindWithdrawAccountReq struct {
 	g.Meta  `tags:"钱包" sm:"绑定提现账户信息" method:"post" path:"/withdraw/account/bind"`
 	BankId  uint64 `v:"required#银行ID不能为空" dc:"银行ID" json:"bankId"`
-	Address string `v:"required#收款地址不能为空" json:"address"`
+	Address string `v:"required#收款地址不能为空" json:"address" dc:"卡号"`
 	Title   string `json:"title" dc:"持卡人" v:"required#持卡人不能为空"`
 }
 type WithdrawAccountListReq struct {
