@@ -7,7 +7,7 @@ git fetch --all
 git reset --hard origin/main
 
 # 编译 Go 代码
-CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o admin main.go
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o admin main_admin.go
 # 构建 Docker 镜像
 docker build -t "$image_name" .
 
