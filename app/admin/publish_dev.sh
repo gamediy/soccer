@@ -1,6 +1,6 @@
 #!/bin/bash
 read -p "请输入版本号: " ver
-name="admin"
+name="soccer-admin"
 image_name="$name:$ver"
 # 强制拉群 最近 GIT 代码
 git fetch --all
