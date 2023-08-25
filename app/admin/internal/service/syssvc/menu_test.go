@@ -3,10 +3,7 @@ package syssvc
 import (
 	"context"
 	_ "github.com/gogf/gf/contrib/drivers/mysql/v2"
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/os/gctx"
 	"reflect"
-	"star_net/app/admin/api/sys"
 	"star_net/app/admin/internal/model"
 	"testing"
 )
@@ -45,8 +42,4 @@ func Test_sMenu_ListByRoleId(t *testing.T) {
 			}
 		})
 	}
-}
-
-func TestListMenu(t *testing.T) {
-	g.Dump(ListMenu(gctx.New(), &sys.ListMenuReq{}))
 }

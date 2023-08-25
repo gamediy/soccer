@@ -19,7 +19,7 @@ type sMenu struct {
 func (s *sMenu) List(ctx context.Context) ([]*model.Menu, error) {
 
 	var list []*model.Menu
-	err := dao.Menu.Ctx(ctx).Scan(&list)
+	err := dao.Menu.Ctx(ctx).Order("sort").Scan(&list)
 	all, _ := g.Model(" s_menu_api_rule m").LeftJoin("s_api a", "a.id=m.api_id").Fields("a.id,a.url,a.desc,a.method,m.menu_id").All()
 	if err != nil {
 		return list, err

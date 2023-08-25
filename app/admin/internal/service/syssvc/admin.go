@@ -30,7 +30,7 @@ func (sAdmin) UserInfo(ctx context.Context) (menu []*model.Menu, button []*model
 		button, err = Menu.ListButtonByRoleId(ctx, userInfo.RuleId)
 	} else {
 		menu, err = Menu.List(ctx)
-		err := dao.Menu.Ctx(ctx).Order("sort").Where("type", 3).Scan(&button)
+		err := dao.Menu.Ctx(ctx).Where("type", 3).Scan(&button)
 		if err != nil {
 			return menu, button, userInfo, err
 		}
