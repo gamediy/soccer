@@ -31,7 +31,6 @@ type EventsColumns struct {
 	LeagueId         string // 联盟编号
 	LeagueTitle      string // 联盟
 	EnLeagueTitle    string // 联盟英文
-	HalfStatus       string // 半场状态 0未开始，1已开始，2已结束
 	FirstStatus      string // 上半场状态 0未开始，1已开始，2已结束
 	StartDate        string // 开始日期
 	FirstOpenResult  string // 上半场开奖结果
@@ -41,16 +40,11 @@ type EventsColumns struct {
 	SecondStatus     string // 全场状态
 	AddTime          string // 添加时间
 	IsHot            string // 热门
-	Status           string // 状态
+	Status           string // 0：未开始 1上半场进行中，2：下半场进行中，3：结束
 	Remark           string // 注释
 	BetMoney         string // 交易量
-	OpenResult       string //
-	HalfOpenResult   string // 上半场开奖结果
-	HalfOpenTime     string // 上半场开奖时间
 	AllOpenResult    string // 全场开奖结果
 	AllOpenTime      string // 全场开奖时间
-	AllStatus        string // 全场状态
-	FiId             string // FI编号
 	Handicap         string // 让球
 }
 
@@ -67,7 +61,6 @@ var eventsColumns = EventsColumns{
 	LeagueId:         "league_id",
 	LeagueTitle:      "league_title",
 	EnLeagueTitle:    "en_league_title",
-	HalfStatus:       "half_status",
 	FirstStatus:      "first_status",
 	StartDate:        "start_date",
 	FirstOpenResult:  "first_open_result",
@@ -80,13 +73,8 @@ var eventsColumns = EventsColumns{
 	Status:           "status",
 	Remark:           "remark",
 	BetMoney:         "bet_money",
-	OpenResult:       "open_result",
-	HalfOpenResult:   "half_open_result",
-	HalfOpenTime:     "half_open_time",
 	AllOpenResult:    "all_open_result",
 	AllOpenTime:      "all_open_time",
-	AllStatus:        "all_status",
-	FiId:             "fi_id",
 	Handicap:         "handicap",
 }
 

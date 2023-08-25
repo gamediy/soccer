@@ -21,7 +21,6 @@ type Events struct {
 	LeagueId         int64       `json:"leagueId"         description:"联盟编号"`
 	LeagueTitle      string      `json:"leagueTitle"      description:"联盟"`
 	EnLeagueTitle    string      `json:"enLeagueTitle"    description:"联盟英文"`
-	HalfStatus       int         `json:"halfStatus"       description:"半场状态 0未开始，1已开始，2已结束"`
 	FirstStatus      int         `json:"firstStatus"      description:"上半场状态 0未开始，1已开始，2已结束"`
 	StartDate        *gtime.Time `json:"startDate"        description:"开始日期"`
 	FirstOpenResult  string      `json:"firstOpenResult"  description:"上半场开奖结果"`
@@ -31,15 +30,10 @@ type Events struct {
 	SecondStatus     int         `json:"secondStatus"     description:"全场状态"`
 	AddTime          *gtime.Time `json:"addTime"          description:"添加时间"`
 	IsHot            int         `json:"isHot"            description:"热门"`
-	Status           int         `json:"status"           description:"状态"`
+	Status           int         `json:"status"           description:"0：未开始 1上半场进行中，2：下半场进行中，3：结束"`
 	Remark           string      `json:"remark"           description:"注释"`
 	BetMoney         float64     `json:"betMoney"         description:"交易量"`
-	OpenResult       string      `json:"openResult"       description:""`
-	HalfOpenResult   string      `json:"halfOpenResult"   description:"上半场开奖结果"`
-	HalfOpenTime     *gtime.Time `json:"halfOpenTime"     description:"上半场开奖时间"`
 	AllOpenResult    string      `json:"allOpenResult"    description:"全场开奖结果"`
 	AllOpenTime      *gtime.Time `json:"allOpenTime"      description:"全场开奖时间"`
-	AllStatus        int         `json:"allStatus"        description:"全场状态"`
-	FiId             int64       `json:"fiId"             description:"FI编号"`
 	Handicap         string      `json:"handicap"         description:"让球"`
 }
