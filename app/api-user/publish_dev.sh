@@ -3,7 +3,7 @@ read -p "请输入版本号: " ver
 name="soccer-api-user"
 image_name="$name:$ver"
 config_file="config.yaml"
-port=4010
+port=4101
 # 强制拉群 最近 GIT 代码
 git fetch --all
 git reset --hard origin/master
