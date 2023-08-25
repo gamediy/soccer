@@ -20,9 +20,7 @@ func (this *Report) PutReport() error {
 	err := retry.Do(func() error {
 		date := gtime.Now().Format("Y-m-d")
 		ctx := context.TODO()
-
 		entity := entity.ReportWalletDay{}
-
 		dao.ReportWalletDay.Ctx(ctx).Where("date=? and uid=? and balance_code=?", date, this.User.Id, this.BalanceCodeEntity.Code).Scan(&entity)
 		if entity.Id == 0 {
 			entity.Amount = this.Amount

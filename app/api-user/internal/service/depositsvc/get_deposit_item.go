@@ -12,10 +12,11 @@ import (
 )
 
 var (
-	GetDepositItem = &getDepositItem{}
+	GetDepositItem = getDepositItem{}
 )
 
 type getDepositItem struct {
+	Name string
 }
 type GetDepositItemOutput struct {
 	Tips string

@@ -20,6 +20,7 @@ func (c cWallet) CreateDeposit(ctx context.Context, req *wallet.CreateDepositReq
 	return
 }
 func (c cWallet) ListPlatformDeposit(ctx context.Context, _ *wallet.ListPlatformDepositReq) (_ wallet.ListPlatformDepositRes, err error) {
+
 	data, err := depositsvc.GetDepositItem.Exec(ctx)
 	if err != nil {
 		return nil, err

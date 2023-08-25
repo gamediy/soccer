@@ -70,6 +70,9 @@ func (this *BalanceUpdate) Update(ctx context.Context, fc func(ctx context.Conte
 func (this *BalanceUpdate) updateExec(ctx context.Context, fc func(ctx context.Context, tx gdb.TX) error) error {
 	this.Amount = math.Abs(float64(this.Amount))
 	realAmouont := int64(this.Amount * precision)
+	if this.Amount == 0 || realAmouont == 0 {
+		return fmt.Errorf("error amount")
+	}
 	user := entity.User{}
 	wallet := entity.Wallet{}
 	return g.DB().Transaction(ctx, func(ctx context.Context, tx gdb.TX) error {

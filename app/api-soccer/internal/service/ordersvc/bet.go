@@ -9,6 +9,7 @@ import (
 	"star_net/core/wallet"
 	"star_net/db/dao"
 	"star_net/db/model/entity"
+	"star_net/utility/utils/xtime"
 	"star_net/utility/utils/xuuid"
 )
 
@@ -31,7 +32,7 @@ func (input *bet) Exec(ctx context.Context) error {
 		return fmt.Errorf("金额错误")
 	}
 	odds := entity.EventsOdds{}
-	dao.EventsOdds.Ctx(ctx).Scan(&odds, input.OddsId)
+	dao.EventsOdds.Ctx(ctx).Scan(&odds, "id", input.OddsId)
 	if odds.Status != 1 {
 		return fmt.Errorf("没有此玩法")
 	}
@@ -56,17 +57,24 @@ func (input *bet) Exec(ctx context.Context) error {
 		order.ParentPath = userInfo.ParentPath
 		order.OddsId = odds.Id
 		order.OddsCalcRule = odds.CalcRule
-		order.OddsProfitRate = odds.ProfitRate
+		order.Odds = odds.Odds
 		order.OddsTitle = odds.Title
 		order.BoutStatus = odds.BoutStatus
 		order.EventsId = event.Id
 		order.Status = soccer.OrderStatusBetSuccess
 		order.EventsStartTime = event.StartTime
+		order.CalcAt = xtime.Get1970Datetime()
 		order.EventsTitle = fmt.Sprintf("%s vs %s", event.EnHomeTeam, event.EnAwayTeam)
 		order.LeagueTitle = event.EnLeagueTitle
 		order.LeagueId = event.LeagueId
 		order.PlayCode = odds.PlayCode
+		order.Amount = input.Amount
 		_, err := tx.Model(dao.SoccerOrderSettle.Table()).Data(&order).Insert()
+		if err != nil {
+			return err
+		}
+		odds.TotalAmount += input.Amount
+		_, err = tx.Model(dao.EventsOdds.Table()).Update(&odds, "id", odds.Id)
 		return err
 
 	})

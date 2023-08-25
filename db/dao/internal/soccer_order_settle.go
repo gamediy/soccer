@@ -20,7 +20,6 @@ type SoccerOrderSettleDao struct {
 
 // SoccerOrderSettleColumns defines and stores column names for table o_soccer_order_settle.
 type SoccerOrderSettleColumns struct {
-	Id               string //
 	OrderNo          string // 编号
 	Uid              string // 用户编号
 	Account          string // 用户账号
@@ -34,7 +33,7 @@ type SoccerOrderSettleColumns struct {
 	CalcAt           string // 结算时间
 	Status           string // 状态 0 撤单，1:投注成功，2：中奖，3：未中奖
 	OddsCalcRule     string // 结算规则
-	OddsProfitRate   string // 利率
+	Odds             string // 赔率
 	LeagueId         string // 联盟编号
 	LeagueTitle      string // 联盟
 	EventsStartTime  string // 赛事开始时间
@@ -48,7 +47,6 @@ type SoccerOrderSettleColumns struct {
 
 // soccerOrderSettleColumns holds the columns for table o_soccer_order_settle.
 var soccerOrderSettleColumns = SoccerOrderSettleColumns{
-	Id:               "id",
 	OrderNo:          "order_no",
 	Uid:              "uid",
 	Account:          "account",
@@ -62,7 +60,7 @@ var soccerOrderSettleColumns = SoccerOrderSettleColumns{
 	CalcAt:           "calc_at",
 	Status:           "status",
 	OddsCalcRule:     "odds_calc_rule",
-	OddsProfitRate:   "odds_profit_rate",
+	Odds:             "odds",
 	LeagueId:         "league_id",
 	LeagueTitle:      "league_title",
 	EventsStartTime:  "events_start_time",

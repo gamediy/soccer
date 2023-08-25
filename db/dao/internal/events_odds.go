@@ -25,8 +25,8 @@ type EventsOddsColumns struct {
 	Title        string // 标题
 	CalcRule     string // 结算规则
 	BoutStatus   string // 类型 1:上半场 2：全场
-	Amount       string // 投注金额
-	ProfitRate   string // 赢利
+	TotalAmount  string // 投注金额
+	TotalProfit  string // 赢利
 	Header       string // 主球队 1：主队，2：客队，draw 平局
 	Odds         string // 赔率
 	CreatedAt    string //
@@ -43,8 +43,8 @@ var eventsOddsColumns = EventsOddsColumns{
 	Title:        "title",
 	CalcRule:     "calc_rule",
 	BoutStatus:   "bout_status",
-	Amount:       "amount",
-	ProfitRate:   "profit_rate",
+	TotalAmount:  "total_amount",
+	TotalProfit:  "total_profit",
 	Header:       "header",
 	Odds:         "odds",
 	CreatedAt:    "created_at",

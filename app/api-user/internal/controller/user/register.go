@@ -9,6 +9,7 @@ import (
 )
 
 func (c *cUser) Register(ctx context.Context, req *vpassport.RegisterReq) (res *model.CommonRes, err error) {
+
 	r := ghttp.RequestFromCtx(ctx)
 	x := usersvc.Register{
 		Ctx:         ctx,

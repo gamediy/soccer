@@ -10,7 +10,6 @@ import (
 
 // SoccerOrderSettle is the golang structure for table soccer_order_settle.
 type SoccerOrderSettle struct {
-	Id               int64       `json:"id"               description:""`
 	OrderNo          int64       `json:"orderNo"          description:"编号"`
 	Uid              int64       `json:"uid"              description:"用户编号"`
 	Account          string      `json:"account"          description:"用户账号"`
@@ -24,7 +23,7 @@ type SoccerOrderSettle struct {
 	CalcAt           *gtime.Time `json:"calcAt"           description:"结算时间"`
 	Status           int         `json:"status"           description:"状态 0 撤单，1:投注成功，2：中奖，3：未中奖"`
 	OddsCalcRule     string      `json:"oddsCalcRule"     description:"结算规则"`
-	OddsProfitRate   float64     `json:"oddsProfitRate"   description:"利率"`
+	Odds             float64     `json:"odds"             description:"赔率"`
 	LeagueId         int64       `json:"leagueId"         description:"联盟编号"`
 	LeagueTitle      string      `json:"leagueTitle"      description:"联盟"`
 	EventsStartTime  *gtime.Time `json:"eventsStartTime"  description:"赛事开始时间"`

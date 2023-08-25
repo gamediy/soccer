@@ -12,7 +12,6 @@ import (
 // SoccerOrderSettle is the golang structure of table o_soccer_order_settle for DAO operations like Where/Data.
 type SoccerOrderSettle struct {
 	g.Meta           `orm:"table:o_soccer_order_settle, do:true"`
-	Id               interface{} //
 	OrderNo          interface{} // 编号
 	Uid              interface{} // 用户编号
 	Account          interface{} // 用户账号
@@ -26,7 +25,7 @@ type SoccerOrderSettle struct {
 	CalcAt           *gtime.Time // 结算时间
 	Status           interface{} // 状态 0 撤单，1:投注成功，2：中奖，3：未中奖
 	OddsCalcRule     interface{} // 结算规则
-	OddsProfitRate   interface{} // 利率
+	Odds             interface{} // 赔率
 	LeagueId         interface{} // 联盟编号
 	LeagueTitle      interface{} // 联盟
 	EventsStartTime  *gtime.Time // 赛事开始时间

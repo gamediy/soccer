@@ -3,15 +3,14 @@ package cmd
 import (
 	"context"
 	"github.com/goflyfox/gtoken/gtoken"
-	_ "github.com/gogf/gf/contrib/nosql/redis/v2"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/i18n/gi18n"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
 	"star_net/app/api-soccer/internal/controller/hello"
-	"star_net/model"
-
 	"star_net/common"
+	"star_net/consts"
+	"star_net/model"
 	"star_net/utility/utils/xpusher"
 	"time"
 )
@@ -84,18 +83,14 @@ func initRouter(s *ghttp.Server) {
 		},
 		LogoutPath: "/api/user/logout",
 	}
-	s.Group("/api", func(group *ghttp.RouterGroup) {
+	s.Group("/api/soccer", func(group *ghttp.RouterGroup) {
 		group.Middleware(common.MiddlewareDefaultCORS, common.MiddlewareHandlerResponse, common.MiddlewareRequestLimit)
 		group.Group("/hello", func(group *ghttp.RouterGroup) {
 			//gfToken.Middleware(context.Background(), group)
 			group.Bind(hello.Ctrl)
 		})
 
-		group.Group("/ordersvc", func(group *ghttp.RouterGroup) {
-			//gfToken.Middleware(context.Background(), group)
-
-		})
-		group.Group("withdraw", func(group *ghttp.RouterGroup) {
+		group.Group("/order", func(group *ghttp.RouterGroup) {
 			//gfToken.Middleware(context.Background(), group)
 
 		})
