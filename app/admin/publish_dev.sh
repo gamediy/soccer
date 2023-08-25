@@ -4,7 +4,7 @@ name="soccer-admin"
 image_name="$name:$ver"
 # 强制拉群 最近 GIT 代码
 git fetch --all
-git reset --hard origin/main
+git reset --hard origin/master
 
 # 编译 Go 代码
 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o admin main_admin.go
