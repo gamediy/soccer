@@ -5,7 +5,7 @@ import (
 )
 
 type LoginReq struct {
-	g.Meta   `tags:"用户" method:"post" path:"/login/demo"  sm:"登录" dc:"注意：登录地址为 /api/user/login" `
+	g.Meta   `tags:"用户" method:"post" path:"/login/demo"  sm:"登录" dc:"注意：登录地址为 /api/user/user/login" `
 	Account  string `v:"required" dc:"用户名" json:"account" json:"account"`
 	Password string `v:"required" dc:"密码" json:"password" json:"password"`
 }
