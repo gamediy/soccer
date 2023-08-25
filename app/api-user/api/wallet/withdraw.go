@@ -8,9 +8,9 @@ import (
 
 type CreateWithdrawReq struct {
 	g.Meta            `tags:"钱包" sm:"创建提现订单" method:"post" path:"/withdraw/create"`
-	AmountItemId      int     `json:"amountItemId" v:"required:"`
-	Amount            float64 `json:"amount" v:"required"`
-	WithdrawAccountId int     `json:"withdrawAccountId" v:"required"`
+	AmountItemId      int     `json:"amountItemId" v:"required:" dc:"平台支持的银行ID 从 /wallet/deposit/platform 获取选择"`
+	Amount            float64 `json:"amount" v:"required" dc:"提现金额"`
+	WithdrawAccountId int     `json:"withdrawAccountId" v:"required" dc:"用户银行的ID （从 /withdraw/account/list 接口获取选择）"`
 }
 type BindWithdrawAccountReq struct {
 	g.Meta  `tags:"钱包" sm:"绑定提现账户信息" method:"post" path:"/withdraw/account/bind"`
