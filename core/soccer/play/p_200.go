@@ -37,7 +37,7 @@ func (P2001) WonCheck(openResult OpenResult, calcInfo CalcInfo) float64 {
 	return 0
 }
 
-// tie
+// draw
 func (P2002) WonCheck(openResult OpenResult, calcInfo CalcInfo) float64 {
 
 	a1, a2, err := xplay.OpenResutToTwo(openResult.Result)

@@ -44,25 +44,30 @@ func getP100Profit(openResult OpenResult, calcInfo CalcInfo) float64 {
 	}
 	ts := split[0]
 	nu := strings.Split(split[1], "/")
-
+	hc := gconv.Float64(nu[0])
+	if len(nu) > 1 {
+		hc = gconv.Float64(nu[1]) - 0.25
+	}
+	score := total - hc
+	if score == 0 {
+		return calcInfo.BetAmount
+	}
 	if ts == "Over" { //大
-		n1 := gconv.Float64(nu[0])
-		if total >= n1 {
-			if len(nu) == 1 {
-				return calcInfo.Odds * calcInfo.BetAmount
-			} else {
-				n2 := gconv.Float64(nu[1])
-				if total > n2 {
-					return calcInfo.Odds * calcInfo.BetAmount
-				} else {
-					return calcInfo.Odds * calcInfo.BetAmount * 0.5
-				}
-			}
-
+		if score == -0.25 {
+			return calcInfo.BetAmount * 0.5
+		} else if score > 0.25 {
+			return calcInfo.BetAmount * calcInfo.Odds
+		} else if score == 0.25 {
+			return calcInfo.BetAmount * calcInfo.Odds * 0.5
 		}
-
 	} else if ts == "Under" { //小
-
+		if score == 0.25 {
+			return calcInfo.BetAmount * 0.5
+		} else if score < -0.25 {
+			return calcInfo.BetAmount * calcInfo.Odds
+		} else if score == -0.25 {
+			return calcInfo.BetAmount * calcInfo.Odds * 0.5
+		}
 	}
 
 	return 0

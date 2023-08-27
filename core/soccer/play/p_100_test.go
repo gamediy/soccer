@@ -20,14 +20,14 @@ func Test_getProfit(t *testing.T) {
 				calcInfo: CalcInfo{
 					BetAmount: 100,
 					Odds:      1.8,
-					Rule:      "Over 2/2.5",
+					Rule:      "Under 2/2.5",
 				},
 			},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := getP400Profit(tt.args.openResult, tt.args.calcInfo); got != tt.want {
+			if got := getP100Profit(tt.args.openResult, tt.args.calcInfo); got != tt.want {
 				t.Errorf("getProfit() = %v, want %v", got, tt.want)
 			}
 		})
