@@ -63,6 +63,7 @@ func initAuthRule(ctx context.Context) {
 
 const (
 	swaggerUIPageContent = `
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,17 +78,19 @@ const (
 </head>
 <body>
 <div id="swagger-ui"></div>
-<script src="https://unpkg.com/swagger-ui-dist@3.18.2/swagger-ui-bundle.js" crossorigin></script>
+<script src="https://unpkg.com/swagger-ui-dist@4.5.0/swagger-ui-bundle.js" crossorigin></script>
 <script>
   window.onload = () => {
     window.ui = SwaggerUIBundle({
       url: '/api/user/doc/api.json',
       dom_id: '#swagger-ui',
-
     });
   };
 </script>
 </body>
+</html>
+
+
 
 `
 )
