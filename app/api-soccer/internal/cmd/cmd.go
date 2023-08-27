@@ -25,6 +25,12 @@ var (
 			xpusher.InitFromCfg(ctx)
 			s.SetPort(4102)
 			auth.GFToken.AuthPaths = g.SliceStr{"/api"}
+			auth.GFToken.AuthExcludePaths = g.SliceStr{
+				"/api.json",
+				"/api/soccer/doc",
+				"/api/soccer/doc/*",
+				"/api/soccer/api.json",
+			}
 			auth.GFToken.Start()
 			s.Run()
 			return nil
