@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	Bet = &bet{}
+	Bet = bet{}
 )
 
 type BetInput struct {

@@ -1,5 +1,16 @@
-"提现成功"="Successful withdrawal"
-"处理中"="Pending"
-"这是个错误"="this error"
-"用户名已存在"="Username already exists"
-"用户名必填"="Username is required"
+
+"大小球_1"="Over/Under-1st Half"
+"大小球_2"="Over/Under-2st Half"
+"大小球_3"="Over/Under"
+
+"让球_1"="Handicap-1st Half"
+"让球_2"="Handicap-2st Half"
+"让球_3"="Handicap"
+
+"独赢_1"="1x2-1st Half"
+"独赢_2"="1x2-2st Half"
+"独赢_3"="1x2"
+
+"波胆_1"="Correct Score-1st Half"
+"波胆_2"="Correct Score-2st Half"
+"波胆_3"="Correct Score"

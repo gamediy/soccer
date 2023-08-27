@@ -2,38 +2,52 @@ package eventsvc
 
 import (
 	"context"
+	"github.com/gogf/gf/v2/os/gtime"
 	"star_net/db/dao"
 	"star_net/db/model/entity"
 )
 
-// 玩法列表
-type list struct {
+var (
+	EventList = eventsList{}
+)
+
+type eventsList struct {
+	Status int `json:"status"`
+}
+type EventsListOutput struct {
+	EventsId  int64
+	Home      string
+	Away      string
+	RestTime  string
+	Status    int
+	League    string
+	StartTime *gtime.Time
+	EndTime   *gtime.Time
 }
 
-type ListOutput struct {
-	entity.PlayType
-	Item []*entity.EventsOdds
-}
-
-func (*list) Exec(ctx context.Context) ([]*ListOutput, error) {
-	model := make([]*ListOutput, 0)
-	playType := []entity.PlayType{}
-	odds := []entity.EventsOdds{}
-	dao.PlayType.Ctx(ctx).Where("status", 1).Scan(&playType)
-	dao.EventsOdds.Ctx(ctx).Where("status", 1).Scan(&odds)
-	for _, pt := range playType {
-		e := ListOutput{}
-		e.Id = pt.Id
-		e.Name = pt.Name
-		e.Code = pt.Code
-		e.Item = make([]*entity.EventsOdds, 0)
-		for _, odd := range odds {
-			if odd.PlayTypeCode == pt.Code {
-				e.Item = append(e.Item, &odd)
-			}
-		}
-		model = append(model, &e)
+// 取进行中可下注的比赛
+func (this *eventsList) Exec(ctx context.Context) ([]EventsListOutput, error) {
+	list := []entity.Events{}
+	model := dao.Events.Ctx(ctx)
+	if this.Status >= 0 {
+		model.Where("status", this.Status).Scan(&list)
+	} else {
+		model.Scan(&list)
 	}
 
-	return model, nil
+	res := []EventsListOutput{}
+	for _, item := range list {
+		res = append(res, EventsListOutput{
+			EventsId:  item.Id,
+			Home:      item.HomeTeam,
+			Away:      item.AwayTeam,
+			League:    item.LeagueTitle,
+			Status:    item.Status,
+			RestTime:  item.RestTime,
+			StartTime: item.StartTime,
+			EndTime:   item.EndTime,
+		})
+	}
+	return res, nil
+
 }

@@ -24,7 +24,7 @@ type EventsOddsColumns struct {
 	EventsId     string // 赛事编号
 	Title        string // 标题
 	CalcRule     string // 结算规则
-	BoutStatus   string // 类型 1:上半场 2：全场
+	BoutStatus   string // 类型 1:上半场 2：下半场，3：全场
 	TotalAmount  string // 投注金额
 	TotalProfit  string // 赢利
 	Header       string // 主球队 1：主队，2：客队，draw 平局

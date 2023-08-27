@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+	_ "github.com/gogf/gf/contrib/drivers/mysql/v2"
 	_ "github.com/gogf/gf/contrib/nosql/redis/v2"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
@@ -17,16 +18,12 @@ import (
 )
 
 var (
-	serverName = "star_net_user"
-)
-
-var (
 	Main = gcmd.Command{
 		Name:  "main",
 		Usage: "main",
 		Brief: "start http server",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
-			s := g.Server(serverName)
+			s := g.Server(g.Cfg().MustGet(ctx, "gfToken.name").String())
 			init := syssvc.InitD{}
 			init.Exec(ctx)
 			// init auth role
@@ -60,8 +57,8 @@ func initAuthRule(ctx context.Context) {
 		"/api/user/api.json",
 	}
 	gfToken.LoginBeforeFunc = usersvc.UserLogin
-	gfToken.AuthAfterFunc = usersvc.AuthAfterFunc
-	auth.GFToken = gfToken
+	//gfToken.AuthAfterFunc = usersvc.AuthAfterFunc
+
 }
 
 const (
@@ -71,23 +68,27 @@ const (
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="SwaggerUI"/>
+  <meta
+    name="description"
+    content="SwaggerUI"
+  />
   <title>SwaggerUI</title>
-  <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@latest/swagger-ui.css" />
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@4.5.0/swagger-ui.css" />
 </head>
 <body>
 <div id="swagger-ui"></div>
-<script src="https://unpkg.com/swagger-ui-dist@latest/swagger-ui-bundle.js" crossorigin></script>
+<script src="https://unpkg.com/swagger-ui-dist@3.18.2/swagger-ui-bundle.js" crossorigin></script>
 <script>
-	window.onload = () => {
-		window.ui = SwaggerUIBundle({
-			url:    '/api/user/doc/api.json',
-			dom_id: '#swagger-ui',
-		});
-	};
+  window.onload = () => {
+    window.ui = SwaggerUIBundle({
+      url: '/api/user/doc/api.json',
+      dom_id: '#swagger-ui',
+
+    });
+  };
 </script>
 </body>
-</html>
+
 `
 )
 
@@ -111,6 +112,7 @@ func initRouter(s *ghttp.Server) {
 			group.Bind(wallet.Wallet)
 		})
 	})
+
 	s.SetOpenApiPath("/api/user/doc/api.json")
 
 }

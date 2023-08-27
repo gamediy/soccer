@@ -23,25 +23,19 @@ type Events struct {
 	LeagueId         interface{} // 联盟编号
 	LeagueTitle      interface{} // 联盟
 	EnLeagueTitle    interface{} // 联盟英文
-	HalfStatus       interface{} // 半场状态 0未开始，1已开始，2已结束
 	FirstStatus      interface{} // 上半场状态 0未开始，1已开始，2已结束
 	StartDate        *gtime.Time // 开始日期
 	FirstOpenResult  interface{} // 上半场开奖结果
 	FirstOpenTime    *gtime.Time // 上半场开奖时间
 	SecondOpenResult interface{} // 下半场开奖结果
 	SecondOpenTime   *gtime.Time // 下半场开奖结果
-	SecondStatus     interface{} // 全场状态
+	SecondStatus     interface{} // 0未开始，1已开始，2已结束
 	AddTime          *gtime.Time // 添加时间
 	IsHot            interface{} // 热门
-	Status           interface{} // 状态
+	Status           interface{} // 0：未开始 1接受下注，2：停止下注，3 已结算
 	Remark           interface{} // 注释
 	BetMoney         interface{} // 交易量
-	OpenRessult      interface{} //
-	HalfOpenResult   interface{} // 上半场开奖结果
-	HalfOpenTime     *gtime.Time // 上半场开奖时间
 	AllOpenResult    interface{} // 全场开奖结果
 	AllOpenTime      *gtime.Time // 全场开奖时间
-	AllStatus        interface{} // 全场状态
-	FiId             interface{} // FI编号
 	Handicap         interface{} // 让球
 }

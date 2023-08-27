@@ -1,6 +1,6 @@
 app: "api-soccer"
 server:
-  address: ":3002"
+  address: ":4102"
   openapiPath: "/api.json"
   swaggerPath: "/swagger"
   jwtExpireDuration: "7D" # 7 days

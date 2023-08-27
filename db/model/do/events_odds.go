@@ -16,7 +16,7 @@ type EventsOdds struct {
 	EventsId     interface{} // 赛事编号
 	Title        interface{} // 标题
 	CalcRule     interface{} // 结算规则
-	BoutStatus   interface{} // 类型 1:上半场 2：全场
+	BoutStatus   interface{} // 类型 1:上半场 2：下半场，3：全场
 	TotalAmount  interface{} // 投注金额
 	TotalProfit  interface{} // 赢利
 	Header       interface{} // 主球队 1：主队，2：客队，draw 平局
