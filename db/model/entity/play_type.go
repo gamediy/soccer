@@ -11,4 +11,5 @@ type PlayType struct {
 	EnName string `json:"enName" description:""`
 	Name   string `json:"name"   description:""`
 	Status int    `json:"status" description:""`
+	Class  string `json:"class"  description:""`
 }
