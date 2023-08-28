@@ -18,15 +18,15 @@ type play struct {
 }
 
 type PlayOddsOutput struct {
-	Title string
-	Code  int
-	Item  []*PlayOddsItem
+	Title string          `json:"title"`
+	Code  int             `json:"code"`
+	Item  []*PlayOddsItem `json:"item"`
 }
 type PlayOddsItem struct {
-	Title    string
-	OddsId   int64
-	Odds     float64
-	PlayCode int
+	Title    string  `json:"title"`
+	OddsId   int64   `json:"oddsId"`
+	Odds     float64 `json:"odds"`
+	PlayCode int     `json:"playCode"`
 }
 
 func (this *play) Exec(ctx context.Context) ([]*PlayOddsOutput, error) {

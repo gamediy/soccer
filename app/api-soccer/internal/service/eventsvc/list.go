@@ -15,14 +15,14 @@ type eventsList struct {
 	Status int `json:"status"`
 }
 type EventsListOutput struct {
-	EventsId  int64
-	Home      string
-	Away      string
-	RestTime  string
-	Status    int
-	League    string
-	StartTime *gtime.Time
-	EndTime   *gtime.Time
+	EventsId  int64       `json:"eventsId"`
+	Home      string      `json:"home"`
+	Away      string      `json:"away"`
+	RestTime  string      `json:"restTime"`
+	Status    int         `json:"status"`
+	League    string      `json:"league"`
+	StartTime *gtime.Time `json:"startTime"`
+	EndTime   *gtime.Time `json:"endTime"`
 }
 
 // 取进行中可下注的比赛
