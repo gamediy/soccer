@@ -46,6 +46,9 @@ func initRouter(s *ghttp.Server, ctx context.Context) {
 	s.Group("/api/", func(g *ghttp.RouterGroup) {
 		g.Group("soccer", func(g *ghttp.RouterGroup) {
 			g.Bind(soccer.Events)
+			g.Bind(soccer.EventsOdds)
+			g.Bind(soccer.Play)
+			g.Bind(soccer.PlayType)
 		})
 		g.Group("/user", func(g *ghttp.RouterGroup) {
 			g.Bind(user.User)

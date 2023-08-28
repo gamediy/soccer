@@ -16,4 +16,5 @@ type PlayType struct {
 	EnName interface{} //
 	Name   interface{} //
 	Status interface{} //
+	Class  interface{} //
 }

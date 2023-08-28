@@ -25,6 +25,7 @@ type PlayTypeColumns struct {
 	EnName string //
 	Name   string //
 	Status string //
+	Class  string //
 }
 
 // playTypeColumns holds the columns for table p_play_type.
@@ -34,6 +35,7 @@ var playTypeColumns = PlayTypeColumns{
 	EnName: "en_name",
 	Name:   "name",
 	Status: "status",
+	Class:  "class",
 }
 
 // NewPlayTypeDao creates and returns a new DAO object for table data access.
