@@ -43,7 +43,7 @@ func (this *play) Exec(ctx context.Context) ([]*PlayOddsOutput, error) {
 	for _, pt := range playType {
 		for _, status := range boutStatus {
 			e := PlayOddsOutput{}
-			e.Title = fmt.Sprintf("%s_%d", pt.EnName, status)
+			e.Title = fmt.Sprintf("%s_%d", pt.Name, status)
 			e.Title = userInfo.I18n.T(ctx, e.Title)
 			e.Code = pt.Code
 			for _, item := range odds {

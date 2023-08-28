@@ -36,7 +36,7 @@ func getP400Profit(result OpenResult, info CalcInfo) float64 {
 
 	var score float64
 	addCon := strings.Contains(info.Rule, "+")
-	if team == "Home" {
+	if team == "主" {
 		if addCon {
 			score = n1 + hc - n2
 		} else {

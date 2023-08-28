@@ -52,7 +52,7 @@ func getP100Profit(openResult OpenResult, calcInfo CalcInfo) float64 {
 	if score == 0 {
 		return calcInfo.BetAmount
 	}
-	if ts == "Over" { //大
+	if ts == "大" { //大
 		if score == -0.25 {
 			return calcInfo.BetAmount * 0.5
 		} else if score > 0.25 {
@@ -60,7 +60,7 @@ func getP100Profit(openResult OpenResult, calcInfo CalcInfo) float64 {
 		} else if score == 0.25 {
 			return calcInfo.BetAmount * calcInfo.Odds * 0.5
 		}
-	} else if ts == "Under" { //小
+	} else if ts == "小" { //小
 		if score == 0.25 {
 			return calcInfo.BetAmount * 0.5
 		} else if score < -0.25 {

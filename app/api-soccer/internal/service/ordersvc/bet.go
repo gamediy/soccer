@@ -64,8 +64,8 @@ func (input *bet) Exec(ctx context.Context) error {
 		order.Status = soccer.OrderStatusBetSuccess
 		order.EventsStartTime = event.StartTime
 		order.CalcAt = xtime.Get1970Datetime()
-		order.EventsTitle = fmt.Sprintf("%s vs %s", event.EnHomeTeam, event.EnAwayTeam)
-		order.LeagueTitle = event.EnLeagueTitle
+		order.EventsTitle = fmt.Sprintf("%s vs %s", event.HomeTeam, event.AwayTeam)
+		order.LeagueTitle = event.LeagueTitle
 		order.LeagueId = event.LeagueId
 		order.PlayCode = odds.PlayCode
 		order.Amount = input.Amount
