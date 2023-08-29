@@ -41,5 +41,5 @@ type GetPalyAllReq struct {
 }
 type GetPalyAllRes struct {
 	entity.PlayType
-	Children []entity.Play
+	Children []entity.Play `json:"children"`
 }
