@@ -46,6 +46,9 @@ func (c cPlay) ReadList(ctx context.Context, req *soccer.ReadListPlayReq) (_ *so
 		if req.TypeName != "" {
 			db = db.Where("type_name", req.TypeName)
 		}
+		if req.TypeCode != "" {
+			db = db.Where("type_code", req.TypeCode)
+		}
 	}}
 	if err := x.Exec(&d, &total); err != nil {
 		return nil, err

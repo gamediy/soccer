@@ -21,6 +21,7 @@ type ReadListPlayReq struct {
 	g.Meta `tags:"/足球/玩法" method:"get" path:"/play/list" dc:"查询玩法列表"`
 	model.CommonPageReq
 	TypeName string
+	TypeCode string
 }
 type ReadListPlayRes struct {
 	Total int            `json:"total"`
