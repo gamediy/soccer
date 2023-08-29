@@ -6,6 +6,11 @@ import (
 	"star_net/model"
 )
 
+type BatchInsertReq struct {
+	g.Meta `tags:"足球赔率管理" method:"post" path:"/eventsOdds/batch" dc:"批量添加"`
+	Data   []*entity.EventsOdds `json:"data"`
+}
+
 type CreateEventsOddsRes model.CommonRes
 type UpdateEventsOddsReq struct {
 	g.Meta `tags:"足球赔率管理" method:"put" path:"/eventsOdds" dc:"修改足球配置"`
@@ -20,8 +25,9 @@ type ReadEventsOddsRes entity.EventsOdds
 type ReadListEventsOddsReq struct {
 	g.Meta `tags:"足球赔率管理" method:"get" path:"/eventsOdds/list" dc:"查询足球配置列表"`
 	model.CommonPageReq
-	EventsId string
-	Status   string
+	EventsId   string
+	Status     string
+	BoutStatus string
 }
 type ReadListEventsOddsRes struct {
 	Total int                  `json:"total"`
