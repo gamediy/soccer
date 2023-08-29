@@ -3,7 +3,10 @@ package soccer
 import (
 	"context"
 	"github.com/gogf/gf/v2/database/gdb"
+	"github.com/gogf/gf/v2/os/gctx"
+	"github.com/gogf/gf/v2/util/gconv"
 	"star_net/app/admin/api/soccer"
+	"star_net/db/dao"
 	"star_net/db/model/entity"
 	"star_net/utility/utils/xcrud"
 )
@@ -61,4 +64,17 @@ func (c cPlay) Del(ctx context.Context, req *soccer.DelPlayReq) (_ *soccer.DelPl
 		return nil, err
 	}
 	return
+}
+
+func (c cPlay) GetPalyAll(ctx gctx.Ctx, req *soccer.GetPalyAllReq) (res []*soccer.GetPalyAllRes, err error) {
+	typeList := []entity.PlayType{}
+	dao.PlayType.Ctx(ctx).Scan(&typeList)
+	res = []*soccer.GetPalyAllRes{}
+	for _, playType := range typeList {
+		item := soccer.GetPalyAllRes{}
+		gconv.Struct(playType, &item)
+		dao.Play.Ctx(ctx).Scan(&item.Children, "type_code", playType.Code)
+		res = append(res, &item)
+	}
+	return res, nil
 }

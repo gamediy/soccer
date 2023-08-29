@@ -36,3 +36,10 @@ type DelPlayReq struct {
 	Id     uint64 `json:"id"`
 }
 type DelPlayRes model.CommonRes
+type GetPalyAllReq struct {
+	g.Meta `tags:"/足球/玩法列表" method:"post" path:"/play/all" dc:"玩法列表所有"`
+}
+type GetPalyAllRes struct {
+	entity.PlayType
+	Children []entity.Play
+}
