@@ -1,5 +1,5 @@
 // =================================================================================
-// TypeCode generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
 // =================================================================================
 
 package do
@@ -13,9 +13,10 @@ type Play struct {
 	g.Meta   `orm:"table:p_play, do:true"`
 	Id       interface{} //
 	TypeCode interface{} //
-	Name     interface{} //
 	EnName   interface{} //
+	Name     interface{} //
 	Status   interface{} //
 	TypeName interface{} //
 	Code     interface{} //
+	Sort     interface{} //
 }

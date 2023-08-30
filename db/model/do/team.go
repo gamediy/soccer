@@ -8,13 +8,13 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-// PlayType is the golang structure of table p_play_type for DAO operations like Where/Data.
-type PlayType struct {
-	g.Meta `orm:"table:p_play_type, do:true"`
+// Team is the golang structure of table p_team for DAO operations like Where/Data.
+type Team struct {
+	g.Meta `orm:"table:p_team, do:true"`
 	Id     interface{} //
-	Code   interface{} //
-	EnName interface{} //
 	Name   interface{} //
+	EnName interface{} //
+	VdName interface{} //
 	Status interface{} //
-	Class  interface{} //
+	Icon   interface{} //
 }

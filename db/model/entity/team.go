@@ -4,12 +4,12 @@
 
 package entity
 
-// PlayType is the golang structure for table play_type.
-type PlayType struct {
+// Team is the golang structure for table team.
+type Team struct {
 	Id     int    `json:"id"     description:""`
-	Code   int    `json:"code"   description:""`
-	EnName string `json:"enName" description:""`
 	Name   string `json:"name"   description:""`
+	EnName string `json:"enName" description:""`
+	VdName string `json:"vdName" description:""`
 	Status int    `json:"status" description:""`
-	Class  string `json:"class"  description:""`
+	Icon   string `json:"icon"   description:""`
 }

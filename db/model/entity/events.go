@@ -1,5 +1,5 @@
 // =================================================================================
-// TypeCode generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
 // =================================================================================
 
 package entity
@@ -11,10 +11,10 @@ import (
 // Events is the golang structure for table events.
 type Events struct {
 	Id               int64       `json:"id"               description:"编号"`
-	HomeTeam         string      `json:"homeTeam"         description:"主队名称"`
-	AwayTeam         string      `json:"awayTeam"         description:"客队名称"`
-	EnHomeTeam       string      `json:"enHomeTeam"       description:"主队英文"`
-	EnAwayTeam       string      `json:"enAwayTeam"       description:"客队英文"`
+	HomeTeamName     string      `json:"homeTeamName"     description:"主队名称"`
+	AwayTeamName     string      `json:"awayTeamName"     description:"客队名称"`
+	HomeTeamId       string      `json:"homeTeamId"       description:"主队Id"`
+	AwayTeamId       string      `json:"awayTeamId"       description:"客队Id"`
 	RestTime         string      `json:"restTime"         description:"进行时间"`
 	StartTime        *gtime.Time `json:"startTime"        description:"开始时间"`
 	EndTime          *gtime.Time `json:"endTime"          description:"结束时间"`

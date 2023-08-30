@@ -1,5 +1,5 @@
 // =================================================================================
-// TypeCode generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
 // =================================================================================
 
 package entity
@@ -8,9 +8,10 @@ package entity
 type Play struct {
 	Id       int    `json:"id"       description:""`
 	TypeCode string `json:"typeCode" description:""`
-	Name     string `json:"name"     description:""`
 	EnName   string `json:"enName"   description:""`
+	Name     string `json:"name"     description:""`
 	Status   int    `json:"status"   description:""`
 	TypeName string `json:"typeName" description:""`
 	Code     int    `json:"code"     description:""`
+	Sort     int    `json:"sort"     description:""`
 }

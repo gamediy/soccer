@@ -1,5 +1,5 @@
 // ==========================================================================
-// TypeCode generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
 // ==========================================================================
 
 package internal
@@ -21,10 +21,10 @@ type EventsDao struct {
 // EventsColumns defines and stores column names for table p_events.
 type EventsColumns struct {
 	Id               string // 编号
-	HomeTeam         string // 主队名称
-	AwayTeam         string // 客队名称
-	EnHomeTeam       string // 主队英文
-	EnAwayTeam       string // 客队英文
+	HomeTeamName     string // 主队名称
+	AwayTeamName     string // 客队名称
+	HomeTeamId       string // 主队Id
+	AwayTeamId       string // 客队Id
 	RestTime         string // 进行时间
 	StartTime        string // 开始时间
 	EndTime          string // 结束时间
@@ -51,10 +51,10 @@ type EventsColumns struct {
 // eventsColumns holds the columns for table p_events.
 var eventsColumns = EventsColumns{
 	Id:               "id",
-	HomeTeam:         "home_team",
-	AwayTeam:         "away_team",
-	EnHomeTeam:       "en_home_team",
-	EnAwayTeam:       "en_away_team",
+	HomeTeamName:     "home_team_name",
+	AwayTeamName:     "away_team_name",
+	HomeTeamId:       "home_team_id",
+	AwayTeamId:       "away_team_id",
 	RestTime:         "rest_time",
 	StartTime:        "start_time",
 	EndTime:          "end_time",

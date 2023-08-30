@@ -1,5 +1,5 @@
 // ==========================================================================
-// TypeCode generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
 // ==========================================================================
 
 package internal
@@ -22,22 +22,24 @@ type PlayDao struct {
 type PlayColumns struct {
 	Id       string //
 	TypeCode string //
-	Name     string //
 	EnName   string //
+	Name     string //
 	Status   string //
 	TypeName string //
 	Code     string //
+	Sort     string //
 }
 
 // playColumns holds the columns for table p_play.
 var playColumns = PlayColumns{
 	Id:       "id",
 	TypeCode: "type_code",
-	Name:     "name",
 	EnName:   "en_name",
+	Name:     "name",
 	Status:   "status",
 	TypeName: "type_name",
 	Code:     "code",
+	Sort:     "sort",
 }
 
 // NewPlayDao creates and returns a new DAO object for table data access.

@@ -1,5 +1,5 @@
 // =================================================================================
-// TypeCode generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
 // =================================================================================
 
 package do
@@ -13,10 +13,10 @@ import (
 type Events struct {
 	g.Meta           `orm:"table:p_events, do:true"`
 	Id               interface{} // 编号
-	HomeTeam         interface{} // 主队名称
-	AwayTeam         interface{} // 客队名称
-	EnHomeTeam       interface{} // 主队英文
-	EnAwayTeam       interface{} // 客队英文
+	HomeTeamName     interface{} // 主队名称
+	AwayTeamName     interface{} // 客队名称
+	HomeTeamId       interface{} // 主队Id
+	AwayTeamId       interface{} // 客队Id
 	RestTime         interface{} // 进行时间
 	StartTime        *gtime.Time // 开始时间
 	EndTime          *gtime.Time // 结束时间
