@@ -18,7 +18,7 @@ var (
 )
 
 type BetInput struct {
-	OddsId int     `json:"oddsId"`
+	OddsId int64   `json:"oddsId"`
 	Amount float64 `json:"amount"`
 }
 type BetOutput struct {

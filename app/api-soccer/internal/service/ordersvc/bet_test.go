@@ -5,9 +5,23 @@ import (
 	"fmt"
 	"github.com/gogf/gf/v2/frame/g"
 	"star_net/consts"
+	"star_net/db/dao"
+	"star_net/db/model/entity"
 	"star_net/model"
+	"star_net/utility/utils/xtest"
 	"testing"
 )
+
+func Test_betAll(t *testing.T) {
+	list := []entity.EventsOdds{}
+	dao.EventsOdds.Ctx(context.TODO()).Scan(&list)
+	for _, odds := range list {
+		bet := bet{}
+		bet.BetInput.Amount = 1
+		bet.BetInput.OddsId = odds.Id
+		bet.Exec(xtest.GetContext())
+	}
+}
 
 func Test_bet_Exec(t *testing.T) {
 	fmt.Println(g.Config().MustGet(context.TODO(), "database.default.link"))
