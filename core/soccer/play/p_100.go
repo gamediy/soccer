@@ -23,7 +23,6 @@ func (P100Utils) WonCheck(openResult OpenResult, calcInfo CalcInfo) float64 {
 
 // Over 1
 func (P1000) WonCheck(openResult OpenResult, calcInfo CalcInfo) float64 {
-
 	return getP100Profit(openResult, calcInfo)
 }
 
