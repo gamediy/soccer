@@ -4,7 +4,9 @@ import (
 	"context"
 	"github.com/gogf/gf/v2/database/gdb"
 	"star_net/app/admin/api/soccer"
+	"star_net/app/admin/internal/service/soccersvc"
 	"star_net/db/model/entity"
+	"star_net/model"
 	"star_net/utility/utils/xcrud"
 )
 
@@ -13,6 +15,16 @@ var (
 )
 
 type cEventsOdds struct{}
+
+func (c cEventsOdds) BatchInsertReq(ctx context.Context, req *soccer.BatchInsertReq) (_ *model.CommonRes, err error) {
+	x := soccersvc.BatchInsert{
+		Data: req.Data,
+	}
+	if err = x.Exec(ctx); err != nil {
+		return nil, err
+	}
+	return
+}
 
 func (c cEventsOdds) Create(ctx context.Context, req *soccer.CreateEventsOddsReq) (_ *soccer.CreateEventsOddsRes, _ error) {
 	x := xcrud.Create{Ctx: ctx, Table: "p_events_odds", Data: req}
@@ -48,6 +60,9 @@ func (c cEventsOdds) ReadList(ctx context.Context, req *soccer.ReadListEventsOdd
 		}
 		if req.Status != "" {
 			db = db.Where("status", req.Status)
+		}
+		if req.BoutStatus != "" {
+			db = db.Where("bout_status", req.BoutStatus)
 		}
 	}}
 	if err := x.Exec(&d, &total); err != nil {

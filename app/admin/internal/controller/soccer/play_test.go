@@ -11,6 +11,6 @@ import (
 func Test_cPlay_GetPalyAll(t *testing.T) {
 
 	c := cPlay{}
-	g.Dump(c.GetPalyAll(context.Background(), &soccer.GetPalyAllReq{}))
+	g.Dump(c.GetPlayAll(context.Background(), &soccer.GetPlayAllReq{}))
 
 }
