@@ -12,4 +12,5 @@ type League struct {
 	ZhName  string `json:"zhName"  description:"中文名称"`
 	EnName  string `json:"enName"  description:"英文名称"`
 	Icon    int    `json:"icon"    description:""`
+	VdName  string `json:"vdName"  description:""`
 }

@@ -26,6 +26,7 @@ type LeagueColumns struct {
 	ZhName  string // 中文名称
 	EnName  string // 英文名称
 	Icon    string //
+	VdName  string //
 }
 
 // leagueColumns holds the columns for table p_league.
@@ -36,6 +37,7 @@ var leagueColumns = LeagueColumns{
 	ZhName:  "zh_name",
 	EnName:  "en_name",
 	Icon:    "icon",
+	VdName:  "vd_name",
 }
 
 // NewLeagueDao creates and returns a new DAO object for table data access.

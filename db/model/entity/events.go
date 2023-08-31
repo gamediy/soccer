@@ -19,7 +19,7 @@ type Events struct {
 	StartTime        *gtime.Time `json:"startTime"        description:"开始时间"`
 	EndTime          *gtime.Time `json:"endTime"          description:"结束时间"`
 	LeagueId         int64       `json:"leagueId"         description:"联盟编号"`
-	LeagueZhName     string      `json:"leagueZhName"     description:"联盟"`
+	LeagueName       string      `json:"leagueName"       description:"联盟"`
 	FirstStatus      int         `json:"firstStatus"      description:"上半场状态 0未开始，1已开始，2已结束"`
 	StartDate        *gtime.Time `json:"startDate"        description:"开始日期"`
 	FirstOpenResult  string      `json:"firstOpenResult"  description:"上半场开奖结果"`

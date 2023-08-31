@@ -17,4 +17,5 @@ type League struct {
 	ZhName  interface{} // 中文名称
 	EnName  interface{} // 英文名称
 	Icon    interface{} //
+	VdName  interface{} //
 }
