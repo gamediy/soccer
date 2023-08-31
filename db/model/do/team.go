@@ -12,7 +12,7 @@ import (
 type Team struct {
 	g.Meta `orm:"table:p_team, do:true"`
 	Id     interface{} //
-	Name   interface{} //
+	ZhName interface{} //
 	EnName interface{} //
 	VdName interface{} //
 	Status interface{} //

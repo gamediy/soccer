@@ -29,8 +29,7 @@ type EventsColumns struct {
 	StartTime        string // 开始时间
 	EndTime          string // 结束时间
 	LeagueId         string // 联盟编号
-	LeagueTitle      string // 联盟
-	EnLeagueTitle    string // 联盟英文
+	LeagueZhName     string // 联盟
 	FirstStatus      string // 上半场状态 0未开始，1已开始，2已结束
 	StartDate        string // 开始日期
 	FirstOpenResult  string // 上半场开奖结果
@@ -59,8 +58,7 @@ var eventsColumns = EventsColumns{
 	StartTime:        "start_time",
 	EndTime:          "end_time",
 	LeagueId:         "league_id",
-	LeagueTitle:      "league_title",
-	EnLeagueTitle:    "en_league_title",
+	LeagueZhName:     "league_zh_name",
 	FirstStatus:      "first_status",
 	StartDate:        "start_date",
 	FirstOpenResult:  "first_open_result",

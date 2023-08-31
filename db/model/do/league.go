@@ -12,9 +12,9 @@ import (
 type League struct {
 	g.Meta  `orm:"table:p_league, do:true"`
 	Id      interface{} // 编号
-	Title   interface{} // 标题
 	Country interface{} // 国家
 	Status  interface{} // 状态
-	Name    interface{} // 中文名称
+	ZhName  interface{} // 中文名称
 	EnName  interface{} // 英文名称
+	Icon    interface{} //
 }

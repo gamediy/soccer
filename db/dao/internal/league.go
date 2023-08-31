@@ -21,21 +21,21 @@ type LeagueDao struct {
 // LeagueColumns defines and stores column names for table p_league.
 type LeagueColumns struct {
 	Id      string // 编号
-	Title   string // 标题
 	Country string // 国家
 	Status  string // 状态
-	Name    string // 中文名称
+	ZhName  string // 中文名称
 	EnName  string // 英文名称
+	Icon    string //
 }
 
 // leagueColumns holds the columns for table p_league.
 var leagueColumns = LeagueColumns{
 	Id:      "id",
-	Title:   "title",
 	Country: "country",
 	Status:  "status",
-	Name:    "name",
+	ZhName:  "zh_name",
 	EnName:  "en_name",
+	Icon:    "icon",
 }
 
 // NewLeagueDao creates and returns a new DAO object for table data access.

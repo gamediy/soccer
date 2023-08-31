@@ -21,8 +21,7 @@ type Events struct {
 	StartTime        *gtime.Time // 开始时间
 	EndTime          *gtime.Time // 结束时间
 	LeagueId         interface{} // 联盟编号
-	LeagueTitle      interface{} // 联盟
-	EnLeagueTitle    interface{} // 联盟英文
+	LeagueZhName     interface{} // 联盟
 	FirstStatus      interface{} // 上半场状态 0未开始，1已开始，2已结束
 	StartDate        *gtime.Time // 开始日期
 	FirstOpenResult  interface{} // 上半场开奖结果
