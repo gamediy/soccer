@@ -14,7 +14,7 @@ type Events struct {
 	HomeTeamName     string      `json:"homeTeamName"     description:"主队名称"`
 	AwayTeamName     string      `json:"awayTeamName"     description:"客队名称"`
 	HomeTeamId       string      `json:"homeTeamId"       description:"主队Id"`
-	AwayTeamId       string      `json:"awayTeamId"       description:"客队Id"`
+	AwayTeamId       int         `json:"awayTeamId"       description:"客队Id"`
 	RestTime         string      `json:"restTime"         description:"进行时间"`
 	StartTime        *gtime.Time `json:"startTime"        description:"开始时间"`
 	EndTime          *gtime.Time `json:"endTime"          description:"结束时间"`

@@ -3,6 +3,7 @@ package eventsvc
 import (
 	"context"
 	"github.com/gogf/gf/v2/os/gtime"
+	"star_net/app/api-soccer/internal/service"
 	"star_net/db/dao"
 	"star_net/db/model/entity"
 )
@@ -34,13 +35,23 @@ func (this *eventsList) Exec(ctx context.Context) ([]EventsListOutput, error) {
 	} else {
 		model.Scan(&list)
 	}
+	userInfo := service.GetUserInfo(ctx)
 
 	res := []EventsListOutput{}
 	for _, item := range list {
+
+		home, _ := dao.Team.Ctx(ctx).One("id", item.HomeTeamId)
+		if home == nil {
+			continue
+		}
+		away, _ := dao.Team.Ctx(ctx).One("id", item.AwayTeamId)
+		if away == nil {
+			continue
+		}
 		res = append(res, EventsListOutput{
 			EventsId:  item.Id,
-			Home:      item.HomeTeam,
-			Away:      item.AwayTeam,
+			Home:      home.Map()[userInfo.Lang+"_name"].(string),
+			Away:      away.Map()[userInfo.Lang+"_name"].(string),
 			League:    item.LeagueTitle,
 			Status:    item.Status,
 			RestTime:  item.RestTime,
