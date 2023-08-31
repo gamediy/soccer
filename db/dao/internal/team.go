@@ -21,7 +21,7 @@ type TeamDao struct {
 // TeamColumns defines and stores column names for table p_team.
 type TeamColumns struct {
 	Id     string //
-	Name   string //
+	ZhName string //
 	EnName string //
 	VdName string //
 	Status string //
@@ -31,7 +31,7 @@ type TeamColumns struct {
 // teamColumns holds the columns for table p_team.
 var teamColumns = TeamColumns{
 	Id:     "id",
-	Name:   "name",
+	ZhName: "zh_name",
 	EnName: "en_name",
 	VdName: "vd_name",
 	Status: "status",
