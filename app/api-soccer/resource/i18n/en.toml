@@ -18,3 +18,19 @@
 "主"="Home"
 "客"="Away"
 "和"="Draw"
+
+
+"场次_1"="first half"
+"场次_2"="second half"
+"场次_3"=""
+
+
+"订单状态_0" = "Cancelled"
+"订单状态_1" = "Bet Successful"
+"订单状态_2" = "Won"
+"订单状态_3" = "Not Won"
+
+
+
+
+

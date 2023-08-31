@@ -45,14 +45,19 @@ func (this *eventsList) Exec(ctx context.Context) ([]EventsListOutput, error) {
 			continue
 		}
 		away, _ := dao.Team.Ctx(ctx).One("id", item.AwayTeamId)
+
 		if away == nil {
+			continue
+		}
+		league, _ := dao.League.Ctx(ctx).One("id", item.LeagueId)
+		if league == nil {
 			continue
 		}
 		res = append(res, EventsListOutput{
 			EventsId:  item.Id,
 			Home:      home.Map()[userInfo.Lang+"_name"].(string),
 			Away:      away.Map()[userInfo.Lang+"_name"].(string),
-			League:    item.LeagueTitle,
+			League:    league.Map()[userInfo.Lang+"_name"].(string),
 			Status:    item.Status,
 			RestTime:  item.RestTime,
 			StartTime: item.StartTime,
