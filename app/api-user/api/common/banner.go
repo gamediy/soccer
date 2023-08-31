@@ -6,6 +6,6 @@ import (
 )
 
 type BannersReq struct {
-	g.Meta `tags:"通用" sm:"banners" path:"/banners"`
+	g.Meta `tags:"通用" sm:"banners" path:"/banners" method:"get"`
 }
 type BannersRes []*entity.Banner
