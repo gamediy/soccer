@@ -19,7 +19,7 @@ func (c cRole) GetById(ctx context.Context, req *sys.GetRoleByIdReq) (res sys.Ge
 	//res.Menu = menus
 	//res.Name = id.Name
 	//res.Status = id.Status
-	//res.Id = id.Id
+	//res.OrderNo = id.OrderNo
 	//res.CreatedAt = id.CreatedAt
 	//res.UpdatedAt = id.UpdatedAt
 	res.Role = id
