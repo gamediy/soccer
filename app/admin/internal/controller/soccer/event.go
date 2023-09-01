@@ -78,13 +78,15 @@ func (c cEvents) OpenResult(ctx gctx.Ctx, req *soccer.OpenResultReq) (res *model
 			Result:     req.Result,
 			BoutStatus: req.BoutStatus,
 		})
-		return nil, err
+		dao.Events.Ctx(ctx).Data(&event).Update("id", req.EventsId)
+
 	} else if req.BoutStatus == 2 {
 
 		event.SecondOpenTime = gtime.Now()
 		event.SecondOpenResult = req.Result
 		event.SecondStatus = 2
 		event.Status = 3
+
 		go soccer2.Calc(ctx, req.EventsId, play.OpenResult{
 			Result:     req.Result,
 			BoutStatus: req.BoutStatus,
@@ -102,7 +104,7 @@ func (c cEvents) OpenResult(ctx gctx.Ctx, req *soccer.OpenResultReq) (res *model
 			Result:     fmt.Sprintf("%d-%d", toTwo+two, f2+f),
 			BoutStatus: req.BoutStatus,
 		})
-
+		dao.Events.Ctx(ctx).Data(&event).Update("id", req.EventsId)
 	}
 	return res, err
 }
