@@ -2,9 +2,17 @@ package soccer
 
 import (
 	"context"
+	"fmt"
+	"github.com/gogf/gf/v2/os/gctx"
+	"github.com/gogf/gf/v2/os/gtime"
 	"star_net/app/admin/api/soccer"
+	soccer2 "star_net/core/soccer"
+	"star_net/core/soccer/play"
+	"star_net/db/dao"
 	"star_net/db/model/entity"
+	"star_net/model"
 	"star_net/utility/utils/xcrud"
+	"star_net/utility/utils/xplay"
 )
 
 var (
@@ -53,4 +61,48 @@ func (c cEvents) Del(ctx context.Context, req *soccer.DelEventsReq) (_ *soccer.D
 		return nil, err
 	}
 	return
+}
+
+func (c cEvents) OpenResult(ctx gctx.Ctx, req *soccer.OpenResultReq) (res *model.CommonRes, err error) {
+	event := entity.Events{}
+	dao.Events.Ctx(ctx).Scan(&event, "id", req.EventsId)
+	if event.Id == 0 {
+		return res, fmt.Errorf("没有赛事")
+	}
+	if req.BoutStatus == 1 {
+		event.FirstOpenTime = gtime.Now()
+		event.FirstOpenResult = req.Result
+		event.FirstStatus = 2
+		event.SecondStatus = 1
+		go soccer2.Calc(ctx, req.EventsId, play.OpenResult{
+			Result:     req.Result,
+			BoutStatus: req.BoutStatus,
+		})
+		return nil, err
+	} else if req.BoutStatus == 2 {
+
+		event.SecondOpenTime = gtime.Now()
+		event.SecondOpenResult = req.Result
+		event.SecondStatus = 2
+		event.Status = 3
+		go soccer2.Calc(ctx, req.EventsId, play.OpenResult{
+			Result:     req.Result,
+			BoutStatus: req.BoutStatus,
+		})
+
+		toTwo, f2, err := xplay.OpenResutToTwo(event.FirstOpenResult)
+		if err != nil {
+			return nil, err
+		}
+		two, f, err := xplay.OpenResutToTwo(req.Result)
+		if err != nil {
+			return nil, err
+		}
+		go soccer2.Calc(ctx, req.EventsId, play.OpenResult{
+			Result:     fmt.Sprintf("%d-%d", toTwo+two, f2+f),
+			BoutStatus: req.BoutStatus,
+		})
+
+	}
+	return res, err
 }

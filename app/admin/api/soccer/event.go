@@ -34,3 +34,10 @@ type DelEventsReq struct {
 	Id     uint64 `json:"id"`
 }
 type DelEventsRes model.CommonRes
+
+type OpenResultReq struct {
+	g.Meta     `tags:"/足球/赛事" method:"post" path:"/open" dc:"赛事开奖"`
+	Result     string `json:"result" dc:"1-1"`
+	BoutStatus int    `json:"boutStatus" dc:"1:上，2：下，3：全"`
+	EventsId   int64  `json:"eventsId"`
+}
