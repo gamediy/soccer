@@ -7,6 +7,7 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
+	ctrlComon "star_net/app/api-user/internal/controller/common"
 	"star_net/app/api-user/internal/controller/sys"
 	"star_net/app/api-user/internal/controller/user"
 	"star_net/app/api-user/internal/controller/wallet"
@@ -55,9 +56,38 @@ func initAuthRule(ctx context.Context) {
 		"/api/user/doc",
 		"/api/user/doc/*",
 		"/api/user/api.json",
+		"/api/user/common/banners",
 	}
 	gfToken.LoginBeforeFunc = usersvc.UserLogin
-	//gfToken.AuthAfterFunc = usersvc.AuthAfterFunc
+	gfToken.AuthAfterFunc = usersvc.AuthAfterFunc
+
+}
+
+/*
+统一路由注册
+*/
+func initRouter(s *ghttp.Server) {
+	s.BindMiddlewareDefault(common.MiddlewareDefaultCORS, common.MiddlewareRequestLimit, common.MiddlewareHandlerResponse)
+	s.Group("/api/user", func(group *ghttp.RouterGroup) {
+
+		group.GET("/doc", func(r *ghttp.Request) {
+			r.Response.Write(swaggerUIPageContent)
+		})
+		group.Group("/common", func(group *ghttp.RouterGroup) {
+			group.Bind(ctrlComon.Common)
+		})
+		group.Group("/sys", func(group *ghttp.RouterGroup) {
+			group.Bind(sys.Sys)
+		})
+		group.Group("/user", func(group *ghttp.RouterGroup) {
+			group.Bind(user.User)
+		})
+		group.Group("/wallet", func(group *ghttp.RouterGroup) {
+			group.Bind(wallet.Wallet)
+		})
+	})
+
+	s.SetOpenApiPath("/api/user/doc/api.json")
 
 }
 
@@ -94,28 +124,3 @@ const (
 
 `
 )
-
-/*
-统一路由注册
-*/
-func initRouter(s *ghttp.Server) {
-	s.BindMiddlewareDefault(common.MiddlewareDefaultCORS, common.MiddlewareRequestLimit, common.MiddlewareHandlerResponse)
-	s.Group("/api/user", func(group *ghttp.RouterGroup) {
-
-		group.GET("/doc", func(r *ghttp.Request) {
-			r.Response.Write(swaggerUIPageContent)
-		})
-		group.Group("/sys", func(group *ghttp.RouterGroup) {
-			group.Bind(sys.Sys)
-		})
-		group.Group("/user", func(group *ghttp.RouterGroup) {
-			group.Bind(user.User)
-		})
-		group.Group("/wallet", func(group *ghttp.RouterGroup) {
-			group.Bind(wallet.Wallet)
-		})
-	})
-
-	s.SetOpenApiPath("/api/user/doc/api.json")
-
-}
