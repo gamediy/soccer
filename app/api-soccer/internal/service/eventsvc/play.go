@@ -3,9 +3,12 @@ package eventsvc
 import (
 	"context"
 	"fmt"
+	"github.com/gogf/gf/v2/database/gdb"
+	"github.com/gogf/gf/v2/util/gconv"
 	"star_net/app/api-soccer/internal/service"
 	"star_net/db/dao"
 	"star_net/db/model/entity"
+	"strings"
 )
 
 var (
@@ -27,6 +30,7 @@ type PlayOddsItem struct {
 	OddsId   int64   `json:"oddsId"`
 	Odds     float64 `json:"odds"`
 	PlayCode int     `json:"playCode"`
+	Type     string  `json:"type"`
 }
 
 func (this *play) Exec(ctx context.Context) ([]*PlayOddsOutput, error) {
@@ -38,23 +42,26 @@ func (this *play) Exec(ctx context.Context) ([]*PlayOddsOutput, error) {
 	odds := []entity.EventsOdds{}
 	dao.PlayType.Ctx(ctx).Where("status", 1).Scan(&playType)
 	dao.EventsOdds.Ctx(ctx).Where("status=? and events_id=?", 1, this.EventId).Scan(&odds)
+
+	all, _ := dao.Play.Ctx(ctx).All()
 	boutStatus := [3]int{
 		3, 1, 2,
 	}
 	for _, pt := range playType {
 		for _, status := range boutStatus {
 			e := PlayOddsOutput{}
-			e.Title = fmt.Sprintf("%s_%d", pt.Name, status)
+			e.Title = fmt.Sprintf("%s_%d", pt.ZhName, status)
 			e.Title = userInfo.I18n.T(ctx, e.Title)
 			e.Code = pt.Code
 			for _, item := range odds {
 				if item.BoutStatus == status && item.PlayTypeCode == pt.Code {
 
 					e.Item = append(e.Item, &PlayOddsItem{
-						Title:    item.Title,
+						Title:    this.getPlayName(all.List(), item.PlayCode, userInfo.Lang),
 						Odds:     item.Odds,
 						OddsId:   item.Id,
 						PlayCode: item.PlayCode,
+						Type:     this.getType(item),
 					})
 
 				}
@@ -68,4 +75,25 @@ func (this *play) Exec(ctx context.Context) ([]*PlayOddsOutput, error) {
 	}
 
 	return model, nil
+}
+
+func (this *play) getPlayName(list gdb.List, playCode int, lang string) string {
+	for _, item := range list {
+		i := gconv.Int(item["code"])
+		if i == playCode {
+			s := item[fmt.Sprintf("%s_name", lang)].(string)
+			return s
+		}
+	}
+	return ""
+}
+
+func (this *play) getType(item entity.EventsOdds) string {
+
+	if item.PlayTypeCode == 400 {
+		split := strings.Split(item.CalcRule, " ")
+		return split[0]
+
+	}
+	return ""
 }
