@@ -28,7 +28,7 @@ func (s *ReadList) Exec() ([]*adminModel.User, int, error) {
 	if count == 0 {
 		return d, count, nil
 	}
-	if err = dao.Wallet.Ctx(s.Ctx).Where("uid", gdb.ListItemValuesUnique(&d, "User", "Id")).
+	if err = dao.Wallet.Ctx(s.Ctx).Where("uid", gdb.ListItemValuesUnique(&d, "User", "OrderNo")).
 		ScanList(&d, "Wallet", "User", "uid:id"); err != nil {
 		return nil, 0, err
 	}
