@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/gogf/gf/v2/os/gctx"
 	"github.com/gogf/gf/v2/os/gtime"
+	"github.com/gogf/gf/v2/util/gconv"
 	"regexp"
 	"star_net/app/admin/api/soccer"
 	soccer2 "star_net/core/soccer"
@@ -84,7 +85,10 @@ func (c cEvents) OpenResult(ctx gctx.Ctx, req *soccer.OpenResultReq) (res *model
 			Result:     req.Result,
 			BoutStatus: req.BoutStatus,
 		})
-		dao.Events.Ctx(ctx).Data(&event).Update("id", req.EventsId)
+		_, err := dao.Events.Ctx(ctx).Data(&event).Where("id", req.EventsId).Update()
+		if err != nil {
+			return nil, err
+		}
 
 	} else if req.BoutStatus == 2 {
 
@@ -107,10 +111,10 @@ func (c cEvents) OpenResult(ctx gctx.Ctx, req *soccer.OpenResultReq) (res *model
 			return nil, err
 		}
 		go soccer2.Calc(ctx, req.EventsId, play.OpenResult{
-			Result:     fmt.Sprintf("%d-%d", toTwo+two, f2+f),
+			Result:     fmt.Sprintf("%d-%d", gconv.Int(toTwo+two), gconv.Int(f2+f)),
 			BoutStatus: req.BoutStatus,
 		})
-		dao.Events.Ctx(ctx).Data(&event).Update("id", req.EventsId)
+		dao.Events.Ctx(ctx).Data(&event).Where("id", req.EventsId).Update()
 	}
 	return res, err
 }
