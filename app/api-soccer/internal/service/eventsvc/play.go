@@ -32,6 +32,7 @@ type PlayOddsItem struct {
 func (this *play) Exec(ctx context.Context) ([]*PlayOddsOutput, error) {
 
 	userInfo := service.GetUserInfo(ctx)
+
 	model := make([]*PlayOddsOutput, 0)
 	playType := []entity.PlayType{}
 	odds := []entity.EventsOdds{}

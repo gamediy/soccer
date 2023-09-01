@@ -13,20 +13,11 @@ const (
 )
 
 var (
-	i18n = gi18n.New()
-)
-var (
 	Path string
 )
 
 func Init(path string) {
 	Path = path
-}
-func SetPath() {
-	i18n = gi18n.New()
-	if err := i18n.SetPath(fmt.Sprint("/resource/i18n")); err != nil {
-		panic(err)
-	}
 }
 
 func T(language interface{}, word string) string {
@@ -52,10 +43,16 @@ func T(language interface{}, word string) string {
 }
 
 func New(language interface{}) *gi18n.Manager {
+
 	if language == nil {
 		language = "en"
 	}
-
+	var (
+		i18n = gi18n.New()
+	)
+	if err := i18n.SetPath(fmt.Sprint("/resource/i18n")); err != nil {
+		panic(err)
+	}
 	i18n.SetLanguage(fmt.Sprint(language))
 	return i18n
 }

@@ -14,9 +14,10 @@ type Play struct {
 	Id       interface{} //
 	TypeCode interface{} //
 	EnName   interface{} //
-	Name     interface{} //
 	Status   interface{} //
 	TypeName interface{} //
 	Code     interface{} //
 	Sort     interface{} //
+	ZhName   interface{} //
+	VdName   interface{} //
 }

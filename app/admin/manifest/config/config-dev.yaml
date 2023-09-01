@@ -9,6 +9,7 @@ server:
   rootFilePath: "/resource/public/upload/"  # 文件上传路径
   clientMaxBodySize: "200MB"
 logger:
+  source: "es"
   level: "debug"
   stdout: true
 database:

@@ -23,11 +23,12 @@ type PlayColumns struct {
 	Id       string //
 	TypeCode string //
 	EnName   string //
-	Name     string //
 	Status   string //
 	TypeName string //
 	Code     string //
 	Sort     string //
+	ZhName   string //
+	VdName   string //
 }
 
 // playColumns holds the columns for table p_play.
@@ -35,11 +36,12 @@ var playColumns = PlayColumns{
 	Id:       "id",
 	TypeCode: "type_code",
 	EnName:   "en_name",
-	Name:     "name",
 	Status:   "status",
 	TypeName: "type_name",
 	Code:     "code",
 	Sort:     "sort",
+	ZhName:   "zh_name",
+	VdName:   "vd_name",
 }
 
 // NewPlayDao creates and returns a new DAO object for table data access.
