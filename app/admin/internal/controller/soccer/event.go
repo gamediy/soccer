@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/gogf/gf/v2/os/gctx"
 	"github.com/gogf/gf/v2/os/gtime"
+	"regexp"
 	"star_net/app/admin/api/soccer"
 	soccer2 "star_net/core/soccer"
 	"star_net/core/soccer/play"
@@ -68,6 +69,11 @@ func (c cEvents) OpenResult(ctx gctx.Ctx, req *soccer.OpenResultReq) (res *model
 	dao.Events.Ctx(ctx).Scan(&event, "id", req.EventsId)
 	if event.Id == 0 {
 		return res, fmt.Errorf("没有赛事")
+	}
+	re := regexp.MustCompile(`(\d+)-(\d+)`)
+	matchString := re.MatchString(req.Result)
+	if !matchString {
+		return nil, fmt.Errorf("开奖格式错误，正确格式：1-2")
 	}
 	if req.BoutStatus == 1 {
 		event.FirstOpenTime = gtime.Now()
