@@ -23,7 +23,7 @@ type PlayTypeColumns struct {
 	Id     string //
 	Code   string //
 	EnName string //
-	Name   string //
+	ZhName string //
 	Status string //
 	Class  string //
 }
@@ -33,7 +33,7 @@ var playTypeColumns = PlayTypeColumns{
 	Id:     "id",
 	Code:   "code",
 	EnName: "en_name",
-	Name:   "name",
+	ZhName: "zh_name",
 	Status: "status",
 	Class:  "class",
 }

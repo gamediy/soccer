@@ -14,7 +14,7 @@ type PlayType struct {
 	Id     interface{} //
 	Code   interface{} //
 	EnName interface{} //
-	Name   interface{} //
+	ZhName interface{} //
 	Status interface{} //
 	Class  interface{} //
 }
