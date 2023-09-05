@@ -11,6 +11,7 @@ func (cOrder) List(ctx context.Context, req *order.OrderListReq) (res *order.Ord
 	list := ordersvc.OrderList{}
 	gconv.Struct(req, &list)
 	exec := list.Exec(ctx)
+	res = &order.OrderListRes{}
 	res.List = exec
 	return res, err
 }
