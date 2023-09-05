@@ -13,7 +13,6 @@ type User struct {
 	RealName      string      `json:"realName"     description:"真实姓名"`
 	CreatedAt     *gtime.Time `json:"createdAt"    description:"注册时间"`
 	PayPassStatus int         `json:"payPassStatus" dc:"交易密码设置状态 0 未设置 1已设置"`
-	PayPass       string      `json:"-"`
 }
 
 type Wallet struct {
