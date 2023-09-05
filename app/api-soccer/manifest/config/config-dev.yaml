@@ -6,7 +6,14 @@ server:
   jwtExpireDuration: "7D" # 7 days
   rootFilePath: "/resource/public/upload/"  # 文件上传路径
   clientMaxBodySize: "200MB"
-
+gfToken:
+  name: "star_net_user"
+  cacheMode: 2 # 1 gcache  2 redis 3 file
+  cacheKey: "start_net_user_token:"
+  encryptKey: "koi29a83idakguqjq29asd9asd8a7jhq"
+  authFailMsg: "Login timed out, please log in again"
+  multiLogin: true
+  globalMiddleware: true
 logger:
   level: "debug"
   stdout: true
