@@ -19,7 +19,7 @@ func (m *GetInfo) Exec() (*model.User, *model.Wallet, error) {
 	)
 	_ = dao.User.Ctx(m.Ctx).Scan(&u, "id", m.Uid)
 	_ = dao.Wallet.Ctx(m.Ctx).Scan(&w, "uid", m.Uid)
-	if u.Id == 0 || w.Uid == 0 {
+	if u.Account == "" {
 		return nil, nil, fmt.Errorf("用户数据不存在")
 	}
 	if u.PayPass != "" {
