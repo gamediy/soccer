@@ -77,16 +77,17 @@ func initRouter(s *ghttp.Server) {
 
 	s.BindMiddlewareDefault(common.MiddlewareDefaultCORS, common.MiddlewareHandlerResponse, common.MiddlewareRequestLimit)
 	s.Group("/api/soccer", func(group *ghttp.RouterGroup) {
+		group.Middleware(common.MiddlewareDefaultCORS)
 		group.GET("/doc", func(r *ghttp.Request) {
 			r.Response.Write(swaggerUIPageContent)
 		})
 
 		group.Group("/order", func(group *ghttp.RouterGroup) {
-			auth.GFToken.Middleware(context.Background(), group)
+
 			group.Bind(order.OrderCtrl)
 		})
 		group.Group("/event", func(group *ghttp.RouterGroup) {
-			auth.GFToken.Middleware(context.Background(), group)
+
 			group.Bind(event.EventCtrl)
 		})
 	})
