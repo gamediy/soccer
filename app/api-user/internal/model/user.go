@@ -13,6 +13,7 @@ type User struct {
 	RealName      string      `json:"realName"     description:"真实姓名"`
 	CreatedAt     *gtime.Time `json:"createdAt"    description:"注册时间"`
 	PayPassStatus int         `json:"payPassStatus" dc:"交易密码设置状态 0 未设置 1已设置"`
+	PayPass       string      `json:"-"`
 }
 
 type Wallet struct {
@@ -21,7 +22,6 @@ type Wallet struct {
 	TotalDeposit  float64 `json:"totalDeposit"  description:"总充值"`
 	TotalWithdraw float64 `json:"totalWithdraw" description:"总提现"`
 	Freeze        int64   `json:"freeze"        description:"冻结"`
-	Account       string  `json:"account"       description:"账号"`
 
 	TotalProfit float64 `json:"totalProfit"   description:"总盈利"`
 	TotalGift   float64 `json:"totalGift"     description:"总赠送"`

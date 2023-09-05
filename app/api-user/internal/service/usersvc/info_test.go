@@ -2,7 +2,10 @@ package usersvc
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 	"github.com/gogf/gf/v2/frame/g"
+	"star_net/app/api-user/api/user"
 	"star_net/db/model/entity"
 	"testing"
 )
@@ -30,6 +33,13 @@ func TestGetInfo_Exec(t *testing.T) {
 				Uid: tt.fields.Uid,
 			}
 			got, got1, err := m.Exec()
+			res := user.InfoRes{
+				User:   got,
+				Wallet: got1,
+			}
+			g.Dump(res)
+			marshal, _ := json.Marshal(&res)
+			fmt.Println(string(marshal))
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GetString() error = %v, wantErr %v", err, tt.wantErr)
 				return
