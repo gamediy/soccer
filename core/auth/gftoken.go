@@ -44,6 +44,9 @@ func NewGFTokenFromCtx(ctx context.Context) *AGfToken {
 		u.ClientIP = r.GetClientIp()
 		r.SetCtxVar("account", u.Account)
 		r.SetCtxVar("uid", u.UidInt64)
+		if u.Lang == "" {
+			u.Lang = "zh"
+		}
 		u.I18n = xtrans.New(u.Lang)
 		r.SetCtxVar(consts.UserInfo, u)
 		r.Middleware.Next()
