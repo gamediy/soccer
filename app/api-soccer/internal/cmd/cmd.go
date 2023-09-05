@@ -10,7 +10,6 @@ import (
 	"star_net/common"
 	"star_net/core/auth"
 	"star_net/utility/utils/xpusher"
-	"star_net/utility/utils/xtrans"
 )
 
 var (
@@ -22,7 +21,7 @@ var (
 
 			s := g.Server(g.Cfg().MustGet(ctx, "gfToken.name").String())
 			auth.NewGFTokenFromCtx(ctx)
-			xtrans.SetPath()
+
 			initRouter(s)
 			xpusher.InitFromCfg(ctx)
 			s.SetPort(4102)
