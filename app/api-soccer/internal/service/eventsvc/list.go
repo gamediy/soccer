@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/gogf/gf/v2/os/gtime"
 	"star_net/app/api-soccer/internal/service"
+	"star_net/core/dict"
 	"star_net/db/dao"
 	"star_net/db/model/entity"
 )
@@ -19,6 +20,8 @@ type EventsListOutput struct {
 	EventsId  int64       `json:"eventsId"`
 	Home      string      `json:"home"`
 	Away      string      `json:"away"`
+	HomeIcon  string      `json:"HomeIcon"`
+	AwayIcon  string      `json:"awayIcon"`
 	RestTime  string      `json:"restTime"`
 	Status    int         `json:"status"`
 	League    string      `json:"league"`
@@ -62,6 +65,8 @@ func (this *eventsList) Exec(ctx context.Context) ([]EventsListOutput, error) {
 			RestTime:  item.RestTime,
 			StartTime: item.StartTime,
 			EndTime:   item.EndTime,
+			HomeIcon:  dict.GetVAsString(ctx, dict.ImageDomain) + home.Map()["icon"].(string),
+			AwayIcon:  dict.GetVAsString(ctx, dict.ImageDomain) + away.Map()["icon"].(string),
 		})
 	}
 	return res, nil
