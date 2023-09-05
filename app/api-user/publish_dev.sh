@@ -9,7 +9,7 @@ git fetch --all
 git reset --hard origin/master
 
 # 编译 Go 代码
-CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o api-user main_user.go
+ go build -o api-user main_user.go
 # 构建 Docker 镜像
 docker build -t "$image_name" .
 
