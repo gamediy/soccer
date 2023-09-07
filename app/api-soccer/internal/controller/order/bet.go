@@ -17,7 +17,7 @@ func (cOrder) Bet(ctx context.Context, req *order.OrderBetReq) (res *order.Order
 	return nil, err
 }
 
-func (cOrder) BetBatch(ctx context.Context, req *order.OrderBetBatchReq) (res *order.OrderBetBatchRes, err error) {
+func (s *cOrder) BetBatch(ctx context.Context, req *order.OrderBetBatchReq) (res *order.OrderBetBatchRes, err error) {
 
 	bet := ordersvc.BetBatch
 	gconv.Struct(req, &bet.BetBatchInput)
