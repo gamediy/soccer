@@ -11,3 +11,11 @@ type OrderBetReq struct {
 }
 type OrderBetRes struct {
 }
+
+type OrderBetBatchReq struct {
+	g.Meta `tags:"订单" method:"get" path:"/bet" dc:"投注"`
+	ordersvc.BetBatchInput
+}
+type OrderBetBatchRes struct {
+	Errors []string `json:"errors" dc:"下注失败返回的信息"`
+}

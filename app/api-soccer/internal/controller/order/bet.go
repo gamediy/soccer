@@ -16,3 +16,13 @@ func (cOrder) Bet(ctx context.Context, req *order.OrderBetReq) (res *order.Order
 	err = bet.Exec(ctx)
 	return nil, err
 }
+
+func (cOrder) BetBatch(ctx context.Context, req *order.OrderBetBatchReq) (res *order.OrderBetBatchRes, err error) {
+
+	bet := ordersvc.BetBatch
+	gconv.Struct(req, &bet.BetBatchInput)
+	res = &order.OrderBetBatchRes{}
+	exec, err := bet.Exec(ctx)
+	res.Errors = exec.Errors
+	return res, err
+}
