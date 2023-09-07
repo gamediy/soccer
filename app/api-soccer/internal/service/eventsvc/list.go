@@ -14,7 +14,7 @@ var (
 )
 
 type eventsList struct {
-	Status int `json:"status"`
+	Status []int `json:"status"`
 }
 type EventsListOutput struct {
 	EventsId  int64       `json:"eventsId"`
@@ -33,13 +33,13 @@ type EventsListOutput struct {
 func (this *eventsList) Exec(ctx context.Context) ([]EventsListOutput, error) {
 	list := []entity.Events{}
 	model := dao.Events.Ctx(ctx)
-	if this.Status >= 0 {
-		model.Where("status", this.Status).Scan(&list)
+	if len(this.Status) >= 0 {
+		model.Where("status in (?)", this.Status).Scan(&list)
 	} else {
 		model.Scan(&list)
 	}
-	userInfo := service.GetUserInfo(ctx)
 
+	userInfo := service.GetUserInfo(ctx)
 	res := []EventsListOutput{}
 	for _, item := range list {
 
