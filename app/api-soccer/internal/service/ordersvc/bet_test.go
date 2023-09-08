@@ -16,7 +16,7 @@ func Test_betAll(t *testing.T) {
 	list := []entity.EventsOdds{}
 	dao.EventsOdds.Ctx(context.TODO()).Scan(&list)
 	for _, odds := range list {
-		bet := bet{}
+		bet := Bet{}
 		bet.BetInput.Amount = 1
 		bet.BetInput.OddsId = odds.Id
 		bet.Exec(xtest.GetContext())
@@ -49,7 +49,7 @@ func Test_bet_Exec(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			input := &bet{
+			input := &Bet{
 				BetInput: tt.fields.BetInput,
 			}
 			if err := input.Exec(tt.args.ctx); (err != nil) != tt.wantErr {

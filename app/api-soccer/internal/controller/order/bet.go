@@ -10,7 +10,7 @@ import (
 
 func (cOrder) Bet(ctx context.Context, req *order.OrderBetReq) (res *order.OrderBetRes, err error) {
 
-	bet := ordersvc.Bet
+	bet := ordersvc.Bet{}
 	gconv.Struct(req, &bet.BetInput)
 	fmt.Println(&bet.BetInput.Amount)
 	err = bet.Exec(ctx)
@@ -19,7 +19,7 @@ func (cOrder) Bet(ctx context.Context, req *order.OrderBetReq) (res *order.Order
 
 func (s *cOrder) BetBatch(ctx context.Context, req *order.OrderBetBatchReq) (res *order.OrderBetBatchRes, err error) {
 
-	bet := ordersvc.BetBatch
+	bet := ordersvc.BetBatch{}
 	gconv.Struct(req, &bet.BetBatchInput)
 	res = &order.OrderBetBatchRes{}
 	exec, err := bet.Exec(ctx)

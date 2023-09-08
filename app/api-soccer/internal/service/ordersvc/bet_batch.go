@@ -5,25 +5,21 @@ import (
 	"fmt"
 )
 
-var (
-	BetBatch = betBatch{}
-)
-
 type BetBatchInput struct {
 	List []BetInput
 }
 type BetBatchOutput struct {
 	Errors []string
 }
-type betBatch struct {
+type BetBatch struct {
 	BetBatchInput
 }
 
-func (input *betBatch) Exec(ctx context.Context) (BetBatchOutput, error) {
+func (input *BetBatch) Exec(ctx context.Context) (BetBatchOutput, error) {
 
 	erros := BetBatchOutput{}
 	for _, item := range input.List {
-		b := bet{}
+		b := Bet{}
 		b.OddsId = item.OddsId
 		b.Amount = item.Amount
 		err := b.Exec(ctx)

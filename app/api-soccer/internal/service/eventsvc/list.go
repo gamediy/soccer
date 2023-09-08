@@ -9,11 +9,7 @@ import (
 	"star_net/db/model/entity"
 )
 
-var (
-	EventList = eventsList{}
-)
-
-type eventsList struct {
+type EventsList struct {
 	Status []int `json:"status"`
 }
 type EventsListOutput struct {
@@ -30,7 +26,7 @@ type EventsListOutput struct {
 }
 
 // 取进行中可下注的比赛
-func (this *eventsList) Exec(ctx context.Context) ([]EventsListOutput, error) {
+func (this *EventsList) Exec(ctx context.Context) ([]EventsListOutput, error) {
 	list := []entity.Events{}
 	model := dao.Events.Ctx(ctx)
 	if len(this.Status) >= 0 {

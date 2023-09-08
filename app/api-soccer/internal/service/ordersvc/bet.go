@@ -13,21 +13,17 @@ import (
 	"star_net/utility/utils/xuuid"
 )
 
-var (
-	Bet = bet{}
-)
-
 type BetInput struct {
 	OddsId int64   `json:"oddsId"`
 	Amount float64 `json:"amount"`
 }
 type BetOutput struct {
 }
-type bet struct {
+type Bet struct {
 	BetInput
 }
 
-func (input *bet) Exec(ctx context.Context) error {
+func (input *Bet) Exec(ctx context.Context) error {
 	if input.Amount <= 0 {
 		return fmt.Errorf("金额错误")
 	}

@@ -8,8 +8,10 @@ import (
 
 func (cEvent) Play(ctx context.Context, req *event.PlayReq) (res *event.PlayRes, err error) {
 	res = &event.PlayRes{}
-	eventsvc.PlayOdds.EventId = req.EventId
-	exec, err := eventsvc.PlayOdds.Exec(ctx)
+	play := eventsvc.Play{}
+
+	play.EventId = req.EventId
+	exec, err := play.Exec(ctx)
 	res.List = exec
 	return res, err
 }

@@ -11,12 +11,8 @@ import (
 	"strings"
 )
 
-var (
-	PlayOdds = play{}
-)
-
 // 玩法列表
-type play struct {
+type Play struct {
 	EventId int
 }
 
@@ -33,7 +29,7 @@ type PlayOddsItem struct {
 	Type     string  `json:"type"`
 }
 
-func (this *play) Exec(ctx context.Context) ([]*PlayOddsOutput, error) {
+func (this *Play) Exec(ctx context.Context) ([]*PlayOddsOutput, error) {
 
 	userInfo := service.GetUserInfo(ctx)
 
@@ -77,7 +73,7 @@ func (this *play) Exec(ctx context.Context) ([]*PlayOddsOutput, error) {
 	return model, nil
 }
 
-func (this *play) getPlayName(list gdb.List, playCode int, lang string) string {
+func (this *Play) getPlayName(list gdb.List, playCode int, lang string) string {
 	for _, item := range list {
 		i := gconv.Int(item["code"])
 		if i == playCode {
@@ -88,7 +84,7 @@ func (this *play) getPlayName(list gdb.List, playCode int, lang string) string {
 	return ""
 }
 
-func (this *play) getType(item entity.EventsOdds) string {
+func (this *Play) getType(item entity.EventsOdds) string {
 
 	if item.PlayTypeCode == 400 {
 		split := strings.Split(item.CalcRule, " ")
