@@ -11,6 +11,7 @@ import (
 	"star_net/common"
 	"star_net/core/auth"
 	"star_net/utility/utils/xpusher"
+	"star_net/utility/utils/xtrans"
 )
 
 var (
@@ -25,6 +26,7 @@ var (
 
 			initRouter(s)
 			xpusher.InitFromCfg(ctx)
+			xtrans.SetPath()
 			s.SetPort(4102)
 			auth.GFToken.AuthPaths = g.SliceStr{"/api"}
 			auth.GFToken.AuthExcludePaths = g.SliceStr{
