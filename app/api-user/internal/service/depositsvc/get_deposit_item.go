@@ -2,7 +2,6 @@ package depositsvc
 
 import (
 	"context"
-	"fmt"
 	"star_net/app/api-user/internal/model"
 	"star_net/app/api-user/internal/service"
 	"star_net/consts"
@@ -71,7 +70,7 @@ func (s *getDepositItem) Exec(ctx context.Context) (*GetDepositItemOutput, error
 					Address:  item.Address,
 					Max:      item.Max,
 					Min:      item.Min,
-					Detail:   fmt.Sprintf("%s %d-%d", item.Detail, item.Min, item.Max),
+					Detail:   item.Detail,
 				})
 			}
 
