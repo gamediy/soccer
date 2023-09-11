@@ -15,7 +15,7 @@ database:
     level: "debug"
     stdout: true
   default:
-    link: "mysql:root:LE2RrzrMxx6Z4sbc@tcp(127.0.0.1:3306)/soccer?loc=Local&parseTime=true"
+    link: "mysql:root:LE2RrzrMxx6Z4sbc@tcp(8.219.177.71:3306)/soccer?loc=Local&parseTime=true"
     debug: true
 
 redis:
