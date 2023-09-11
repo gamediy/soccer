@@ -20,6 +20,8 @@ func (c *cUser) Register(ctx context.Context, req *vpassport.RegisterReq) (res *
 		City:        req.City,
 		Ip:          r.GetClientIp(),
 		RealName:    req.RealName,
+		Phone:       req.Phone,
+		Email:       req.Email,
 		ClientAgent: r.UserAgent(),
 	}
 	_, err = x.Exec()
