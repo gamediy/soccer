@@ -2,11 +2,13 @@ package cmd
 
 import (
 	"context"
+	"github.com/goflyfox/gtoken/gtoken"
 	_ "github.com/gogf/gf/contrib/drivers/mysql/v2"
 	_ "github.com/gogf/gf/contrib/nosql/redis/v2"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
+	"github.com/yudeguang/ratelimit"
 	ctrlComon "star_net/app/api-user/internal/controller/common"
 	"star_net/app/api-user/internal/controller/sys"
 	"star_net/app/api-user/internal/controller/user"
@@ -15,8 +17,11 @@ import (
 	"star_net/app/api-user/internal/service/usersvc"
 	"star_net/common"
 	"star_net/core/auth"
+	"star_net/utility/utils/xlimit"
 	"star_net/utility/utils/xpusher"
 	"star_net/utility/utils/xtrans"
+	"strings"
+	"time"
 )
 
 var (
@@ -86,6 +91,27 @@ func initRouter(s *ghttp.Server) {
 		})
 		group.Group("/wallet", func(group *ghttp.RouterGroup) {
 			group.Bind(wallet.Wallet)
+			group.Middleware(func(r *ghttp.Request) {
+				token := r.Header.Get("Authorization")
+				url := strings.ToLower(r.URL.Path)
+				if url == "/api/user/wallet/deposit/create" {
+					limit := xlimit.CreateRateLimit(func(rule *ratelimit.Rule) {
+						rule.AddRule(time.Hour, 200)
+						rule.AddRule(time.Minute, 3)
+
+					})
+					ok := limit.AllowVisit(r.URL.Path + token)
+					if !ok {
+						g2 := gtoken.Resp{
+							Code: -998,
+							Msg:  "请不要频繁请求",
+						}
+						r.Response.WriteJsonExit(g2)
+
+					}
+					r.Middleware.Next()
+				}
+			})
 		})
 	})
 
