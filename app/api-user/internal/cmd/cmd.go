@@ -16,6 +16,7 @@ import (
 	"star_net/common"
 	"star_net/core/auth"
 	"star_net/utility/utils/xpusher"
+	"star_net/utility/utils/xtrans"
 )
 
 var (
@@ -26,6 +27,7 @@ var (
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			s := g.Server(g.Cfg().MustGet(ctx, "gfToken.name").String())
 			init := syssvc.InitD{}
+			xtrans.SetPath()
 			init.Exec(ctx)
 			// init auth role
 			initAuthRule(ctx)
