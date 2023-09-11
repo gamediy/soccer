@@ -71,9 +71,8 @@ func MiddlewareHandlerResponse(r *ghttp.Request) {
 func MiddlewareRequestLimit(r *ghttp.Request) {
 	ip := r.GetClientIp()
 	limit := xlimit.CreateRateLimit(func(rule *ratelimit.Rule) {
-		rule.AddRule(time.Hour, 10000)
-		rule.AddRule(time.Minute, 600)
-		rule.AddRule(time.Second, 10)
+
+		rule.AddRule(time.Second, 1)
 	})
 	ok := limit.AllowVisit(ip)
 	if !ok {
