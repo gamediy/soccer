@@ -44,7 +44,9 @@ func (x CloudFlare) Upload(ctx context.Context, group int) (string, error) {
 		r = ghttp.RequestFromCtx(ctx)
 	)
 	file := r.GetUploadFile("file")
-
+	if file == nil {
+		return "", fmt.Errorf("file error")
+	}
 	fileSize := float64(file.Size)
 	maxFileSize := x.MaxSize * 1024 * 1024 // 0.5MB x bytes
 	// Check the file size

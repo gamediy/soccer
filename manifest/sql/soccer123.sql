@@ -16,8 +16,8 @@
 
 
 -- 导出 soccer 的数据库结构
-CREATE DATABASE IF NOT EXISTS `soccer` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `soccer`;
+CREATE DATABASE IF NOT EXISTS `2309a` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `2309a`;
 
 -- 导出  表 soccer.b_bank 结构
 CREATE TABLE IF NOT EXISTS `b_bank` (
