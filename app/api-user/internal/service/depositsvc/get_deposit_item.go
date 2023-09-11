@@ -25,9 +25,9 @@ type GetDepositItemOutput struct {
 }
 
 type GetDepositList struct {
-	Title      string `json:"title"`
-	CategoryId int    `json:"categoryId"`
-	Item       []model.AmountItem
+	Title      string             `json:"title"`
+	CategoryId int                `json:"categoryId"`
+	Item       []model.AmountItem `json:"item"`
 }
 
 func (s *getDepositItem) Exec(ctx context.Context) (*GetDepositItemOutput, error) {
