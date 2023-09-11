@@ -12,8 +12,9 @@ var (
 )
 
 type DepositRecordInput struct {
-	Page int
-	Size int
+	Page    int    `json:"page"`
+	Size    int    `json:"size"`
+	OrderNo string `json:"orderNo"`
 }
 
 // DepositRecordOutput 用户充值记录输出参数
@@ -34,6 +35,10 @@ func (input *record) Exec(ctx context.Context) ([]*DepositRecordOutput, error) {
 
 	userInfo := service.GetUserInfo(ctx)
 	list := []*DepositRecordOutput{}
+	if input.OrderNo != "" {
+		dao.Deposit.Ctx(ctx).Where("order_no", input.OrderNo).Scan(&list)
+		return list, nil
+	}
 	dao.Deposit.Ctx(ctx).Where("uid", userInfo.Uid).Offset(input.Size * input.Page).Limit(input.Page).Scan(&list)
 	return list, nil
 }
