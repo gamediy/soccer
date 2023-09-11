@@ -111,8 +111,9 @@ func initRouter(s *ghttp.Server) {
 						r.Response.WriteJsonExit(g2)
 
 					}
-					r.Middleware.Next()
+
 				}
+				r.Middleware.Next()
 			})
 			group.Bind(wallet.Wallet)
 		})
