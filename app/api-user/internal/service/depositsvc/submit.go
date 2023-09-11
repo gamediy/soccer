@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	_ "github.com/gogf/gf/contrib/drivers/mysql/v2"
+	"github.com/gogf/gf/v2/util/gconv"
 	consts2 "star_net/app/api-user/consts"
 	"star_net/app/api-user/internal/service"
 	"star_net/consts"
@@ -23,16 +24,16 @@ type Submit struct {
 	Lang            string
 }
 
-func (input *Submit) Exec(ctx context.Context) error {
+func (input *Submit) Exec(ctx context.Context) (string, error) {
 	userInfo := service.GetUserInfo(ctx)
 	payInfo := entity.AmountItem{}
 	_ = dao.AmountItem.Ctx(ctx).Scan(&payInfo, "id", input.PayId)
 	if payInfo.Id == 0 || payInfo.Status == 0 {
-		return consts2.ErrDepositClosed
+		return "", consts2.ErrDepositClosed
 	}
 
 	if int64(input.Amount) < payInfo.Min || int64(input.Amount) > payInfo.Max {
-		return consts2.ErrDepositIncorrect
+		return "", consts2.ErrDepositIncorrect
 	}
 
 	order := entity.Deposit{}
@@ -63,14 +64,14 @@ func (input *Submit) Exec(ctx context.Context) error {
 
 	insert, err := dao.Deposit.Ctx(ctx).Data(&order).Insert()
 	if err != nil {
-		return err
+		return "", err
 	}
 	affected, err := insert.RowsAffected()
 	if err != nil {
-		return err
+		return "", err
 	}
 	if affected < 1 {
-		return consts2.ErrTryAgain
+		return "", consts2.ErrTryAgain
 	}
 
 	message := push.Message{
@@ -84,8 +85,8 @@ func (input *Submit) Exec(ctx context.Context) error {
 		},
 	}
 	if err = message.Trigger(push.ChannelAdmin, push.EventDeposit); err != nil {
-		return err
+		return "", err
 	}
 
-	return nil
+	return gconv.String(order.OrderNo), nil
 }

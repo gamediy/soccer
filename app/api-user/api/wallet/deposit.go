@@ -12,6 +12,10 @@ type CreateDepositReq struct {
 	TransferOrderNo string  `json:"transferOrderNo" v:"required"  dc:"成功订单号 用户转账成功的订单号，一般在用户的银行app里面获取"` //成功订单号
 	TranserImg      string  `json:"transerImg" v:"required"  dc:"凭证 上传用户转账的截图"`                          //成功图片
 }
+type CreateDepositRes struct {
+	OrderNo string `json:"orderNo"` //成功图片
+}
+
 type ListPlatformDepositReq struct {
 	g.Meta `tags:"钱包" sm:"查询平台充值方式" method:"get" path:"/deposit/platform"`
 }

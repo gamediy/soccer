@@ -3,6 +3,7 @@ package ordersvc
 import (
 	"context"
 	"fmt"
+	"github.com/gogf/gf/v2/util/gconv"
 	"star_net/app/api-soccer/internal/logic"
 	"star_net/app/api-soccer/internal/service"
 	"star_net/db/dao"
@@ -22,6 +23,7 @@ type OrderListOutput struct {
 	Odds         float64 `json:"odds" dc:"赔率"`
 	Amount       float64 `json:"amount" dc:"下注金额"`
 	BoutRemark   string  `json:"boutRemark" dc:"场次"`
+	OrderNO      string  `json:"orderNO"`
 }
 
 func (order *OrderList) Exec(ctx context.Context) []OrderListOutput {
@@ -44,6 +46,7 @@ func (order *OrderList) Exec(ctx context.Context) []OrderListOutput {
 				Profit:       settle.Profit,
 				Amount:       settle.Amount,
 				Odds:         settle.Odds,
+				OrderNO:      gconv.String(settle.OrderNo),
 				BoutRemark:   userInfo.I18n.T(ctx, fmt.Sprintf("场次_%d", settle.BoutStatus)),
 			})
 		}
@@ -66,6 +69,7 @@ func (order *OrderList) Exec(ctx context.Context) []OrderListOutput {
 				Profit:       settle.Profit,
 				Amount:       settle.Amount,
 				Odds:         settle.Odds,
+				OrderNO:      gconv.String(settle.OrderNo),
 				BoutRemark:   userInfo.I18n.T(ctx, fmt.Sprintf("场次_%d", settle.BoutStatus)),
 			})
 		}

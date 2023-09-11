@@ -5,20 +5,23 @@ import (
 	"github.com/gogf/gf/v2/util/gconv"
 	"star_net/app/api-user/api/wallet"
 	"star_net/app/api-user/internal/service/depositsvc"
-	"star_net/model"
 )
 
-func (c cWallet) CreateDeposit(ctx context.Context, req *wallet.CreateDepositReq) (_ *model.CommonRes, _ error) {
+func (c cWallet) CreateDeposit(ctx context.Context, req *wallet.CreateDepositReq) (res *wallet.CreateDepositRes, _ error) {
 	x := depositsvc.Submit{
 		PayId:           req.PayId,
 		Amount:          req.Amount,
 		TranserImg:      req.TranserImg,
 		TransferOrderNo: req.TransferOrderNo,
 	}
-	if err := x.Exec(ctx); err != nil {
-		return nil, err
+	exec, err2 := x.Exec(ctx)
+	res = &wallet.CreateDepositRes{}
+	if err2 != nil {
+		res.OrderNo = ""
+		return res, err2
 	}
-	return
+	res.OrderNo = exec
+	return res, nil
 }
 func (c cWallet) ListPlatformDeposit(ctx context.Context, _ *wallet.ListPlatformDepositReq) (res *wallet.ListPlatformDepositRes, err error) {
 
