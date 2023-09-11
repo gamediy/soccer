@@ -24,7 +24,7 @@ func (input *BetBatch) Exec(ctx context.Context) (BetBatchOutput, error) {
 		b.Amount = item.Amount
 		err := b.Exec(ctx)
 		if err != nil {
-			erros.Errors = append(erros.Errors, fmt.Sprintf("%s %s", b.OddsId, err.Error()))
+			erros.Errors = append(erros.Errors, fmt.Sprintf("%d %s", b.OddsId, err.Error()))
 		}
 	}
 	return erros, nil
