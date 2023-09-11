@@ -16,12 +16,12 @@ var (
 )
 
 type getDepositItem struct {
-	Name string
+	Name string `json:"name"`
 }
 type GetDepositItemOutput struct {
-	Tips string
+	Tips string `json:"tips"`
 
-	List []GetDepositList
+	List []GetDepositList `json:"list"`
 }
 
 type GetDepositList struct {
@@ -69,6 +69,8 @@ func (s *getDepositItem) Exec(ctx context.Context) (*GetDepositItemOutput, error
 					Logo:     consts.ImgPrefix + item.Logo,
 					Currency: item.Currency,
 					Address:  item.Address,
+					Max:      item.Max,
+					Min:      item.Min,
 					Detail:   fmt.Sprintf("%s %d-%d", item.Detail, item.Min, item.Max),
 				})
 			}
