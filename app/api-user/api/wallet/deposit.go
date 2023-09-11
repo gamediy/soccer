@@ -2,7 +2,7 @@ package wallet
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
-	"star_net/app/api-user/internal/model"
+	"star_net/app/api-user/internal/service/depositsvc"
 )
 
 type CreateDepositReq struct {
@@ -15,4 +15,6 @@ type CreateDepositReq struct {
 type ListPlatformDepositReq struct {
 	g.Meta `tags:"钱包" sm:"查询平台充值方式" method:"get" path:"/deposit/platform"`
 }
-type ListPlatformDepositRes []model.AmountItem
+type ListPlatformDepositRes struct {
+	depositsvc.GetDepositItemOutput
+}

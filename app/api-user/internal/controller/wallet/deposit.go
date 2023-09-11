@@ -2,6 +2,7 @@ package wallet
 
 import (
 	"context"
+	"github.com/gogf/gf/v2/util/gconv"
 	"star_net/app/api-user/api/wallet"
 	"star_net/app/api-user/internal/service/depositsvc"
 	"star_net/model"
@@ -19,11 +20,13 @@ func (c cWallet) CreateDeposit(ctx context.Context, req *wallet.CreateDepositReq
 	}
 	return
 }
-func (c cWallet) ListPlatformDeposit(ctx context.Context, _ *wallet.ListPlatformDepositReq) (_ wallet.ListPlatformDepositRes, err error) {
+func (c cWallet) ListPlatformDeposit(ctx context.Context, _ *wallet.ListPlatformDepositReq) (res *wallet.ListPlatformDepositRes, err error) {
 
 	data, err := depositsvc.GetDepositItem.Exec(ctx)
 	if err != nil {
 		return nil, err
 	}
-	return data.Item, nil
+	res = &wallet.ListPlatformDepositRes{}
+	gconv.Struct(data, res)
+	return res, nil
 }
