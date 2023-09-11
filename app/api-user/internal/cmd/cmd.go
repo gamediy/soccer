@@ -70,6 +70,12 @@ func initAuthRule(ctx context.Context) {
 
 }
 
+var limit = xlimit.CreateRateLimit(func(rule *ratelimit.Rule) {
+
+	rule.AddRule(time.Minute*2, 3)
+	rule.AddRule(time.Second*10, 1)
+})
+
 /*
 统一路由注册
 */
@@ -95,11 +101,7 @@ func initRouter(s *ghttp.Server) {
 				token := r.Header.Get("Authorization")
 				url := strings.ToLower(r.URL.Path)
 				if url == "/api/user/wallet/deposit/create" {
-					limit := xlimit.CreateRateLimit(func(rule *ratelimit.Rule) {
 
-						rule.AddRule(time.Minute*2, 3)
-						rule.AddRule(time.Second*10, 1)
-					})
 					ok := limit.AllowVisit(r.URL.Path + token)
 					if !ok {
 						g2 := gtoken.Resp{
