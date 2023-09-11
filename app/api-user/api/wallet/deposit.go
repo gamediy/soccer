@@ -22,3 +22,11 @@ type ListPlatformDepositReq struct {
 type ListPlatformDepositRes struct {
 	depositsvc.GetDepositItemOutput
 }
+
+type DepositRecordReq struct {
+	g.Meta `tags:"钱包" sm:"查询充值记录" method:"get" path:"/deposit/record"`
+	depositsvc.DepositRecordInput
+}
+type DepositRecordRes struct {
+	List []*depositsvc.DepositRecordOutput `json:"list"`
+}

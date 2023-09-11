@@ -33,3 +33,15 @@ func (c cWallet) ListPlatformDeposit(ctx context.Context, _ *wallet.ListPlatform
 	gconv.Struct(data, res)
 	return res, nil
 }
+func (c cWallet) DepositRecord(ctx context.Context, req *wallet.DepositRecordReq) (res *wallet.DepositRecordRes, err error) {
+	depositsvc.Record.Page = req.Page
+	depositsvc.Record.Size = req.Size
+	depositsvc.Record.OrderNo = req.OrderNo
+	data, err := depositsvc.Record.Exec(ctx)
+	if err != nil {
+		return nil, err
+	}
+	res = &wallet.DepositRecordRes{}
+	res.List = data
+	return res, nil
+}
