@@ -48,7 +48,7 @@ func (s BindWithdrawAccount) CheckPayPass(ctx context.Context, pass string, uid 
 	var u entity.User
 	_ = dao.User.Ctx(ctx).Scan(&u, "id", uid)
 	if u.Id == 0 {
-		return fmt.Errorf("数据不存在")
+		return fmt.Errorf("用户不存在")
 	}
 	if u.PayPass == "" {
 		return fmt.Errorf("请先设置交易密码")
