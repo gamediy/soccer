@@ -17,6 +17,7 @@ type BindWithdrawAccountReq struct {
 	BankId  string `v:"required#银行ID不能为空" dc:"银行ID" json:"bankId"`
 	Address string `v:"required#收款地址不能为空" json:"address" dc:"卡号"`
 	Title   string `json:"title" dc:"持卡人" v:"required#持卡人不能为空"`
+	Pass    string `json:"pass"  v:"required#支付密码不能为空" dc:"支付密码"`
 }
 type WithdrawAccountListReq struct {
 	g.Meta `tags:"钱包" sm:"查询银行卡列表" method:"get" path:"/withdraw/account/list"`
