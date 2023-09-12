@@ -10,7 +10,7 @@ import (
 )
 
 type BindWithdrawAccount struct {
-	BankId  uint64 `v:"required#银行ID不能为空" dc:"银行ID"`
+	BankId  string `v:"required#银行ID不能为空" dc:"银行ID"`
 	Address string `v:"required#收款地址不能为空"`
 	Title   string `json:"title" dc:"持卡人" v:"required#持卡人不能为空"`
 }
