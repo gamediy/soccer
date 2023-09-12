@@ -8,18 +8,18 @@ import (
 	"star_net/app/api-user/consts"
 	"star_net/db/dao"
 	"star_net/db/model/entity"
+	"star_net/utility/utils/xip"
 	"star_net/utility/utils/xpwd"
 )
 
 type Register struct {
-	Ctx         context.Context
-	Account     string `dc:"账号" json:"account"`
-	Password    string `dc:"密码" json:"password"`
-	Xid         string `dc:"邀请码" json:"xid" `
-	Phone       string `json:"phone"`
-	Email       string `json:"email"`
-	Country     string
-	City        string
+	Ctx      context.Context
+	Account  string `dc:"账号" json:"account"`
+	Password string `dc:"密码" json:"password"`
+	Xid      string `dc:"邀请码" json:"xid" `
+	Phone    string `json:"phone"`
+	Email    string `json:"email"`
+
 	Ip          string `json:"-"`
 	RealName    string
 	ClientAgent string
@@ -31,11 +31,12 @@ func (s *Register) Exec() (string, error) {
 		return "", err
 	}
 	var d entity.User
+	loc := xip.GetIpInfoIo(s.Ctx, s.Ip)
 	d.Account = s.Account
 	d.Status = 1
 	d.Ip = s.Ip
-	d.City = s.City
-	d.Country = s.Country
+	d.City = loc.City
+	d.Country = loc.Country
 	d.Password = xpwd.GenPwd(s.Password)
 	d.Phone = s.Phone
 	d.Email = s.Email

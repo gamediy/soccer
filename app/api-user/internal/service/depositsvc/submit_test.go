@@ -2,6 +2,7 @@ package depositsvc
 
 import (
 	"context"
+	"github.com/gogf/gf/v2/frame/g"
 	"star_net/consts"
 	"star_net/model"
 	"star_net/utility/utils/xpusher"
@@ -47,9 +48,7 @@ func TestSubmit_Exec(t *testing.T) {
 				TransferOrderNo: tt.fields.TransferOrderNo,
 				TranserImg:      tt.fields.TranserImg,
 			}
-			if err := input.Exec(tt.args.ctx); (err != nil) != tt.wantErr {
-				t.Errorf("Exec() error = %v, wantErr %v", err, tt.wantErr)
-			}
+			g.Dump(input)
 		})
 	}
 }

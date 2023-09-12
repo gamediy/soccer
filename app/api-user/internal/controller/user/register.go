@@ -12,14 +12,15 @@ func (c *cUser) Register(ctx context.Context, req *vpassport.RegisterReq) (res *
 
 	r := ghttp.RequestFromCtx(ctx)
 	x := usersvc.Register{
-		Ctx:         ctx,
-		Account:     req.Account,
-		Password:    req.Password,
-		Xid:         req.Xid,
-		Country:     req.Account,
-		City:        req.City,
+		Ctx:      ctx,
+		Account:  req.Account,
+		Password: req.Password,
+		Xid:      req.Xid,
+
 		Ip:          r.GetClientIp(),
 		RealName:    req.RealName,
+		Phone:       req.Phone,
+		Email:       req.Email,
 		ClientAgent: r.UserAgent(),
 	}
 	_, err = x.Exec()

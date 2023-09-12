@@ -26,8 +26,8 @@ func TestOrderList_Exec(t *testing.T) {
 				ctx: xtest.GetContext(),
 			},
 			fields: fields{
-				Status: 2,
-				Type:   2,
+				Status: 1,
+				Type:   1,
 			},
 		},
 	}
