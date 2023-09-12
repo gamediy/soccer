@@ -13,6 +13,7 @@ func (c cWallet) BindWithdrawAccount(ctx context.Context, req *wallet.BindWithdr
 		BankId:  req.BankId,
 		Address: req.Address,
 		Title:   req.Title,
+		Pass:    req.Pass,
 	}
 	err = x.Exec(ctx)
 	return
