@@ -37,11 +37,12 @@ func (c cWallet) DepositRecord(ctx context.Context, req *wallet.DepositRecordReq
 	depositsvc.Record.Page = req.Page
 	depositsvc.Record.Size = req.Size
 	depositsvc.Record.OrderNo = req.OrderNo
-	data, err := depositsvc.Record.Exec(ctx)
+	total, data, err := depositsvc.Record.Exec(ctx)
 	if err != nil {
 		return nil, err
 	}
 	res = &wallet.DepositRecordRes{}
 	res.List = data
+	res.Total = total
 	return res, nil
 }
