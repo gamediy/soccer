@@ -41,9 +41,8 @@ func (input *record) Exec(ctx context.Context) ([]*DepositRecordOutput, error) {
 		return list, nil
 	}
 	dao.Deposit.Ctx(ctx).Where("uid", userInfo.Uid).Page(input.Page, input.Size).Scan(&list)
-	for _, output := range list {
-
-		output.StatusRemark = xtrans.T(userInfo.Lang, output.StatusRemark)
+	for index, output := range list {
+		list[index].StatusRemark = xtrans.T(userInfo.Lang, output.StatusRemark)
 	}
 	return list, nil
 }
