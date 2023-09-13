@@ -45,7 +45,7 @@ func (s *Deposit) Update(ctx context.Context) error {
 		dao.User.Ctx(ctx).Scan(&user, order.Uid)
 		update := wallet.BalanceUpdate{}
 		update.Amount = gconv.Float64(order.Amount)
-		update.Title = xtrans.New(user.Lang).T(ctx, "充值成功")
+
 		order.StatusRemark = xtrans.New(user.Lang).T(ctx, "充值成功")
 		update.Uid = order.Uid
 		update.OrderNoRelation = s.OrderNo

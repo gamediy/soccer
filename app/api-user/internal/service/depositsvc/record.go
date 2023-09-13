@@ -5,6 +5,7 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 	"star_net/app/api-user/internal/service"
 	"star_net/db/dao"
+	"star_net/utility/utils/xtrans"
 )
 
 var (
@@ -39,6 +40,9 @@ func (input *record) Exec(ctx context.Context) ([]*DepositRecordOutput, error) {
 		dao.Deposit.Ctx(ctx).Where("order_no", input.OrderNo).Scan(&list)
 		return list, nil
 	}
-	dao.Deposit.Ctx(ctx).Where("uid", userInfo.Uid).Offset(input.Size * input.Page).Limit(input.Page).Scan(&list)
+	dao.Deposit.Ctx(ctx).Where("uid", userInfo.Uid).Page(input.Page, input.Size).Scan(&list)
+	for index, output := range list {
+		list[index].StatusRemark = xtrans.T(userInfo.Lang, output.StatusRemark)
+	}
 	return list, nil
 }
