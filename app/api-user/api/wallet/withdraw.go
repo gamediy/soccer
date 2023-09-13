@@ -40,8 +40,8 @@ type DelWithdrawAccountReq struct {
 
 type ChangePayPassReq struct {
 	g.Meta  `tags:"钱包" sm:"修改支付密码"  method:"put" path:"/withdraw/payPass"`
-	PayPass string `json:"payPass" v:"required|integer|size:6#交易密码必填|纯数字|6位" sm:"新的支付密码"`
-	Pass    string `json:"pass" v:"required#登录密码不能为空" sm:"登录密码"`
-	Address string `json:"address" v:"required#卡号不能为空" sm:"银行卡号"`
-	Title   string `json:"title" v:"required#持卡人不能为空" sm:"银行账户"`
+	PayPass string `json:"payPass" v:"required|integer|size:6#交易密码必填|纯数字|6位" dc:"新的支付密码"`
+	Pass    string `json:"pass" v:"required#登录密码不能为空" dc:"登录密码"`
+	Address string `json:"address" v:"required#卡号不能为空" dc:"银行卡号"`
+	Title   string `json:"title" v:"required#持卡人不能为空" dc:"银行账户"`
 }
