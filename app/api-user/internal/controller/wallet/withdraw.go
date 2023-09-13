@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"star_net/app/api-user/api/wallet"
+	"star_net/app/api-user/internal/service/usersvc"
 	"star_net/app/api-user/internal/service/withdrawsvc"
 	"star_net/model"
 )
@@ -51,6 +52,16 @@ func (c cWallet) CreateWithdraw(ctx context.Context, req *wallet.CreateWithdrawR
 		AmountItemId:      req.AmountItemId,
 		WithdrawAccountId: req.WithdrawAccountId,
 		Lang:              ghttp.RequestFromCtx(ctx).GetHeader("lang"),
+	}
+	err = x.Exec(ctx)
+	return
+}
+func (c cWallet) ChangePayPass(ctx context.Context, req *wallet.ChangePayPassReq) (res *model.CommonRes, err error) {
+	x := usersvc.ChangePayPass{
+		PayPass: req.PayPass,
+		Pass:    req.Pass,
+		Title:   req.Title,
+		Address: req.Address,
 	}
 	err = x.Exec(ctx)
 	return
