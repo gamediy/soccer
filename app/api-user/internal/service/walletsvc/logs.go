@@ -18,7 +18,7 @@ type Logs struct {
 type LogsOutput struct {
 	OrderNo string `json:"orderNo"         description:"订单号，（有可能是充值提现的订单号）"`
 
-	Title         string      `json:"balanceCode"     description:"余额编号"`
+	Title         string      `json:"title"     description:"余额编号"`
 	BalanceBefore float64     `json:"balanceBefore"   description:"之前余额"`
 	BalanceAfter  float64     `json:"balanceAfter"    description:"之后余额"`
 	Note          string      `json:"note"            description:"说明"`

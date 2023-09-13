@@ -38,8 +38,8 @@ type BalanceUpdate struct {
 	Amount          float64
 	OrderNoRelation int64
 	BalanceCode     int
-	Title           string
-	Note            string
+
+	Note string
 }
 
 func (this *BalanceUpdate) Update(ctx context.Context, fc func(ctx context.Context, tx gdb.TX) error) error {
@@ -90,6 +90,8 @@ func (this *BalanceUpdate) updateExec(ctx context.Context, fc func(ctx context.C
 				return gerror.NewCode(gcode.New(-1000, "余额不足", ""))
 			}
 		}
+		bc := entity.BalanceCode{}
+		tx.Model(dao.BalanceCode.Table()).Where("code", this.BalanceCode).Scan(&bc)
 		node, err := snowflake.NewNode(1)
 		if err != nil {
 			return err
@@ -104,7 +106,7 @@ func (this *BalanceUpdate) updateExec(ctx context.Context, fc func(ctx context.C
 		walletLog.ParentPath = user.ParentPath
 		walletLog.BalanceBefore = float64(wallet.Balance / 1000)
 		walletLog.Amount = this.Amount
-		walletLog.Title = this.Title
+		walletLog.Title = bc.Title
 		walletLog.BalanceAfter = walletLog.BalanceBefore + this.Amount
 		walletLog.Pid = user.Pid
 		walletLog.BalanceCode = this.BalanceCode

@@ -19,8 +19,8 @@ func (x *Freeze) Exec(ctx context.Context) error {
 		Uid:         int64(x.Uid),
 		Amount:      gconv.Float64(x.Amount),
 		BalanceCode: x.BalanceCode,
-		Title:       x.Title,
-		Note:        x.Note,
+
+		Note: x.Title + " " + x.Note,
 	}
 	if err := xx.Update(ctx, nil); err != nil {
 		return err

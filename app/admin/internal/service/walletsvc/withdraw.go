@@ -52,8 +52,8 @@ func (w *Withdraw) Update(ctx context.Context) error {
 	} else if w.Status == consts.DepositStatusFail {
 		order.Status = consts.WithdrawStatusFail
 		update.BalanceCode = wallet.WithdrawFail
-		update.Note = w.StatusRemark
-		update.Title = "Fail " + w.StatusRemark
+		update.Note = "Fail " + w.StatusRemark
+
 		return update.Update(ctx, func(ctx context.Context, tx gdb.TX) error {
 			_, err := tx.Model(dao.Withdraw.Table()).Ctx(ctx).Update(&order, dao.Withdraw.Columns().OrderNo, w.OrderNo)
 			return err

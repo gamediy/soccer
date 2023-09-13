@@ -76,8 +76,8 @@ func Calc(ctx context.Context, eventId int64, result play.OpenResult) error {
 		//go func(item entity.SoccerOrderSettle) {
 		update := wallet.BalanceUpdate{}
 		update.Uid = item.Uid
-		update.Title = item.EventsTitle
-		update.Note = item.OddsTitle
+
+		update.Note = item.EventsTitle + " " + item.OddsTitle
 		update.Amount = item.Profit + item.Amount
 		update.BalanceCode = wallet.Profit
 		err := update.Update(context.Background(), func(ctx context.Context, tx gdb.TX) error {

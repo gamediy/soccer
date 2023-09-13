@@ -66,7 +66,7 @@ func (input *CreateWithdraw) Exec(ctx context.Context) error {
 	update := wallet.BalanceUpdate{}
 	update.Uid = int64(userInfo.Uid)
 	update.Amount = order.Amount
-	update.Title = "Withdraw"
+
 	update.OrderNoRelation = order.OrderNo
 	update.Note = fmt.Sprintf("%s_%s", order.Protocol, order.Address)
 	update.BalanceCode = wallet.Withdraw

@@ -24,7 +24,7 @@ func (s ListBalanceCodes) Exec(ctx context.Context) ([]*entity.BalanceCode, erro
 	}
 	_ = all.Scan(&d)
 	for _, i := range d {
-		t := xtrans.T(s.Lang, fmt.Sprintf("账变类型-%s", i.Title))
+		t := xtrans.T(s.Lang, fmt.Sprintf("%s", i.Title))
 		i.Title = t
 		i.Remark = t
 
