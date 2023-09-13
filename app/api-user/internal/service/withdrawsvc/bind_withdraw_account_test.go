@@ -34,7 +34,7 @@ func TestBindWithdrawAccount_Exec(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := BindWithdrawAccount{
-				BankId:  tt.fields.BankId,
+
 				Address: tt.fields.Address,
 				Title:   tt.fields.Title,
 			}
