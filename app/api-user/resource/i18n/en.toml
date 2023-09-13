@@ -30,17 +30,17 @@
 "新支付密码不能为空" = "New Pay password cant be empty"
 
 # 账变类型
-"账变类型-充值" = "RECHARGE"
-"账变类型-提现" = "WITHDRAW"
-"账变类型-赠送" = "PRESENTATION"
-"账变类型-下注" = "BET"
-"账变类型-银行卡充值" = "BANK CARD RECHARGE"
-"账变类型-GCASH充值" = "GCASH RECHARGE"
-"账变类型-人工扣除" = "MANUAL DEDUCTION"
-"账变类型-解冻" = "UNFREEZE"
-"账变类型-冻结" = "FREEZE"
-"账变类型-提现失败" = "WITHDRAWAL FAILED"
-"账变类型-利润" = "PROFIT"
+"充值" = "RECHARGE"
+"提现" = "WITHDRAW"
+"赠送" = "PRESENTATION"
+"下注" = "BET"
+"银行卡充值" = "BANK CARD RECHARGE"
+"GCASH充值" = "GCASH RECHARGE"
+"人工扣除" = "MANUAL DEDUCTION"
+"解冻" = "UNFREEZE"
+"冻结" = "FREEZE"
+"提现失败" = "WITHDRAWAL FAILED"
+"利润" = "PROFIT"
 
 # 钱包
 "处理中" = "PROCESSING"
