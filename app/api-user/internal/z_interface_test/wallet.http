@@ -73,8 +73,8 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-  "pass": "123",
-  "pasPass": "123",
+  "pass": "a1231231",
+  "payPass": "123456",
   "title": "John",
   "address": "3123441333"
 }
