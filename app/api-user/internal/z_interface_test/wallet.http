@@ -67,3 +67,14 @@ Content-Type: application/json
   "amount": 100,
   "withdrawAccountId": 1694635985192620032
 }
+### change pay pass
+PUT {{url}}/api/user/wallet/withdraw/payPass
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "pass": "123",
+  "pasPass": "123",
+  "title": "John",
+  "address": "3123441333"
+}
