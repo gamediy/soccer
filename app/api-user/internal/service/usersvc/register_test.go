@@ -51,8 +51,6 @@ func TestRegister_Exec(t *testing.T) {
 				Xid:      tt.fields.Xid,
 				Phone:    tt.fields.Phone,
 				Email:    tt.fields.Email,
-				Country:  tt.fields.Country,
-				City:     tt.fields.City,
 				Ip:       tt.fields.Ip,
 			}
 			got, err := s.Exec()
