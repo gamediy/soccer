@@ -57,6 +57,7 @@ func (s *CreateEvent) Exec(ctx context.Context) error {
 	d.SecondStatus = 0
 	d.Status = 0
 	d.IsHot = 2
+
 	d.AddTime = gtime.Now()
 	d.IsHot = s.IsHot
 	if _, err = dao.Events.Ctx(ctx).Insert(d); err != nil {
