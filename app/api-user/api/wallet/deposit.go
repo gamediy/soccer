@@ -29,4 +29,6 @@ type DepositRecordReq struct {
 }
 type DepositRecordRes struct {
 	List []*depositsvc.DepositRecordOutput `json:"list"`
+
+	Total int `json:"total"`
 }

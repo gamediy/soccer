@@ -32,17 +32,18 @@ type record struct {
 	DepositRecordInput
 }
 
-func (input *record) Exec(ctx context.Context) ([]*DepositRecordOutput, error) {
+func (input *record) Exec(ctx context.Context) (int, []*DepositRecordOutput, error) {
 
 	userInfo := service.GetUserInfo(ctx)
 	list := []*DepositRecordOutput{}
 	if input.OrderNo != "" {
 		dao.Deposit.Ctx(ctx).Where("order_no", input.OrderNo).Scan(&list)
-		return list, nil
+		return 0, list, nil
 	}
-	dao.Deposit.Ctx(ctx).Where("uid", userInfo.Uid).Page(input.Page, input.Size).Scan(&list)
+	var total int
+	dao.Deposit.Ctx(ctx).Where("uid", userInfo.Uid).Page(input.Page, input.Size).ScanAndCount(&list, &total, false)
 	for index, output := range list {
 		list[index].StatusRemark = xtrans.T(userInfo.Lang, output.StatusRemark)
 	}
-	return list, nil
+	return total, list, nil
 }
