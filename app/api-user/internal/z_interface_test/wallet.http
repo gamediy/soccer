@@ -21,7 +21,7 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-  "payId": 85,
+  "payId": 9,
   "amount": 100,
   "transferOrderNo": "dfasfewfawf",
   "transerImg": "Uvteyd.png"
@@ -33,9 +33,10 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-  "bankId": 48,
+  "bankId": 2,
   "address": "3333331233333",
-  "title": "John"
+  "title": "John",
+  "pass": "123456"
 }
 
 ### list withdraw account item
@@ -63,7 +64,7 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-  "amountItemId": 85,
+  "amountItemId": 9,
   "amount": 100,
   "withdrawAccountId": 1694635985192620032
 }

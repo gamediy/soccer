@@ -37,6 +37,7 @@ func (s *getDepositItem) Exec(ctx context.Context) (*GetDepositItemOutput, error
 	dao.AmountItem.Ctx(ctx).Scan(&list, "status=? and type=?", 1, "Deposit")
 	dao.AmountCategory.Ctx(ctx).Scan(&category, "status", 1)
 	res.Tips = "支付提示，取配置文件"
+	res.List = make([]GetDepositList, 0)
 
 	for _, category := range category {
 		depositList := GetDepositList{}
