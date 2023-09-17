@@ -31,6 +31,7 @@ type CreateEventsReq struct {
 	HomeTeamId int         `json:"homeTeamId"       description:"主队Id" v:"required:主队ID不能为空"`
 	AwayTeamId int         `json:"awayTeamId"       description:"客队Id" v:"required:客队ID不能为空"`
 	StartTime  *gtime.Time `json:"startTime"        description:"开始时间" v:"required#开始时间不能为空"`
+	EndTime    *gtime.Time `json:"endTime"          description:"结束时间" v:"required#结束时间不能为空"`
 	LeagueId   int64       `json:"leagueId"         description:"联盟编号" v:"required#联盟"`
 	IsHot      int         `json:"isHot"            description:"热门"`
 	Handicap   int         `json:"handicap"         description:"让球"`

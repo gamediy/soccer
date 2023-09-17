@@ -31,7 +31,8 @@ func (c cEvents) Create(ctx context.Context, req *soccer.CreateEventsReq) (_ *so
 	x.RestTime = ""
 	x.LeagueId = req.LeagueId
 	x.IsHot = req.IsHot
-	x.Handicap = req.Handicap
+	x.StartTime = req.StartTime
+	x.EndTime = req.EndTime
 	if err := x.Exec(ctx); err != nil {
 		return nil, err
 	}
