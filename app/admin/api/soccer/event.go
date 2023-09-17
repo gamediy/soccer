@@ -2,6 +2,7 @@ package soccer
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/os/gtime"
 	"star_net/db/model/entity"
 	"star_net/model"
 )
@@ -26,8 +27,13 @@ type ReadListEventsRes struct {
 	List  []*entity.Events `json:"list"`
 }
 type CreateEventsReq struct {
-	g.Meta `tags:"/足球/赛事" method:"post" path:"/events" dc:"添加赛事"`
-	*entity.Events
+	g.Meta     `tags:"/足球/赛事" method:"post" path:"/events" dc:"添加赛事"`
+	HomeTeamId int         `json:"homeTeamId"       description:"主队Id" v:"required:主队ID不能为空"`
+	AwayTeamId int         `json:"awayTeamId"       description:"客队Id" v:"required:客队ID不能为空"`
+	StartTime  *gtime.Time `json:"startTime"        description:"开始时间" v:"required#开始时间不能为空"`
+	LeagueId   int64       `json:"leagueId"         description:"联盟编号" v:"required#联盟"`
+	IsHot      int         `json:"isHot"            description:"热门"`
+	Handicap   int         `json:"handicap"         description:"让球"`
 }
 type DelEventsReq struct {
 	g.Meta `tags:"/足球/赛事" method:"delete" path:"/events" dc:"删除赛事"`

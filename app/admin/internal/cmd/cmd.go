@@ -52,6 +52,7 @@ func initRouter(s *ghttp.Server, ctx context.Context) {
 			g.Bind(soccer.Team)
 			g.Bind(soccer.SoccerOrder)
 			g.Bind(soccer.SoccerOrderSettle)
+			g.Bind(soccer.League)
 		})
 		g.Group("/user", func(g *ghttp.RouterGroup) {
 			g.Bind(user.User)

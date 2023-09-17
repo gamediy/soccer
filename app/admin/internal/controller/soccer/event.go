@@ -8,6 +8,7 @@ import (
 	"github.com/gogf/gf/v2/util/gconv"
 	"regexp"
 	"star_net/app/admin/api/soccer"
+	"star_net/app/admin/internal/service/soccersvc"
 	soccer2 "star_net/core/soccer"
 	"star_net/core/soccer/play"
 	"star_net/db/dao"
@@ -24,8 +25,14 @@ var (
 type cEvents struct{}
 
 func (c cEvents) Create(ctx context.Context, req *soccer.CreateEventsReq) (_ *soccer.CreateEventsRes, _ error) {
-	x := xcrud.Create{Ctx: ctx, Table: "p_events", Data: req}
-	if err := x.Exec(); err != nil {
+	x := soccersvc.CreateEvent{}
+	x.HomeTeamId = req.HomeTeamId
+	x.AwayTeamId = req.AwayTeamId
+	x.RestTime = ""
+	x.LeagueId = req.LeagueId
+	x.IsHot = req.IsHot
+	x.Handicap = req.Handicap
+	if err := x.Exec(ctx); err != nil {
 		return nil, err
 	}
 	return
