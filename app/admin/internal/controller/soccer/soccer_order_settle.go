@@ -16,7 +16,7 @@ var (
 type cSoccerOrderSettle struct{}
 
 func (c cSoccerOrderSettle) Create(ctx context.Context, req *soccer.CreateSoccerOrderSettleReq) (_ *soccer.CreateSoccerOrderSettleRes, _ error) {
-	x := xcrud.Create{Ctx: ctx, Table: "o_soccer_order", Data: req}
+	x := xcrud.Create{Ctx: ctx, Table: "o_soccer_order_settle", Data: req}
 	if err := x.Exec(); err != nil {
 		return nil, err
 	}
@@ -24,7 +24,7 @@ func (c cSoccerOrderSettle) Create(ctx context.Context, req *soccer.CreateSoccer
 }
 
 func (c cSoccerOrderSettle) Update(ctx context.Context, req *soccer.UpdateSoccerOrderSettleReq) (_ *soccer.UpdateSoccerOrderSettleRes, _ error) {
-	x := xcrud.Update{Ctx: ctx, Table: "o_soccer_order", Field: "order_no", V: req.OrderNo, Data: req}
+	x := xcrud.Update{Ctx: ctx, Table: "o_soccer_order_settle", Field: "order_no", V: req.OrderNo, Data: req}
 	if err := x.Exec(); err != nil {
 		return nil, err
 	}
@@ -32,7 +32,7 @@ func (c cSoccerOrderSettle) Update(ctx context.Context, req *soccer.UpdateSoccer
 }
 func (c cSoccerOrderSettle) Read(ctx context.Context, req *soccer.ReadSoccerOrderSettleReq) (_ *soccer.ReadSoccerOrderSettleRes, _ error) {
 	var d soccer.ReadSoccerOrderSettleRes
-	x := xcrud.Read{Ctx: ctx, Table: "o_soccer_order", Field: "order_no", V: req.OrderNo}
+	x := xcrud.Read{Ctx: ctx, Table: "o_soccer_order_settle", Field: "order_no", V: req.OrderNo}
 	if err := x.Exec(&d); err != nil {
 		return nil, err
 	}
@@ -43,7 +43,7 @@ func (c cSoccerOrderSettle) ReadList(ctx context.Context, req *soccer.ReadListSo
 		d     = make([]*entity.SoccerOrderSettle, 0)
 		total int
 	)
-	x := xcrud.ReadList{Ctx: ctx, Table: "o_soccer_order", Page: req.Page, Size: req.Size, Order: "order_no desc", Where: func(db *gdb.Model) {
+	x := xcrud.ReadList{Ctx: ctx, Table: "o_soccer_order_settle", Page: req.Page, Size: req.Size, Order: "order_no desc", Where: func(db *gdb.Model) {
 		if req.OrderNo != "" {
 			db = db.Where("order_no", req.OrderNo)
 		}
@@ -72,7 +72,7 @@ func (c cSoccerOrderSettle) ReadList(ctx context.Context, req *soccer.ReadListSo
 	return &soccer.ReadListSoccerOrderSettleRes{List: d, Total: total}, nil
 }
 func (c cSoccerOrderSettle) Del(ctx context.Context, req *soccer.DelSoccerOrderSettleReq) (_ *soccer.DelSoccerOrderSettleRes, _ error) {
-	x := xcrud.Del{Ctx: ctx, Table: "o_soccer_order", Field: "order_no", V: req.OrderNo}
+	x := xcrud.Del{Ctx: ctx, Table: "o_soccer_order_settle", Field: "order_no", V: req.OrderNo}
 	if err := x.Exec(); err != nil {
 		return nil, err
 	}

@@ -89,7 +89,7 @@ func (c cEvents) OpenResult(ctx gctx.Ctx, req *soccer.OpenResultReq) (res *model
 		event.FirstOpenResult = req.Result
 		event.FirstStatus = 2
 		event.SecondStatus = 1
-		go soccer2.Calc(ctx, req.EventsId, play.OpenResult{
+		soccer2.Calc(ctx, req.EventsId, play.OpenResult{
 			Result:     req.Result,
 			BoutStatus: req.BoutStatus,
 		})
@@ -105,7 +105,7 @@ func (c cEvents) OpenResult(ctx gctx.Ctx, req *soccer.OpenResultReq) (res *model
 		event.SecondStatus = 2
 		event.Status = 3
 
-		go soccer2.Calc(ctx, req.EventsId, play.OpenResult{
+		soccer2.Calc(ctx, req.EventsId, play.OpenResult{
 			Result:     req.Result,
 			BoutStatus: req.BoutStatus,
 		})
@@ -118,7 +118,7 @@ func (c cEvents) OpenResult(ctx gctx.Ctx, req *soccer.OpenResultReq) (res *model
 		if err != nil {
 			return nil, err
 		}
-		go soccer2.Calc(ctx, req.EventsId, play.OpenResult{
+		soccer2.Calc(ctx, req.EventsId, play.OpenResult{
 			Result:     fmt.Sprintf("%d-%d", gconv.Int(toTwo+two), gconv.Int(f2+f)),
 			BoutStatus: req.BoutStatus,
 		})
