@@ -28,7 +28,7 @@ func (input *BetBatch) Exec(ctx context.Context) (BetBatchOutput, error) {
 		}
 	}
 	if len(erros.Errors) > 0 {
-		return erros, fmt.Errorf("error bet batch")
+		return erros, fmt.Errorf("投注失败")
 	}
 	return erros, nil
 
