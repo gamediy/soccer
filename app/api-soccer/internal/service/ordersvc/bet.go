@@ -34,7 +34,7 @@ func (input *Bet) Exec(ctx context.Context) error {
 		return fmt.Errorf("没有此玩法")
 	}
 	event := entity.Events{}
-	dao.Events.Ctx(ctx).Scan(&event, odds.EventsId)
+	dao.Events.Ctx(ctx).Where("id", odds.EventsId).Scan(&event)
 	if event.Status != 1 {
 		return fmt.Errorf("比赛已关闭 " + gconv.String(odds.EventsId))
 	}
