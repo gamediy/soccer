@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/gogf/gf/v2/database/gdb"
+	"github.com/gogf/gf/v2/util/gconv"
 	"star_net/app/api-soccer/internal/service"
 	"star_net/core/soccer"
 	"star_net/core/wallet"
@@ -35,7 +36,7 @@ func (input *Bet) Exec(ctx context.Context) error {
 	event := entity.Events{}
 	dao.Events.Ctx(ctx).Scan(&event, odds.EventsId)
 	if event.Status != 1 {
-		return fmt.Errorf("比赛已关闭 ", odds.EventsId)
+		return fmt.Errorf("比赛已关闭 ", gconv.String(odds.EventsId))
 	}
 	userInfo := service.GetUserInfo(ctx)
 	update := wallet.BalanceUpdate{}
