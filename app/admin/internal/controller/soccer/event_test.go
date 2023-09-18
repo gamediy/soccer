@@ -26,7 +26,7 @@ func Test_cEvents_OpenResult(t *testing.T) {
 				req: &soccer.OpenResultReq{
 					Result:     "1-9",
 					BoutStatus: 1,
-					EventsId:   1,
+					EventsId:   11,
 				},
 			},
 		},
