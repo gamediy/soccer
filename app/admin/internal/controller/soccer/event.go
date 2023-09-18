@@ -120,7 +120,7 @@ func (c cEvents) OpenResult(ctx gctx.Ctx, req *soccer.OpenResultReq) (res *model
 		}
 		soccer2.Calc(ctx, req.EventsId, play.OpenResult{
 			Result:     fmt.Sprintf("%d-%d", gconv.Int(toTwo+two), gconv.Int(f2+f)),
-			BoutStatus: req.BoutStatus,
+			BoutStatus: 3,
 		})
 		dao.Events.Ctx(ctx).Data(&event).Where("id", req.EventsId).Update()
 	}

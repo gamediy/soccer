@@ -28,7 +28,7 @@ func (input *Bet) Exec(ctx context.Context) error {
 		return fmt.Errorf("金额错误")
 	}
 	odds := entity.EventsOdds{}
-	dao.EventsOdds.Ctx(ctx).Scan(&odds, "id", input.OddsId)
+	dao.EventsOdds.Ctx(ctx).Where("id", input.OddsId).Scan(&odds)
 	if odds.Status != 1 {
 		return fmt.Errorf("没有此玩法")
 	}
@@ -70,6 +70,8 @@ func (input *Bet) Exec(ctx context.Context) error {
 			return err
 		}
 		odds.TotalAmount += input.Amount
+		event.BetMoney += input.Amount
+		tx.Model(dao.Events.Table()).Update(&event, "id", event.Id)
 		_, err = tx.Model(dao.EventsOdds.Table()).Update(&odds, "id", odds.Id)
 		return err
 
