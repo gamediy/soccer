@@ -27,6 +27,9 @@ func (input *BetBatch) Exec(ctx context.Context) (BetBatchOutput, error) {
 			erros.Errors = append(erros.Errors, fmt.Sprintf("%d %s", b.OddsId, err.Error()))
 		}
 	}
+	if len(erros.Errors) > 0 {
+		return erros, fmt.Errorf("error bet batch")
+	}
 	return erros, nil
 
 }

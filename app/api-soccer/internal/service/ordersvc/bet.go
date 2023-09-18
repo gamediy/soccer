@@ -40,7 +40,7 @@ func (input *Bet) Exec(ctx context.Context) error {
 	userInfo := service.GetUserInfo(ctx)
 	update := wallet.BalanceUpdate{}
 	update.Uid = userInfo.UidInt64
-	update.Title = fmt.Sprintf("%s", odds.Title)
+
 	update.BalanceCode = wallet.Bet
 	update.Amount = input.Amount
 	update.OrderNoRelation = xuuid.GetsnowflakeUUID().Int64()
