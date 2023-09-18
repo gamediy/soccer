@@ -24,6 +24,7 @@ type CreateWithdraw struct {
 }
 
 func (input *CreateWithdraw) Exec(ctx context.Context) error {
+	input.AmountItemId = 1
 	userInfo := service.GetUserInfo(ctx)
 	withdrawInfo := entity.AmountItem{}
 	_ = dao.AmountItem.Ctx(ctx).Scan(&withdrawInfo, "id", input.AmountItemId)
