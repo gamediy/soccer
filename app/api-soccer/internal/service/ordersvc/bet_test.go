@@ -41,7 +41,7 @@ func Test_bet_Exec(t *testing.T) {
 			args: args{ctx: context.WithValue(context.Background(), consts.UserInfo, model.UserInfo{UidInt64: 121, Account: "join"})},
 			fields: fields{
 				BetInput: BetInput{
-					OddsId: 3,
+					OddsId: 11003,
 					Amount: 1,
 				},
 			},
