@@ -44,14 +44,15 @@ func (this *Play) Exec(ctx context.Context) ([]*PlayOddsOutput, error) {
 		3, 1, 2,
 	}
 	for _, pt := range playType {
+
 		for _, status := range boutStatus {
+
 			e := PlayOddsOutput{}
 			e.Title = fmt.Sprintf("%s_%d", pt.ZhName, status)
 			e.Title = userInfo.I18n.T(ctx, e.Title)
 			e.Code = pt.Code
 			for _, item := range odds {
-				if item.BoutStatus == status && item.PlayTypeCode == pt.Code {
-
+				if item.BoutStatus == status && item.PlayTypeCode == pt.Code && item.Status == 1 {
 					e.Item = append(e.Item, &PlayOddsItem{
 						Title:    this.getPlayName(all.List(), item.PlayCode, userInfo.Lang),
 						Odds:     item.Odds,

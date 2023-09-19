@@ -80,6 +80,7 @@ func Calc(ctx context.Context, eventId int64, result play.OpenResult) error {
 		update.Note = item.EventsTitle + " " + item.OddsTitle
 		update.Amount = item.Profit + item.Amount
 		update.BalanceCode = wallet.Profit
+		update.OrderNoRelation = item.OrderNo
 		err := update.Update(context.Background(), func(ctx context.Context, tx gdb.TX) error {
 			_, err := tx.Model(dao.SoccerOrderSettle.Table()).Where("order_no", item.OrderNo).Delete()
 			if err != nil {

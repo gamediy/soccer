@@ -89,27 +89,28 @@ func (c cEvents) OpenResult(ctx gctx.Ctx, req *soccer.OpenResultReq) (res *model
 		event.FirstOpenResult = req.Result
 		event.FirstStatus = 2
 		event.SecondStatus = 1
-		soccer2.Calc(ctx, req.EventsId, play.OpenResult{
-			Result:     req.Result,
-			BoutStatus: req.BoutStatus,
-		})
+		_, err = dao.EventsOdds.Ctx(ctx).Data("status=3").Where("events_id=? and bout_status=1", req.EventsId).Update()
+		if err != nil {
+			return nil, err
+		}
 		_, err := dao.Events.Ctx(ctx).Data(&event).Where("id", req.EventsId).Update()
 		if err != nil {
 			return nil, err
 		}
-
+		soccer2.Calc(ctx, req.EventsId, play.OpenResult{
+			Result:     req.Result,
+			BoutStatus: req.BoutStatus,
+		})
 	} else if req.BoutStatus == 2 {
 
 		event.SecondOpenTime = gtime.Now()
 		event.SecondOpenResult = req.Result
 		event.SecondStatus = 2
 		event.Status = 3
-
-		soccer2.Calc(ctx, req.EventsId, play.OpenResult{
-			Result:     req.Result,
-			BoutStatus: req.BoutStatus,
-		})
-
+		_, err = dao.EventsOdds.Ctx(ctx).Data("status=3").Where("events_id=?", req.EventsId).Update()
+		if err != nil {
+			return nil, err
+		}
 		toTwo, f2, err := xplay.OpenResutToTwo(event.FirstOpenResult)
 		if err != nil {
 			return nil, err
@@ -118,6 +119,11 @@ func (c cEvents) OpenResult(ctx gctx.Ctx, req *soccer.OpenResultReq) (res *model
 		if err != nil {
 			return nil, err
 		}
+		soccer2.Calc(ctx, req.EventsId, play.OpenResult{
+			Result:     req.Result,
+			BoutStatus: req.BoutStatus,
+		})
+
 		soccer2.Calc(ctx, req.EventsId, play.OpenResult{
 			Result:     fmt.Sprintf("%d-%d", gconv.Int(toTwo+two), gconv.Int(f2+f)),
 			BoutStatus: 3,

@@ -37,6 +37,14 @@ func (input *Bet) Exec(ctx context.Context) error {
 	if event.Status != 1 {
 		return fmt.Errorf("比赛已关闭")
 	}
+
+	if odds.BoutStatus == 1 && event.FirstStatus != 1 {
+		return fmt.Errorf("比赛已关闭")
+	}
+	if odds.BoutStatus == 2 && event.SecondStatus != 1 {
+		return fmt.Errorf("比赛已关闭")
+	}
+
 	userInfo := service.GetUserInfo(ctx)
 	update := wallet.BalanceUpdate{}
 	update.Uid = userInfo.UidInt64
