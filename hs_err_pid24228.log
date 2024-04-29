@@ -1,0 +1,216 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (allocation.cpp:44), pid=24228, tid=24624
+#
+# JRE version:  (17.0.7+10) (build )
+# Java VM: OpenJDK 64-Bit Server VM (17.0.7+10-b829.16, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: git4idea.http.GitAskPassApp Username for 'https://gitlab.com': 
+
+Host: 12th Gen Intel(R) Core(TM) i9-12900H, 20 cores, 31G,  Windows 11 , 64 bit Build 22621 (10.0.22621.2215)
+Time: Sat Sep 23 17:57:50 2023  Windows 11 , 64 bit Build 22621 (10.0.22621.2215) elapsed time: 0.010235 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000002741cd54250):  JavaThread "Unknown thread" [_thread_in_vm, id=24624, stack(0x000000bb67d00000,0x000000bb67e00000)]
+
+Stack: [0x000000bb67d00000,0x000000bb67e00000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x683cca]
+V  [jvm.dll+0x8424b4]
+V  [jvm.dll+0x843cae]
+V  [jvm.dll+0x844313]
+V  [jvm.dll+0x24ad2f]
+V  [jvm.dll+0xa69cf]
+V  [jvm.dll+0x2dd084]
+V  [jvm.dll+0x81440c]
+V  [jvm.dll+0x36ffe1]
+V  [jvm.dll+0x7f3a1c]
+V  [jvm.dll+0x3f305f]
+V  [jvm.dll+0x3f4b91]
+C  [jli.dll+0x528f]
+C  [ucrtbase.dll+0x29363]
+C  [KERNEL32.DLL+0x1257d]
+C  [ntdll.dll+0x5aa68]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007ff98141b098, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x000002741cd54250 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=24624, stack(0x000000bb67d00000,0x000000bb67e00000)]
+
+Threads with active compile tasks:
+
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap address: 0x0000000000000000, size: 0 MB, Compressed Oops mode: 32-bit
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 0.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+<Empty>
+
+GC Heap History (0 events):
+No events
+
+Dll operation events (1 events):
+Event: 0.007 Loaded shared library C:\Program Files\JetBrains\GoLand 2023.1.3\jbr\bin\java.dll
+
+Deoptimization events (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff788f60000 - 0x00007ff788f6a000 	C:\Program Files\JetBrains\GoLand 2023.1.3\jbr\bin\java.exe
+0x00007ffa47ed0000 - 0x00007ffa480e4000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ff9dcfc0000 - 0x00007ff9dcfd9000 	C:\Program Files\Avast Software\Avast\aswhook.dll
+0x00007ffa46ef0000 - 0x00007ffa46fb4000 	C:\Windows\System32\KERNEL32.DLL
+0x00007ffa453a0000 - 0x00007ffa45744000 	C:\Windows\System32\KERNELBASE.dll
+0x00007ffa458b0000 - 0x00007ffa459c1000 	C:\Windows\System32\ucrtbase.dll
+0x00007ffa10500000 - 0x00007ffa10517000 	C:\Program Files\JetBrains\GoLand 2023.1.3\jbr\bin\jli.dll
+0x00007ffa244b0000 - 0x00007ffa244cb000 	C:\Program Files\JetBrains\GoLand 2023.1.3\jbr\bin\VCRUNTIME140.dll
+0x00007ffa47a50000 - 0x00007ffa47bfe000 	C:\Windows\System32\USER32.dll
+0x00007ffa457c0000 - 0x00007ffa457e6000 	C:\Windows\System32\win32u.dll
+0x00007ffa474d0000 - 0x00007ffa474f9000 	C:\Windows\System32\GDI32.dll
+0x00007ffa459d0000 - 0x00007ffa45ae8000 	C:\Windows\System32\gdi32full.dll
+0x00007ffa45280000 - 0x00007ffa4531a000 	C:\Windows\System32\msvcp_win.dll
+0x00007ffa35810000 - 0x00007ffa35aa3000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.2215_none_270d72677387dfc3\COMCTL32.dll
+0x00007ffa46e30000 - 0x00007ffa46ed7000 	C:\Windows\System32\msvcrt.dll
+0x00007ffa46d70000 - 0x00007ffa46da1000 	C:\Windows\System32\IMM32.DLL
+0x00007ffa35530000 - 0x00007ffa3553c000 	C:\Program Files\JetBrains\GoLand 2023.1.3\jbr\bin\vcruntime140_1.dll
+0x00007ff9f6070000 - 0x00007ff9f60fd000 	C:\Program Files\JetBrains\GoLand 2023.1.3\jbr\bin\msvcp140.dll
+0x00007ff9808e0000 - 0x00007ff98154e000 	C:\Program Files\JetBrains\GoLand 2023.1.3\jbr\bin\server\jvm.dll
+0x00007ffa46fc0000 - 0x00007ffa47070000 	C:\Windows\System32\ADVAPI32.dll
+0x00007ffa47520000 - 0x00007ffa475c6000 	C:\Windows\System32\sechost.dll
+0x00007ffa47d70000 - 0x00007ffa47e87000 	C:\Windows\System32\RPCRT4.dll
+0x00007ffa352d0000 - 0x00007ffa35304000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ffa2d140000 - 0x00007ffa2d149000 	C:\Windows\SYSTEM32\WSOCK32.dll
+0x00007ffa3c2b0000 - 0x00007ffa3c2ba000 	C:\Windows\SYSTEM32\VERSION.dll
+0x00007ffa46db0000 - 0x00007ffa46e21000 	C:\Windows\System32\WS2_32.dll
+0x00007ffa44330000 - 0x00007ffa44348000 	C:\Windows\SYSTEM32\kernel.appcore.dll
+0x00007ffa13ed0000 - 0x00007ffa13eda000 	C:\Program Files\JetBrains\GoLand 2023.1.3\jbr\bin\jimage.dll
+0x00007ffa429a0000 - 0x00007ffa42bce000 	C:\Windows\SYSTEM32\DBGHELP.DLL
+0x00007ffa47620000 - 0x00007ffa479aa000 	C:\Windows\System32\combase.dll
+0x00007ffa47c10000 - 0x00007ffa47ce7000 	C:\Windows\System32\OLEAUT32.dll
+0x00007ffa37cc0000 - 0x00007ffa37cf2000 	C:\Windows\SYSTEM32\dbgcore.DLL
+0x00007ffa45320000 - 0x00007ffa4539a000 	C:\Windows\System32\bcryptPrimitives.dll
+0x00007ffa104d0000 - 0x00007ffa104f5000 	C:\Program Files\JetBrains\GoLand 2023.1.3\jbr\bin\java.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\JetBrains\GoLand 2023.1.3\jbr\bin;C:\Windows\SYSTEM32;C:\Program Files\Avast Software\Avast;C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.2215_none_270d72677387dfc3;C:\Program Files\JetBrains\GoLand 2023.1.3\jbr\bin\server
+
+VM Arguments:
+java_command: git4idea.http.GitAskPassApp Username for 'https://gitlab.com': 
+java_class_path (initial): C:/Program Files/JetBrains/GoLand 2023.1.3/plugins/vcs-git/lib/git4idea-rt.jar;C:/Program Files/JetBrains/GoLand 2023.1.3/lib/externalProcess-rt.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 12                                        {product} {ergonomic}
+     uint ConcGCThreads                            = 4                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 15                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 4194304                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 532676608                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 8518631424                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 4194304                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 7602480                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122027880                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122027880                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 8518631424                             {manageable} {ergonomic}
+     bool UseCompressedClassPointers               = true                           {product lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jre1.8.0_361
+PATH=C:\Program Files\Git\mingw64\libexec\git-core;C:\Program Files\Git\mingw64\libexec\git-core;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\abri2\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Users\abri2\AppData\Local\Programs\cursor\resources\app\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git\cmd;C:\Program Files\Go\bin;C:\Program Files\nodejs;C:\Program Files\TortoiseGit\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Users\abri2\AppData\Local\Microsoft\WindowsApps;C:\Users\abri2\go\bin;D:\tools;C:\Users\abri2\AppData\Roaming\npm;C:\Program Files\JetBrains\DataGrip 2023.1.2\bin;D:\tools\flutter\flutter;D:\tools\flutter\flutter\bin;C:\Users\abri2\AppData\Local\Programs\cursor\resources\app\bin;C:\Users\abri2\anaconda3;C:\Users\abri2\anaconda3\Library\mingw-w64\bin;C:\Users\abri2\anaconda3\Library\usr\bin;C:\Users\abri2\anaconda3\Library\bin;C:\Users\abri2\anaconda3\Scripts;C:\Users\abri2\.cargo\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Users\abri2\AppData\Local\Microsoft\WindowsApps;C:\Users\abri2\go\bin;D:\tools;C:\Users\abri2\AppData\Roaming\npm;C:\Program Files\JetBrains\DataGrip 2023.1.2\bin;D:\tools\flutter\flutter;D:\tools\flutter\flutter\bin;C:\Users\abri2\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\abri2\AppData\Local\Programs\Python\Python311\Lib\site-packages\pip\_vendor\rich;C:\Program Files\Java\jre1.8.0_361\bin;C:\Users\abri2\AppData\Local\JetBrains\Toolbox\scripts;C:\Program Files\JetBrains\WebStorm 2023.2.1\bin;C:\Users\abri2\AppData\Local\Pub\Cache\bin
+USERNAME=abri2
+DISPLAY=:0.0
+LC_ALL=en_US.UTF-8
+TERM=xterm-256color
+TMPDIR=C:\Users\abri2\AppData\Local\Temp
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 154 Stepping 3, GenuineIntel
+TMP=C:\Users\abri2\AppData\Local\Temp
+TEMP=C:\Users\abri2\AppData\Local\Temp
+
+
+JNI global refs:
+
+[error occurred during error reporting (JNI global references), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ff980997fc0]
+
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 11 , 64 bit Build 22621 (10.0.22621.2215)
+OS uptime: 1 days 7:48 hours
+Hyper-V role detected
+
+CPU: total 20 (initial active 20) (10 cores per cpu, 2 threads per core) family 6 model 154 stepping 3 microcode 0x41c, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, sha, fma, vzeroupper, clflush, clflushopt, clwb, hv
+
+Memory: 4k page, system-wide physical 32492M (4787M free)
+TotalPageFile size 67655M (AvailPageFile size 5M)
+current process WorkingSet (physical memory assigned to process): 10M, peak: 10M
+current process commit charge ("private bytes"): 12M, peak: 13M
+
+vm_info: OpenJDK 64-Bit Server VM (17.0.7+10-b829.16) for windows-amd64 JRE (17.0.7+10-b829.16), built on 2023-06-02 by "builduser" with MS VC++ 16.10 / 16.11 (VS2019)
+
+END.
